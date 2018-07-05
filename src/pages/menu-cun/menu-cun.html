@@ -1,0 +1,38 @@
+
+<ion-header>
+<ion-toolbar color="primary">
+  <div class="splash-logo"></div>
+</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content >
+  
+ <ion-grid >
+         <ion-row>
+          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="pagepush(iconsHome.page)">
+           
+            <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }" >
+                <img *ngIf="button.candado " class="candadoIco" [src]="button.candado" alt="">     
+              <div> <img class="ImagenBoton" [src]="button.imagen" > </div>
+                 <p class="nombreBoton">{{button.nombre}}</p>
+
+             </div>   
+                
+          </ion-col>    
+        </ion-row>
+      </ion-grid >
+ 
+  
+</ion-content>
+
+<ion-footer color="primary">
+    <div class="iconoFooter">
+        <img src="../../assets/img/19noticias.png">
+        <img src="../../assets/img/20sedes.png">
+      </div>
+    <img  class="imagenFooter" src="../../assets/img/pie-de-pagina.png" alt="">
+   
+
+</ion-footer>

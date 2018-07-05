@@ -4,6 +4,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 import { Item } from '../../models/item';
 import { Items } from '../../providers';
 
+
 @IonicPage()
 @Component({
   selector: 'page-list-master',
@@ -13,6 +14,7 @@ export class ListMasterPage {
   currentItems: Item[];
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
+    
     this.currentItems = this.items.query();
   }
 
