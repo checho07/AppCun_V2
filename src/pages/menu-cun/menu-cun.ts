@@ -19,10 +19,11 @@ export class MenuCunPage {
   currentButtons: Item[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public buttons:BotonesMenu) {
-    this.currentButtons = this.buttons.query();
+    
   }
 
   ionViewDidLoad() {
+    this.currentButtons = this.buttons.query();
     console.log('ionViewDidLoad MenuCunPage');
   }
 

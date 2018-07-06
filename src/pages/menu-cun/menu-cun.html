@@ -11,14 +11,14 @@
   
  <ion-grid >
          <ion-row>
-          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="pagepush(iconsHome.page)">
+          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" >
            
             <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }" >
-                <img *ngIf="button.candado " class="candadoIco" [src]="button.candado" alt="">     
+                <img *ngIf="button.candado" class="candadoIco" [src]="button.candado" >     
               <div> <img class="ImagenBoton" [src]="button.imagen" > </div>
                  <p class="nombreBoton">{{button.nombre}}</p>
 
-             </div>   
+             </div>    
                 
           </ion-col>    
         </ion-row>
@@ -34,19 +34,19 @@
       <ion-grid class="footerGrid">
           <ion-row>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/19noticias.png" (click)="noticiasPush()"/>
+              <img class="iconFooter" src="../assets/img/19noticias.png" />
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/20sedes.png" (click)="sedesPush()"/>
+              <img class="iconFooter" src="../assets/img/20sedes.png" />
             </ion-col>
             <ion-col col-4>
-              <img class="iconU" src="../assets/img/21cun.png" (click)="cunPush()"/>
+              <img class="iconU" src="../assets/img/21cun.png" />
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/22directorio.png" (click)="directorioPush()" />
+              <img class="iconFooter" src="../assets/img/22directorio.png"  />
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/23notificaciones.png" (click)="notificacionesPush()"/>
+              <img class="iconFooter" src="../assets/img/23notificaciones.png" />
             </ion-col>
           </ion-row>
         </ion-grid>

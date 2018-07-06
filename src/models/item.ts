@@ -20,5 +20,9 @@ export class Item {
 }
 
 export interface Item {
+  nombre:string,
+  imagen:string,
+  page:string,
+  candado:string
   [prop: string]: any;
 }
