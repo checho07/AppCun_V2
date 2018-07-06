@@ -39,6 +39,7 @@ page-menu-cun {
         width: 40px;
         height: 40px;
         
+        
     }
     .nombreBoton {
         
@@ -48,22 +49,30 @@ page-menu-cun {
         
     }
     .imagenFooter{
-        width: fit-content;
-        position: sticky;
+        width: 100%;
+        position: absolute;
+        bottom: 1px;
+        
        
         
     }
-    .iconoFooter{
+   
+    .iconFooter{
+        height: 25px;
+        margin-left: 10px;
+    }
+    .iconU{
         z-index: 999;
+        height: 40px;
         position: absolute;
+        left: 13%;
         bottom: 5px;
-      
     }
 
-    .iconoFooter img{
-        float: left;
-        width: 40px;
-        margin: 10px 10px;
+    .footerGrid{
+        
+        position: absolute;
+        bottom: 1px;
     }
 
 
