@@ -1,0 +1,58 @@
+
+<ion-header>
+<ion-toolbar color="primary">
+  <div class="splash-logo"></div>
+</ion-toolbar>
+
+</ion-header>
+
+
+<ion-content >
+  
+ <ion-grid >
+         <ion-row>
+          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="pagepush(iconsHome.page)">
+           
+            <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }" >
+                <img *ngIf="button.candado " class="candadoIco" [src]="button.candado" alt="">     
+              <div> <img class="ImagenBoton" [src]="button.imagen" > </div>
+                 <p class="nombreBoton">{{button.nombre}}</p>
+
+             </div>   
+                
+          </ion-col>    
+        </ion-row>
+      </ion-grid >
+ 
+  
+</ion-content>
+
+<ion-footer color="secondary">
+   
+    <img  class="imagenFooter" src="../../assets/img/pie-de-pagina1.png" alt="">
+     <div class="iconFooter">
+      <ion-grid class="footerGrid">
+          <ion-row>
+            <ion-col col-2>
+              <img class="iconFooter" src="../assets/img/19noticias.png" (click)="noticiasPush()"/>
+            </ion-col>
+            <ion-col col-2>
+              <img class="iconFooter" src="../assets/img/20sedes.png" (click)="sedesPush()"/>
+            </ion-col>
+            <ion-col col-4>
+              <img class="iconU" src="../assets/img/21cun.png" (click)="cunPush()"/>
+            </ion-col>
+            <ion-col col-2>
+              <img class="iconFooter" src="../assets/img/22directorio.png" (click)="directorioPush()" />
+            </ion-col>
+            <ion-col col-2>
+              <img class="iconFooter" src="../assets/img/23notificaciones.png" (click)="notificacionesPush()"/>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+  </div>
+   
+    
+
+</ion-footer>
