@@ -13,6 +13,7 @@ import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
 import { BotonesMenu } from '../mocks/providers/BotonesMenu';
+import { StreamingMedia } from '@ionic-native/streaming-media';
 
 
 // The translate loader needs to know where to load i18n files
@@ -65,6 +66,7 @@ export function provideSettings(storage: Storage) {
     Camera,
     SplashScreen,
     StatusBar,
+    StreamingMedia,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

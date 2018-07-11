@@ -7,11 +7,11 @@
 </ion-header>
 
 
-<ion-content >
+<ion-content padding >
   
  <ion-grid >
          <ion-row>
-          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="pagepush(iconsHome.page)">
+          <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="openPage()">
            
             <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }" >
                 <img *ngIf="button.candado " class="candadoIco" [src]="button.candado" alt="">     

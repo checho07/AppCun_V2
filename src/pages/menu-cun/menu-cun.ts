@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../mocks/providers/BotonesMenu';
+import { cunMedia } from '../';
 /**
  * Generated class for the MenuCunPage page.
  *
@@ -20,10 +21,15 @@ export class MenuCunPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public buttons:BotonesMenu) {
     this.currentButtons = this.buttons.query();
+    console.log(this.currentButtons)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuCunPage');
+  }
+
+  openPage(){
+    this.navCtrl.setRoot(cunMedia);
   }
 
 }

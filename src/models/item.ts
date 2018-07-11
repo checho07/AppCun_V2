@@ -1,3 +1,5 @@
+
+
 /**
  * A generic model that our Master-Detail pages list, create, and delete.
  *
@@ -20,5 +22,9 @@ export class Item {
 }
 
 export interface Item {
+  nombre:string,
+  imagen:string,
+  page:string,
+  candado?:string,
   [prop: string]: any;
 }

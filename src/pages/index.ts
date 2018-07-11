@@ -10,3 +10,7 @@ export const MenuCun = 'MenuCunPage';
 export const Tab1Root = 'ListMasterPage';
 export const Tab2Root = 'SearchPage';
 export const Tab3Root = 'SettingsPage';
+
+//pages for the cunMenu buttons.
+export const cunMedia = 'CunMediaPage';
+

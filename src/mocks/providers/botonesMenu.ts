@@ -59,7 +59,7 @@ export class BotonesMenu {
         nombre: "Biblioteca",
         imagen: "assets/img/11biblioteca.png",
         page:   "BibliotecaPage",
-        candado: "assets/imgs/IconoCandado.png"
+        candado: "assets/img/IconoCandado.png"
       },
       {
         nombre: "AEI",
