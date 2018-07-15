@@ -29,7 +29,7 @@ export class MenuCunPage {
   }
 
   openPage(){
-    this.navCtrl.setRoot(cunMedia);
+    this.navCtrl.push(cunMedia);
   }
 
 }
