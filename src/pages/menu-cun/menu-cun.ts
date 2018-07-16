@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Item } from '../../models/item';
-import { BotonesMenu } from '../../mocks/providers/BotonesMenu';
+import { BotonesMenu } from '../../providers';
 import { cunMedia } from '../';
 /**
  * Generated class for the MenuCunPage page.

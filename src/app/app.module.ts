@@ -10,9 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Items } from '../mocks/providers/items';
-import { Settings, User, Api } from '../providers';
+import { Settings, User, Api, BotonesMenu } from '../providers';
 import { MyApp } from './app.component';
-import { BotonesMenu } from '../mocks/providers/BotonesMenu';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 
 
