@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
-import { cunMedia } from '../';
 /**
  * Generated class for the MenuCunPage page.
  *
@@ -28,8 +27,8 @@ export class MenuCunPage {
     console.log('ionViewDidLoad MenuCunPage');
   }
 
-  openPage(){
-    this.navCtrl.push(cunMedia);
+  openPage(page){
+    this.navCtrl.push(page);
   }
 
 }

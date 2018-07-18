@@ -13,4 +13,10 @@ export const Tab3Root = 'SettingsPage';
 
 //pages for the cunMenu buttons.
 export const cunMedia = 'CunMediaPage';
+export const notas = 'NotasPage';
+export const carne = 'CarnePage';
+export const horario = 'HorarioPage';
+
+//modal pages.
+export const horarioModal = 'HorariomodalPage';
 

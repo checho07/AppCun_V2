@@ -19,7 +19,7 @@ export class CunMediaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CunMediaPage');
+    
   }
 
   

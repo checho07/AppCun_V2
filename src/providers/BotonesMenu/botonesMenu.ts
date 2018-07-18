@@ -48,7 +48,7 @@ export class BotonesMenu {
       {
         nombre: "Cun media",
         imagen: "assets/img/10media.png",
-        page :"AboutPage"
+        page :"CunMediaPage"
       },
       {
         nombre: "Aprende",
