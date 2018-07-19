@@ -13,18 +13,18 @@
          <ion-row>
           <ion-col   col-4 [ngClass]="{'padding':i >2}" *ngFor="let button of currentButtons; let i = index" (click)="openPage(button.page)">
            
-            <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }" >
+            <div ion-button block [ngClass]="{'verdeClaro':i%2 == 0, 'verdeOscuro': i%2 !== 0 }"  >
                 <img *ngIf="button.candado " class="candadoIco" [src]="button.candado" alt="">     
               <div> <img class="ImagenBoton" [src]="button.imagen" > </div>
                  <p class="nombreBoton">{{button.nombre}}</p>
 
              </div>   
-                
+            
           </ion-col>    
         </ion-row>
       </ion-grid >
  
-  
+ 
 </ion-content>
 
 <ion-footer color="secondary">
