@@ -10,9 +10,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { Items } from '../mocks/providers/items';
-import { Settings, User, Api, BotonesMenu } from '../providers';
+import { Settings, User, Api, BotonesMenu, HorarioProvider } from '../providers';
 import { MyApp } from './app.component';
 import { StreamingMedia } from '@ionic-native/streaming-media';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { Device } from '@ionic-native/device';
+import { AppAvailability } from '@ionic-native/app-availability';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 // The translate loader needs to know where to load i18n files
@@ -43,6 +48,7 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxQRCodeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -61,11 +67,14 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     BotonesMenu,
+    HorarioProvider,
     User,
     Camera,
     SplashScreen,
     StatusBar,
     StreamingMedia,
+    ScreenOrientation,
+    Device,AppAvailability,InAppBrowser,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
