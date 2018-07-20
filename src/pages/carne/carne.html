@@ -1,0 +1,40 @@
+<ion-header >
+    <ion-navbar color="primary" >
+      <ion-buttons end>
+        <button icon-only ion-button>
+          <ion-avatar >
+            <img src="../../assets/img/icono-cun-verde.png" width="30px" height="30px;" style="margin-right: 10px; padding: 5px" >
+          </ion-avatar>
+        </button>
+      </ion-buttons>
+      <ion-title end>Carnet</ion-title>   
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content class="card-background-page">
+      <ion-card class="carnetCard" *ngFor="let qrData of qrdata;">
+        <img src="../../assets/img/carnetblanco.png"/>
+          <ion-item text-wrap  color="secondary"  >
+            <ion-thumbnail item-right>
+              <img src="../../assets/img/Captura.PNG">
+              <p>#YOSOYCUN</p>
+            </ion-thumbnail>        
+            <p class="datosC"> {{qrData.nombre}}</p>
+            <p class="datosC">Cc: {{qrData.cc}}</p>
+            <p class="datosC"> {{qrData.carrera}}</p>
+            <p class="datosC">Sede: {{qrData.sede}}</p>
+            <p class="datosC">RH: {{qrData.rh}}</p>        
+          </ion-item>      
+      </ion-card>
+      <div class="codigo" *ngIf="displayQrCode()">
+        <img *ngIf="displayQrCode()" [src]="generated" />
+      </div>    
+     </ion-content>
+    <ion-footer>
+      <div class="footerCarne">
+        <p class="textFooter">Este carné es unico e intransferible, identifica al portador y supone
+          la conformidad del titular con las condiciones establecidas por la institución.
+        </p>
+      </div>
+    </ion-footer>

@@ -1,0 +1,78 @@
+
+<ion-header >
+
+  <ion-navbar color="primary" >
+    <ion-buttons end>
+      <button icon-only ion-button>
+        <ion-avatar >
+          <img src="../../assets/img/icono-cun-verde.png" width="30px" height="30px;" style="margin-right: 10px; padding: 5px" >
+        </ion-avatar>
+      </button>
+    </ion-buttons>
+    <ion-title end>Notas</ion-title>   
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row >
+      <ion-col >
+        <table id="tablaNotas">
+          <thead id="corteNotas"> 
+            <th></th>                
+            <th>ASIGNATURAS</th>
+            <th>C1</th>
+            <th>C2</th>
+            <th>C3</th>
+            <th>DEF</th>                  
+          </thead>                  
+          <tbody id="tablaBody"> <!-- Cuerpo de la tabla -->
+            <tr  [ngClass]="{'fondoTr': selectedItem == nota}" (click)="seleccionarNota(nota,i)" *ngFor="let nota of notas; let i = index" >
+              <td><p>{{i+1}}.</p></td>
+              <td><span class="asignaturas">{{nota.asignatura}}</span></td>
+              <td>{{nota.c1}}</td>
+              <td>{{nota.c2}}</td>
+              <td>{{nota.c3}}</td>
+              <td>{{nota.c1}}</td>                   
+            </tr>                   
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>       
+        <table id="calculoRapido">
+          <thead id="tituloCalculo">    
+            <th >CALCULO RÁPIDO</th>
+          </thead>
+          <tbody id="notasCalculo">
+            <tr>
+              <td>Corte 1</td>
+              <td #corte1Input></td> 
+              <td rowspan=2>
+                <button ion-button class="botonCalcular" (click)="calcularNota()">CALCULAR</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Corte 2</td>
+              <td  #corte2Input></td>
+            </tr>
+          </tbody>         
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-navbar color="primary">
+      <div id="footerMateria">
+        
+          <p #mensaje class="mensajeCorte" [hidden]="ocultar"></p>
+        </div>
+  </ion-navbar>
+   
+</ion-footer>
