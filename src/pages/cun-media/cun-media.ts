@@ -21,12 +21,13 @@ export class CunMediaPage {
 
   ionViewDidLoad() {
     this.audio = new Audio();
-    this.audio.src = 'http://stream.miradio.in:8553/stream?type=.mp3';      
-    this.audio.crossOrigin='anonymous';
-    this.canvasRadio(this.audio);
+    this.audio.source = 'http://stream.miradio.in:8553/stream?type=.mp3';   
+     this.audio.crossOrigin='anonymous';
+     this.canvasRadio(this.audio);
    }
 
   play() {
+  
     this.audio.play();
     
     this.prueba = true; 

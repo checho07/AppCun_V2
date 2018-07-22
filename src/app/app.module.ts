@@ -21,6 +21,7 @@ import { MediaCapture } from '@ionic-native/media-capture';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
 import {AgmCoreModule} from '@agm/core';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -86,6 +87,7 @@ export function provideSettings(storage: Storage) {
     ApiVimeoProvider,
     EmailComposer,
     CallNumber,
+    GoogleMaps,
     DirectorioProvider
   ]
 })
