@@ -12,8 +12,9 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$text-color:       #007d64;
+//$text-color:       #007d64;
 $background-color: #003138;
+
 
 // Named Color Variables
 // --------------------------------------------------
@@ -36,7 +37,7 @@ $colors: (
   greefond:   #144148
 );
 
-
+$text-color:color($colors,ghost);
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -84,4 +85,22 @@ $colors: (
 
 $toast-ios-background :rgba(0,125,100,0.30);
 $toast-md-background :rgba(0,125,100,0.30);
+$card-md-border-radius:10px;
+$card-ios-border-radius:10px;
+$card-md-box-shadow:	10px 10px 10px 0 rgba(0, 0, 0, .14),-10px 10px 10px 0 rgba(0, 0, 0, .14), 2px 5px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+$card-ios-box-shadow:	10px 10px 10px 0 rgba(0, 0, 0, .14),-10px 10px 10px 0 rgba(0, 0, 0, .14), 2px 5px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+$button-md-background-color:color($colors,secondary);
+$button-md-border-radius:8px;
 
+//toolbar IOS
+$toolbar-background:color($colors,primary);
+$toolbar-ios-title-font-size:1.5em;
+$toolbar-ios-title-font-weight:900;
+$toolbar-ios-title-text-color:color($colors,secondary);
+//toolbar md
+
+$toolbar-md-title-font-size:2em;
+$toolbar-md-title-font-weight:bolder;
+$toolbar-md-title-text-color:color($colors,secondary);
+$content-margin:0 0 80px 0;
+$content-padding:12px;

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { StreamingMedia,StreamingAudioOptions } from '@ionic-native/streaming-media';
-/**
- * Generated class for the CunMediaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -15,24 +9,88 @@ import { StreamingMedia,StreamingAudioOptions } from '@ionic-native/streaming-me
 })
 export class CunMediaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private streamingMedia:StreamingMedia) {
+  url:string;
+  volume:any;
+  promise:any;
+  prueba:any;
+  audio:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ionViewDidLoad() {
-    
-  }
+    this.audio = new Audio();
+    this.audio.src = 'http://stream.miradio.in:8553/stream?type=.mp3';      
+    this.audio.crossOrigin='anonymous';
+    this.canvasRadio(this.audio);
+   }
 
-  
-radioOn(){
-  let options: StreamingAudioOptions = {
-    successCallback: () => { console.log('Video played') },
-    errorCallback: (e) => { console.log('Error streaming') }
+  play() {
+    this.audio.play();
     
+    this.prueba = true; 
+    this.volume = true;
+  //  this.initMp3Player();
   };
   
-this.streamingMedia.playAudio('http://stream.miradio.in:8553/stream?type=.mp3', options);
+  pause() {
+    this.audio.pause();
+    this.volume = false;
+    this.prueba = false; 
+  };
 
-}
+  mute(){
+    this.audio.muted = true ;
+    this.volume = false;
+  }
+
+  Unmute(){
+    this.audio.muted = false ;
+    this.volume = true;
+  }
+
+  canvasRadio(audio){
+ 
+    var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height,grd;
+  initMp3Player();
+    
+    function initMp3Player(){
+        
+        context = new AudioContext();
+        analyser = context.createAnalyser();
+        canvas = document.getElementById('analyzer');
+        ctx = canvas.getContext('2d');
+        
+        source = context.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(context.destination);
+        frameLooper();
+
+        function frameLooper(){
+            window.requestAnimationFrame(frameLooper);
+            fbc_array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(fbc_array);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+             grd = ctx.createLinearGradient(10, 20, 10, 100);
+                grd.addColorStop(0, "#00695c");
+                grd.addColorStop(1, "#003138");
+            ctx.fillStyle = grd;
+            bars = 100;
+            for (var i = 0; i < bars; i++) {
+               bar_x = i*10;
+               bar_width = 2;
+               bar_height = -(fbc_array[i] / 2);
+               ctx.fillRect(bar_x,canvas.height, bar_width, bar_height)               
+            }
+        }
+    }
+  }
+   
+
+  
+
+
 
 
 }
