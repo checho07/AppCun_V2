@@ -1,18 +1,40 @@
-<!--
-  Generated template for the CunMediaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title color="red">Cun Media</ion-title>
+<ion-header >
+  <ion-navbar color="primary" >
+    <ion-buttons end>
+      <button icon-only ion-button>
+        <ion-avatar >
+          <img src="assets/img/icono-cun-verde.png" width="30px" height="30px;" style="margin-right: 10px; padding: 5px" >
+        </ion-avatar>
+      </button>
+    </ion-buttons>
+    <ion-title end>Cun Radio</ion-title>   
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <button (click)="radioOn()">Radio</button>
+
+<ion-content padding >
+  
+  <div class="sonido" *ngIf="volume" (click)="mute()">
+    <img class="imgSonido" src="assets/img/sonido-activado.png">
+</div>
+<div class="sonido" [hidden]="volume" (click)="Unmute()">
+    <img class="imgSonido" src="assets/img/sonidodesactivado.png">
+</div>
+
+<!-- <div class="iconoNiveles">
+    <img class="imgNiveles" src="assets/img/niveles.png">
+</div> --><div id="mp3_player">
+  
+  <canvas id="analyzer"></canvas>
+ 
+</div>
+<div class="iconoApagar" (click)="play()" [hidden]="prueba"  >
+  <img class="imgApagar" name="play"  src="assets/img/apagado.png">
+</div> 
+<div class="iconoApagar" (click)="pause()" *ngIf="prueba">
+  <img class="imgApagar" name="pause"  src="assets/img/encendido.png">
+</div> 
+
+
 </ion-content>

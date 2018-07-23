@@ -1,0 +1,26 @@
+page-ubicacion {
+    // #map_canvas{
+    //     display: block;
+    //     height: 100%;
+    //     width: 100%;
+    //   }
+    .toolbar-title {
+        margin-top: 5px !important;
+        text-align: left !important ;
+        font-size: 2em !important;
+        font-weight: bolder !important;
+        color: color($colors, secondary)!important;
+        text-shadow: 4px 4px 5px rgba(3, 35, 39,0.7);
+     }
+
+    #map{
+        height: 100%;
+        width: 100%;
+    }
+
+    #content{
+        
+        color: color($colors,secondary);
+    }
+    
+}

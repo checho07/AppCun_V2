@@ -1,18 +1,40 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { GooglePlus } from '@ionic-native/google-plus';
+
+////////googleLogin 2
+import * as firebase from 'firebase/app';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Observable} from 'rxjs/Observable';
+import {Platform} from 'ionic-angular';
+////////
+
 
 
 import { User } from '../../providers';
 import { MenuCun } from '../';
+import { ERR_CORDOVA_NOT_AVAILABLE } from '@ionic-native/core';
 @IonicPage()
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers: [GooglePlus]
 })
 export class LoginPage {
- 
+
+  ////////googleLogin 2
+  user:Observable<firebase.User>;
+  ///////
+
+  displayName: any;
+  email: any;
+  familyName: any;
+  givenName: any;
+  userId: any;
+  imageUrl: any;
+  isLoggedIn:boolean = false;
 
   // The account fields for the login form.
   // If you're using the username field with or without email, make
@@ -26,28 +48,128 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
-    public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+              private googlePlus: GooglePlus,
+              private afAuth: AngularFireAuth,
+              private platform : Platform) {
 
-    this.translateService.get('LOGIN_ERROR').subscribe((value) => {
-      this.loginErrorString = value;
+    this.user = this.afAuth.authState;
+    this.platform.ready().then((readySource)=>{
+      alert("ready")
+      this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+      'offline':true,
+      'scopes':'profile email'}).
+      then((res)=>
+      {alert(JSON.stringify(res))
+        this.isLoggedIn = true;
+      }).catch(err =>alert(JSON.stringify(err)));
     })
   }
 
-  // Attempt to login in through our User service
-  doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.setRoot(MenuCun);
-    }, (err) => {
-      this.navCtrl.setRoot(MenuCun);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
+  ionViewDidEnter(){
+    alert("didEnter")
+      this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+      'offline':true,
+      'scopes':'profile email'}).
+      then((res)=>
+      {alert(JSON.stringify(res))
+        this.isLoggedIn = true;
+      })
+   
   }
+
+
+///////googleLogin2
+googleLogin()
+{
+  if(this.platform.is('cordova')){
+    this.nativeGoogleLogin();
+  }else{
+    this.webGoogleLogin();
+  }
+
+}
+
+async nativeGoogleLogin(): Promise<any>{
+  try {
+    const gplusUser = await this.googlePlus.login({
+      'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+      'offline':true,
+      'scopes':'profile email'
+    })
+  
+    return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider
+      .credential(gplusUser.idToken))
+      
+  } catch (error) {
+    console.log(error);
+  } 
+}
+async webGoogleLogin(): Promise<void>{
+    try {
+   
+
+
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const credential=  await this.afAuth.auth.signInWithPopup(provider);
+      console.log(provider)
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+signOut(){
+  this.afAuth.auth.signOut();
+  if (this.platform.is('cordova')) {
+    this.googlePlus.logout()
+  } else {
+    
+  }
+}
+
+check(){
+  if (this.isLoggedIn) 
+  return true;
+    this.navCtrl.setRoot(MenuCun);
+    
+  
+}
+  ///////
+
+
+
+  login() {
+    this.googlePlus.login({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+    'offline':true,
+    'scopes':'profile email'})
+      .then(res => {
+        console.log(res);
+        this.displayName = res.displayName;
+        this.email = res.email;
+        this.familyName = res.familyName;
+        this.givenName = res.givenName;
+        this.userId = res.userId;
+        this.imageUrl = res.imageUrl;
+
+        this.isLoggedIn = true;
+      })
+      .catch(err => console.error(err));
+  }
+
+  logout() {
+    this.googlePlus.logout()
+      .then(res => {
+        console.log(res);
+        this.displayName = "";
+        this.email = "";
+        this.familyName = "";
+        this.givenName = "";
+        this.userId = "";
+        this.imageUrl = "";
+
+        this.isLoggedIn = false;
+      })
+      .catch(err => console.error(err));
+  }
+
+  
 }

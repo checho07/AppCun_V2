@@ -8,9 +8,8 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
 import { Items } from '../mocks/providers/items';
-import { Settings, User, Api, BotonesMenu, HorarioProvider } from '../providers';
+import { Settings, User, Api, BotonesMenu, HorarioProvider,ApiVimeoProvider,DirectorioProvider } from '../providers';
 import { MyApp } from './app.component';
 import { StreamingMedia } from '@ionic-native/streaming-media';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -18,7 +17,25 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { Device } from '@ionic-native/device';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { CallNumber } from '@ionic-native/call-number';
+import {AgmCoreModule} from '@agm/core';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {GooglePlus} from '@ionic-native/google-plus';
+import { WordpressProvider } from '../providers/wordpress/wordpress';
+import { SedesProvider } from '../providers/sedes/sedes';
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
+  authDomain: "appcunhome.firebaseapp.com",
+  databaseURL: "https://appcunhome.firebaseio.com",
+  projectId: "appcunhome",
+  storageBucket: "appcunhome.appspot.com",
+  messagingSenderId: "537588800472"
+}
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -48,6 +65,9 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({apiKey:'AIzaSyA2Mr5jjkk_bsSNaL15TD4qurs7gwoaOHw'}),
+    AngularFireModule.initializeApp(firebaseConfig), 
+    AngularFireAuthModule,
     NgxQRCodeModule,
     TranslateModule.forRoot({
       loader: {
@@ -67,6 +87,7 @@ export function provideSettings(storage: Storage) {
     Api,
     Items,
     BotonesMenu,
+    ApiVimeoProvider,
     HorarioProvider,
     User,
     Camera,
@@ -75,9 +96,17 @@ export function provideSettings(storage: Storage) {
     StreamingMedia,
     ScreenOrientation,
     Device,AppAvailability,InAppBrowser,
+    MediaCapture,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ApiVimeoProvider,
+    EmailComposer,
+    CallNumber,
+    GoogleMaps,GooglePlus,
+    DirectorioProvider,
+    WordpressProvider,
+    SedesProvider
   ]
 })
 export class AppModule { }
