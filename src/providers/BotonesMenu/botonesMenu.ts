@@ -60,17 +60,11 @@ export class BotonesMenu {
         imagen: "assets/img/11biblioteca.png",
         page:   "BibliotecaPage",
         candado: "assets/img/IconoCandado.png"
-      },
-      {
-        nombre: "AEI",
-        imagen: "assets/img/13aei.png",
-        page:   "AeiPage",
-        candado: "assets/img/IconoCandado.png"
-      },
+      },      
       {
         nombre: "Cun cápsula",
         imagen: "assets/img/14capsula.png",
-        page:   "CapsulaPage"
+        page:   "CunCapsulaPage"
       },
       {
         nombre: "Empleo",
@@ -81,18 +75,7 @@ export class BotonesMenu {
         nombre: "Diviértete",
         imagen: "assets/img/16diviertete.png",
         page:   "DiviertetePage"
-      },
-      {
-        nombre: "Funcionarios",
-        imagen: "assets/img/17funcionarios.png",
-        page:   "FuncionariosPage",
-        candado:"assets/img/IconoCandado.png"
-      },    
-    {
-      nombre: "Vitapp",
-      imagen: "assets/img/18vitapp.png",
-      page:   "VitappPage"
-    }
+      }
     ];
 
     for (let item of items) {

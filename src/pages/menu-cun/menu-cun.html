@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content  >
+<ion-content   >
   
  <ion-grid >
          <ion-row>
@@ -24,35 +24,37 @@
         </ion-row>
       </ion-grid >
  
- 
+ <button ion-button block outline (click)="logOut()">Logout</button>
 </ion-content>
 
-<ion-footer color="secondary">
-   
-    <img  class="imagenFooter" src="../../assets/img/pie-de-pagina1.png" alt="">
+<ion-footer no-border >
+<ion-navbar >
+ 
+   <img  class="imagenFooter" src="assets/img/pie-de-pagina1.png" alt="">
      <div class="iconFooter">
       <ion-grid class="footerGrid">
           <ion-row>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/19noticias.png" (click)="noticiasPush()"/>
+              <img class="iconFooter" src="assets/img/19noticias.png" (click)="noticiasPush()"/>
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/20sedes.png" (click)="sedesPush()"/>
+              <img class="iconFooter" src="assets/img/20sedes.png" (click)="sedesPush()"/>
             </ion-col>
             <ion-col col-4>
-              <img class="iconU" src="../assets/img/21cun.png" (click)="cunPush()"/>
+              <img class="iconU" src="assets/img/21cun.png" (click)="cunPush()"/>
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/22directorio.png" (click)="directorioPush()" />
+              <img class="iconFooter" src="assets/img/22directorio.png" (click)="directorioPush()" />
             </ion-col>
             <ion-col col-2>
-              <img class="iconFooter" src="../assets/img/23notificaciones.png" (click)="notificacionesPush()"/>
+              <img class="iconFooter" src="assets/img/23notificaciones.png" (click)="notificacionesPush()"/>
             </ion-col>
           </ion-row>
         </ion-grid>
       
-  </div>
-   
+  </div> 
+ 
+</ion-navbar>
     
 
 </ion-footer>

@@ -23,7 +23,7 @@ export class BibliotecaPage {
 
   bibvirtual(){
 
-    const browser = this.inAppBrowser.create("https://zproxy.cun.edu.co:2443/login","_blank",)
+     this.inAppBrowser.create("https://zproxy.cun.edu.co:2443/login","_blank",)
   //   let doc = document.getElementById('frame');
   //   doc.innerHTML = "<iframe class='iframeBiblioteca' src='https://zproxy.cun.edu.co:2443/login' frameBorder='0'></iframe>"
   //  this.bibliotecaBotones= true;

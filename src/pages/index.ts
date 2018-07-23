@@ -17,7 +17,12 @@ export const notas = 'NotasPage';
 export const carne = 'CarnePage';
 export const horario = 'HorarioPage';
 export const biblioteca = 'BibliotecaPage';
-
+export const cunCapsula = 'CunCapsulaPage';
+export const diviertete = 'DiviertetePage';
+export const agenda = 'AgendaPage';
+export const ubicacion ='UbicacionPage';
+export const noticias = 'NoticiasPage';
 //modal pages.
 export const horarioModal = 'HorariomodalPage';
+export const comentariosModal = 'ModalCommentsPage';
 

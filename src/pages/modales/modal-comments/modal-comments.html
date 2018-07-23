@@ -1,0 +1,45 @@
+
+
+
+<ion-header >
+  <ion-navbar >
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()" icon-only><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+    <ion-title end>Comentarios</ion-title>   
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+
+  <ion-card   *ngFor="let comment of comments.data" >
+    <ion-card-header>
+        <ion-item>
+            <ion-header>
+                <ion-icon item-right name="contact"></ion-icon>
+                Nombre del estudiante
+                  
+            </ion-header>
+             
+            
+          </ion-item>
+    
+    </ion-card-header>
+   
+    <ion-card-content class="commentText">
+     {{comment.text}}
+    </ion-card-content>
+  </ion-card>
+  
+ 
+  <form (ngSubmit)="addComment()" [formGroup]="formulario">
+    <ion-item>
+      <ion-input type="text" formControlName="text" name="text" placeholder="Escribe un comentario" clearInput="true" autocomplete="true" required> </ion-input>
+    </ion-item>
+    <button ion-button  type="submit" block [disabled]="!formulario.valid">Enviar Comentario</button>
+  </form>
+
+  
+
+</ion-content>

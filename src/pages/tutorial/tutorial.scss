@@ -33,4 +33,8 @@ page-tutorial {
     }
   }
 
+  .swiper-pagination-bullet-active {
+    background: color($colors,secondary);
+    opacity: 1;
+    }
 }

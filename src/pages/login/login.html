@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar color="third">
     <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
@@ -7,33 +7,28 @@
 </ion-header>
 
 
-<ion-content>
-  <form (submit)="doLogin()">
-    <ion-list>
+<ion-content padding>
+  <div *ngIf="isLoggedIn; else loginTemplate">
+    <h1>Welcome, {{displayName}}!</h1>
+    <p>Email: {{email}}<br>
+      Family Name: {{familyName}}<br>
+      Given Name: {{givenName}}<br>
+      User ID: {{userId}}</p>
+    <p><ion-avatar item-left>
+        <img src="{{imageUrl}}">
+       </ion-avatar></p>
+    <p><button ion-button (click)="logout()">Logout From Google</button></p>
+  </div>
 
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email" ></ion-input>
-      </ion-item>
+  <ng-template #loginTemplate>
+    <h1>Please Login to see your Google Account Information</h1>
+    <p><button ion-button (click)="login()">Login With Google</button></p>
+  </ng-template>
+</ion-content> -->
 
-      <!--
-      Want to use a Username instead of an Email? Here you go:
+<div *ngIf="(user | async) || {} as user">
 
-      <ion-item>
-        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-      </ion-item>
-      -->
+<button ion-button *ngIf="!user.uid" (tap)="googleLogin()" >Login with google</button>
+<span *ngIf="check(user.uid)"></span>
 
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
-
-      <div padding>
-        <button ion-button color="third" block>{{ 'LOGIN_BUTTON' | translate }}</button>
-      </div>
-
-    </ion-list>
-  </form>
-</ion-content>
+</div>

@@ -4,13 +4,12 @@ import { Device } from '@ionic-native/device';
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
 import { AppAvailability } from '@ionic-native/app-availability';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
-/**
- * Generated class for the MenuCunPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
+import { GooglePlus } from '@ionic-native/google-plus';
+import {Platform} from 'ionic-angular';
+import {AngularFireAuth} from 'angularfire2/auth';
+
 
 @IonicPage()
 @Component({
@@ -25,7 +24,14 @@ export class MenuCunPage {
               public buttons:BotonesMenu,
               private device: Device,
               public AppAvailability:AppAvailability,
-              private inAppBrowser: InAppBrowser) {
+              private inAppBrowser: InAppBrowser,
+
+              private googlePlus: GooglePlus,
+              private afAuth: AngularFireAuth,
+              private platform : Platform
+            
+            
+            ) {
     this.currentButtons = this.buttons.query();
     console.log(this.currentButtons)
   }
@@ -38,22 +44,30 @@ export class MenuCunPage {
       this.openCunVirtual();
      }else if(page == 'AprendePage'){
       this.openAprende();
+     }else if(page =='EmpleoPage'){
+      this.openEmpleo();     
      }else{
       this.navCtrl.push(page);
      }
    
   }
+
+  openEmpleo(){
+
+    this.inAppBrowser.create("http://www.elempleo.com/sitios-empresariales/Colombia/cun/","_blank",)
+ }
+
   openAprende(){
 
-    const browser = this.inAppBrowser.create("http://c.biu.us","_blank",)
+     this.inAppBrowser.create("http://c.biu.us","_blank",)
   }
 
   openCunVirtual(){
 
       let iosSchemaName ='instagram://';
-      let androidPackageName =  'com.pluralsight';
-      let appUrl = 'instagram://user?username=';
-      let httpUrl = 'http://www.pluralsight.com/';
+      let androidPackageName =  'com.moodle.moodlemobile.cun';
+      let appUrl = 'moodle://profile/';
+      let httpUrl = 'https://play.google.com/store/apps/details?id=com.moodle.moodlemobile.cun';
       
       
       let app:string;
@@ -82,6 +96,26 @@ export class MenuCunPage {
         }
       );
     
+  }
+
+  directorioPush(){
+    this.navCtrl.push('AgendaPage');
+  }
+  sedesPush(){
+    this.navCtrl.push('UbicacionPage');
+  }
+  noticiasPush(){
+    this.navCtrl.push('NoticiasPage');
+  }
+
+  logOut(){
+    this.afAuth.auth.signOut();
+    this.navCtrl.setRoot("LoginPage");
+    if (this.platform.is('cordova')) {
+      this.googlePlus.logout()
+    } else {
+      
+    }
   }
 
 }
