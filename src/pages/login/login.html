@@ -1,4 +1,4 @@
-<!-- <ion-header>
+<ion-header>
 
   <ion-navbar color="third">
     <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
@@ -9,6 +9,7 @@
 
 <ion-content padding>
   <div *ngIf="isLoggedIn; else loginTemplate">
+    
     <h1>Welcome, {{displayName}}!</h1>
     <p>Email: {{email}}<br>
       Family Name: {{familyName}}<br>
@@ -24,11 +25,11 @@
     <h1>Please Login to see your Google Account Information</h1>
     <p><button ion-button (click)="login()">Login With Google</button></p>
   </ng-template>
-</ion-content> -->
+</ion-content>
 
-<div *ngIf="(user | async) || {} as user">
+<!-- <div *ngIf="(user | async) || {} as user">
 
 <button ion-button *ngIf="!user.uid" (tap)="googleLogin()" >Login with google</button>
 <span *ngIf="check(user.uid)"></span>
 
-</div>
+</div> -->

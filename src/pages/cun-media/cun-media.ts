@@ -17,13 +17,14 @@ export class CunMediaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
+
   }
 
   ionViewDidLoad() {
     this.audio = new Audio();
-    this.audio.source = 'http://stream.miradio.in:8553/stream?type=.mp3';   
-     this.audio.crossOrigin='anonymous';
-     this.canvasRadio(this.audio);
+    this.audio.src = 'http://stream.miradio.in:8553/stream?type=.mp3';
+    this.audio.crossOrigin='anonymous';
+    this.canvasRadio(this.audio);
    }
 
   play() {
@@ -74,12 +75,12 @@ export class CunMediaPage {
             analyser.getByteFrequencyData(fbc_array);
             ctx.clearRect(0,0,canvas.width,canvas.height);
              grd = ctx.createLinearGradient(10, 20, 10, 100);
-                grd.addColorStop(0, "#00695c");
+                grd.addColorStop(0, "LawnGreen ");
                 grd.addColorStop(1, "#003138");
             ctx.fillStyle = grd;
             bars = 100;
             for (var i = 0; i < bars; i++) {
-               bar_x = i*10;
+               bar_x = i*8;
                bar_width = 2;
                bar_height = -(fbc_array[i] / 2);
                ctx.fillRect(bar_x,canvas.height, bar_width, bar_height)               

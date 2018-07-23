@@ -22,6 +22,7 @@ export const diviertete = 'DiviertetePage';
 export const agenda = 'AgendaPage';
 export const ubicacion ='UbicacionPage';
 export const noticias = 'NoticiasPage';
+export const infoPost = 'InfoPostPage';
 //modal pages.
 export const horarioModal = 'HorariomodalPage';
 export const comentariosModal = 'ModalCommentsPage';

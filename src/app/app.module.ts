@@ -26,6 +26,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {GooglePlus} from '@ionic-native/google-plus';
 import { WordpressProvider } from '../providers/wordpress/wordpress';
+import { SedesProvider } from '../providers/sedes/sedes';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
@@ -104,7 +105,8 @@ export function provideSettings(storage: Storage) {
     CallNumber,
     GoogleMaps,GooglePlus,
     DirectorioProvider,
-    WordpressProvider
+    WordpressProvider,
+    SedesProvider
   ]
 })
 export class AppModule { }

@@ -14,6 +14,12 @@ getRecentPosts(page){
   return this.http.get(this.WORDPRESS_REST_API_URL+'posts?page='+page);
 }
 
+getImage(mediaId){
+  return this.http.get(this.WORDPRESS_REST_API_URL+'media/'+mediaId);
+}
+getComments(idPost){
+  return this.http.get(this.WORDPRESS_REST_API_URL+'comments?post='+idPost);
+}
 
 
 }

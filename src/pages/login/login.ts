@@ -14,6 +14,7 @@ import {Platform} from 'ionic-angular';
 
 import { User } from '../../providers';
 import { MenuCun } from '../';
+import { ERR_CORDOVA_NOT_AVAILABLE } from '@ionic-native/core';
 @IonicPage()
 
 @Component({
@@ -52,6 +53,28 @@ export class LoginPage {
               private platform : Platform) {
 
     this.user = this.afAuth.authState;
+    this.platform.ready().then((readySource)=>{
+      alert("ready")
+      this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+      'offline':true,
+      'scopes':'profile email'}).
+      then((res)=>
+      {alert(JSON.stringify(res))
+        this.isLoggedIn = true;
+      }).catch(err =>alert(JSON.stringify(err)));
+    })
+  }
+
+  ionViewDidEnter(){
+    alert("didEnter")
+      this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+      'offline':true,
+      'scopes':'profile email'}).
+      then((res)=>
+      {alert(JSON.stringify(res))
+        this.isLoggedIn = true;
+      })
+   
   }
 
 
@@ -103,9 +126,11 @@ signOut(){
   }
 }
 
-check(uid){
-  if (uid) 
+check(){
+  if (this.isLoggedIn) 
+  return true;
     this.navCtrl.setRoot(MenuCun);
+    
   
 }
   ///////
@@ -113,7 +138,9 @@ check(uid){
 
 
   login() {
-    this.googlePlus.login({})
+    this.googlePlus.login({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+    'offline':true,
+    'scopes':'profile email'})
       .then(res => {
         console.log(res);
         this.displayName = res.displayName;

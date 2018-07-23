@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {WordpressProvider} from '../../providers';
 
 @IonicPage()
@@ -11,7 +11,7 @@ export class NoticiasPage {
 
   public wpPosts;
   morePagesAvailable:boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private wp:WordpressProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private wp:WordpressProvider,public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -19,16 +19,22 @@ export class NoticiasPage {
    
   }
   ionViewDidEnter() {
+    
     this.morePagesAvailable = true;
   }
   
 
   getPosts(){
-    this.wp.getRecentPosts(1).subscribe(data =>{
-      this.wpPosts = data;
-      data
-      console.log(this.wpPosts)
+    let loader = this.loadingCtrl.create({content: 'Cargando Noticias...',spinner:'dots',showBackdrop:false});
+    
+    loader.present().then(()=>{
+      this.wp.getRecentPosts(1).subscribe(data =>{
+        this.wpPosts = data;
+        loader.dismiss();
+      })
+     
     })
+  
 
   }
 
@@ -54,7 +60,7 @@ export class NoticiasPage {
     }
 
     postTapped(event, post) {
-      this.navCtrl.push(PostPage, {
+      this.navCtrl.push("InfoPostPage", {
         item: post
       });
     }
