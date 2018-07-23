@@ -22,6 +22,19 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
 import {AgmCoreModule} from '@agm/core';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {GooglePlus} from '@ionic-native/google-plus';
+import { WordpressProvider } from '../providers/wordpress/wordpress';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
+  authDomain: "appcunhome.firebaseapp.com",
+  databaseURL: "https://appcunhome.firebaseio.com",
+  projectId: "appcunhome",
+  storageBucket: "appcunhome.appspot.com",
+  messagingSenderId: "537588800472"
+}
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -52,6 +65,8 @@ export function provideSettings(storage: Storage) {
     BrowserModule,
     HttpClientModule,
     AgmCoreModule.forRoot({apiKey:'AIzaSyA2Mr5jjkk_bsSNaL15TD4qurs7gwoaOHw'}),
+    AngularFireModule.initializeApp(firebaseConfig), 
+    AngularFireAuthModule,
     NgxQRCodeModule,
     TranslateModule.forRoot({
       loader: {
@@ -87,8 +102,9 @@ export function provideSettings(storage: Storage) {
     ApiVimeoProvider,
     EmailComposer,
     CallNumber,
-    GoogleMaps,
-    DirectorioProvider
+    GoogleMaps,GooglePlus,
+    DirectorioProvider,
+    WordpressProvider
   ]
 })
 export class AppModule { }

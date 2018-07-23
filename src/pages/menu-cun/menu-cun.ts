@@ -6,6 +6,10 @@ import { BotonesMenu } from '../../providers';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+import {Platform} from 'ionic-angular';
+import {AngularFireAuth} from 'angularfire2/auth';
+
 
 @IonicPage()
 @Component({
@@ -20,7 +24,14 @@ export class MenuCunPage {
               public buttons:BotonesMenu,
               private device: Device,
               public AppAvailability:AppAvailability,
-              private inAppBrowser: InAppBrowser) {
+              private inAppBrowser: InAppBrowser,
+
+              private googlePlus: GooglePlus,
+              private afAuth: AngularFireAuth,
+              private platform : Platform
+            
+            
+            ) {
     this.currentButtons = this.buttons.query();
     console.log(this.currentButtons)
   }
@@ -92,6 +103,19 @@ export class MenuCunPage {
   }
   sedesPush(){
     this.navCtrl.push('UbicacionPage');
+  }
+  noticiasPush(){
+    this.navCtrl.push('NoticiasPage');
+  }
+
+  logOut(){
+    this.afAuth.auth.signOut();
+    this.navCtrl.setRoot("LoginPage");
+    if (this.platform.is('cordova')) {
+      this.googlePlus.logout()
+    } else {
+      
+    }
   }
 
 }
