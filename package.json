@@ -32,6 +32,7 @@
     "@ionic-native/google-plus": "^4.10.0",
     "@ionic-native/in-app-browser": "^4.10.0",
     "@ionic-native/media-capture": "^4.10.0",
+    "@ionic-native/native-storage": "^4.10.0",
     "@ionic-native/screen-orientation": "^4.9.2",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
@@ -53,6 +54,7 @@
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
     "cordova-plugin-media-capture": "^3.0.2",
+    "cordova-plugin-nativestorage": "^2.3.2",
     "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-streaming-media": "^2.1.2",
@@ -93,7 +95,8 @@
       "cordova-plugin-email-composer": {},
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb"
-      }
+      },
+      "cordova-plugin-nativestorage": {}
     },
     "platforms": [
       "android"

@@ -23,5 +23,7 @@ page-carne {
     .codigo{
         margin: 45px 90px;
     }
-    
+    .carnetCard{
+        background-color: color($colors,ghost)!important;
+    }
 }

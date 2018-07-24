@@ -27,6 +27,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {GooglePlus} from '@ionic-native/google-plus';
 import { WordpressProvider } from '../providers/wordpress/wordpress';
 import { SedesProvider } from '../providers/sedes/sedes';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
@@ -94,7 +95,7 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     StatusBar,
     StreamingMedia,
-    ScreenOrientation,
+    ScreenOrientation,NativeStorage,
     Device,AppAvailability,InAppBrowser,
     MediaCapture,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

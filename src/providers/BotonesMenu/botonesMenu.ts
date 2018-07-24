@@ -13,31 +13,28 @@ export class BotonesMenu {
       {
         nombre:  "Tus notas" ,
         imagen:  "assets/img/4notas.png",
-        page:    "NotasPage",
-        candado: "assets/img/IconoCandado.png"
+        page:    "NotasPage"
       },
       {
         nombre: "Carné",
         imagen: "assets/img/5carne.png",
-        page:   "CarnePage",
-        candado: "assets/img/IconoCandado.png"
+        page:   "CarnePage"
       },
       {
         nombre: "Calendario",
         imagen: "assets/img/6calendario.png",
-        page:   "CalendarioPage"
+        page:   "CalendarioPage",
+        candado: "assets/img/IconoCandado.png"
       },
       {
         nombre: "Cun Virtual",
         imagen: "assets/img/7virtual.png",
-        page:   "CunVirtualPage"        ,
-        candado: "assets/img/IconoCandado.png"
+        page:   "CunVirtualPage"
       },
       {
         nombre: "Tu horario",
         imagen: "assets/img/8horario.png",
-        page:   "HorarioPage",
-        candado: "assets/img/IconoCandado.png"
+        page:   "HorarioPage"
       },
       {
         nombre: "Gana dinero",
@@ -58,8 +55,7 @@ export class BotonesMenu {
       {
         nombre: "Biblioteca",
         imagen: "assets/img/11biblioteca.png",
-        page:   "BibliotecaPage",
-        candado: "assets/img/IconoCandado.png"
+        page:   "BibliotecaPage"
       },      
       {
         nombre: "Cun cápsula",

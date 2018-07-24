@@ -81,8 +81,7 @@ export class MenuCunPage {
         browser.create(httpUrl , '_system');
         return;
       }
-    
-      
+         
       this.AppAvailability.check(app).then(
         () => { // success callback
           console.log("yes")
@@ -92,7 +91,7 @@ export class MenuCunPage {
         () => { // error callback
           console.log("no")
           let browser = new InAppBrowser();
-          browser.create(appUrl, '_system')
+          browser.create(httpUrl, '_system')
         }
       );
     
