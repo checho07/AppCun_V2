@@ -34,7 +34,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
    <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage;  
   userdData ;
   @ViewChild(Nav) nav: Nav;
 
@@ -69,6 +69,7 @@ export class MyApp {
       let env = this;
       this.nativeStorage.getItem('user')
       .then(function(data){
+        alert(JSON.stringify(data))
         this.userdData = data;
         env.rootPage = MenuCun;
         env.splashScreen.hide();

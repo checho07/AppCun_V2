@@ -68,14 +68,14 @@ export class LoginPage {
   }
 
   ionViewDidEnter(){
-    alert("didEnter")
-      this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
-      'offline':true,
-      'scopes':'profile email'}).
-      then((res)=>
-      {alert(JSON.stringify(res))
-        this.isLoggedIn = true;
-      })
+    // alert("didEnter")
+    //   this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+    //   'offline':true,
+    //   'scopes':'profile email'}).
+    //   then((res)=>
+    //   {alert(JSON.stringify(res))
+    //     this.isLoggedIn = true;
+    //   })
    
   }
 
@@ -151,10 +151,19 @@ check(){
     'scopes':'profile email'})
       .then(function(user) {
         loading.dismiss();
+        this.displayName = user.displayName;
+        this.email = user.email;
+        this.familyName = user.familyName;
+        this.givenName = user.givenName;
+        this.userId = user.userId;
+        this.imageUrl = user.imageUrl;
+        this.isLoggedIn = true;
         env.nativeStorage.setItem('user',{
           name:user.displayName,
           email:user.email,
           picture:user.imageUrl
+      
+
         }).then(function(){
           this.navCtrl.setRoot(MenuCun);
         },function(err){

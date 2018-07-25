@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <div *ngIf="isLoggedIn; else loginTemplate">
-    
+
     <h1>Welcome, {{displayName}}!</h1>
     <p>Email: {{email}}<br>
       Family Name: {{familyName}}<br>
@@ -24,6 +24,7 @@
   <ng-template #loginTemplate>
     <h1>Please Login to see your Google Account Information</h1>
     <p><button ion-button (click)="login()">Login With Google</button></p>
+    <p><button ion-button (click)="doGoogleLogout()">Logout From Google</button></p>
   </ng-template>
 </ion-content>
 

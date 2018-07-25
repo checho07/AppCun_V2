@@ -86,7 +86,7 @@ export class MenuCunPage {
         () => { // success callback
           console.log("yes")
           let browser = new InAppBrowser();
-          browser.create(appUrl , '_system')
+          browser.create(httpUrl , '_system')
         },
         () => { // error callback
           console.log("no")

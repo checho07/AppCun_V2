@@ -13,31 +13,31 @@ export class HorarioProvider {
     let items = [
         {
             dia:    "Lunes" ,
-            imagen: "../../assets/img/lunes.png"
+            imagen: "assets/img/lunes.png"
           },
           {
             dia:   "Martes",
-            imagen:"../../assets/img/martes.png"
+            imagen:"assets/img/martes.png"
           },
           {
             dia:   "Miercoles",
-            imagen:"../../assets/img/miercoles.png"
+            imagen:"assets/img/miercoles.png"
           },
           {
             dia:   "Jueves",
-            imagen:"../../assets/img/jueves.png"
+            imagen:"assets/img/jueves.png"
           },
           {
             dia:   "Viernes",
-            imagen:"../../assets/img/viernes.png"
+            imagen:"assets/img/viernes.png"
           },
           {
             dia:   "Sabado",
-            imagen:"../../assets/img/sabado.png"
+            imagen:"assets/img/sabado.png"
           },
           {
             dia:   "Domingo",
-            imagen:"../../assets/img/10media.png"
+            imagen:"assets/img/10media.png"
           }
     ];
 
