@@ -28,6 +28,7 @@
       <p>{{card.created_time | date}}</p>
       <hr>
     </ion-item>
+    <div id="ebedVideo"></div>
     <img  id="imgVideo" src="{{card.pictures.sizes[2].link_with_play_button}}" (click)="playVideo(card.files[0].link)" width="90%" height="150px" alt="">
    <!-- <video src="{{card.files[0].link}}"  (tap)="testfn($event)" height="100px" width="90%" style="margin-left:5%;background-color:black"  controlsList="nodownload" poster="{{card.pictures.sizes[6].link_with_play_button}}" ></video>
     -->

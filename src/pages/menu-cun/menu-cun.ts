@@ -1,5 +1,6 @@
+
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
@@ -25,7 +26,7 @@ export class MenuCunPage {
               private device: Device,
               public AppAvailability:AppAvailability,
               private inAppBrowser: InAppBrowser,
-
+              private toggle : MenuController,
               private googlePlus: GooglePlus,
               private afAuth: AngularFireAuth,
               private platform : Platform
@@ -116,5 +117,6 @@ export class MenuCunPage {
       
     }
   }
+
 
 }

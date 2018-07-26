@@ -1,3 +1,4 @@
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import QRCode from 'qrcode';
@@ -9,6 +10,7 @@ import QRCode from 'qrcode';
 })
 export class CarnePage {
   
+  imgUrl:string;
   generated = '';
   qrdata =[
     {
@@ -23,8 +25,10 @@ export class CarnePage {
     return this.generated !== '';
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams,private nativeStorage: NativeStorage) {
+    nativeStorage.getItem('user').then(userRes=>{
+      this.imgUrl = userRes.picture;
+    })
   }
 
   ionViewDidLoad() {

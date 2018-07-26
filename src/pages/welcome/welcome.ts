@@ -17,7 +17,7 @@ export class WelcomePage {
   constructor(public navCtrl: NavController) { }
 
   login() {
-    this.navCtrl.setRoot('MenuCunPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 
   signup() {
