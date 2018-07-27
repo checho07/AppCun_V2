@@ -16,14 +16,21 @@
   "TUTORIAL_SKIP_BUTTON": "Omitir",
   "TUTORIAL_CONTINUE_BUTTON": "Continuar",
 
-  "TUTORIAL_SLIDE1_TITLE": "Bienvenido/a al Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "El <b>Ionic Super Starter</b> es un starter de Ionic completo con muchas páginas preconstruidas y mejores prácticas.",
+  "TUTORIAL_SLIDE1_TITLE": "Bienvenido a CUNidad.",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "Todos tus servicios en un sólo lugar.",
 
-  "TUTORIAL_SLIDE2_TITLE": "Cómo usar el Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Monta los varios tipos de página que quieras y quita los que no. Hemos incluido muchas estructuras de página comunes en apps móviles, como páginas de inicio de sesión y registro, pestañas, y esta página de tutorial.",
+  "TUTORIAL_SLIDE2_TITLE": "HORARIO Y NOTAS",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Gestiona tu horario y tus notas en el momento que quieras.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Empezando",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "¿Necesitas ayuda? Échale un vistazo al README del Super Starter para ver el tutorial completo.",
+  "TUTORIAL_SLIDE3_TITLE": "PLATAFORMAS VIRTUALES",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Aprende y refuerza tus conocimientos con las plataformas virtuales que están a tu disposición.",
+
+  "TUTORIAL_SLIDE4_TITLE": "DIVERSIÓN",
+  "TUTORIAL_SLIDE4_DESCRIPTION": "Disfruta de juegos totalmente gratuitos.",
+
+  "TUTORIAL_SLIDE5_TITLE": "COMUNICACIÓN",
+  "TUTORIAL_SLIDE5_DESCRIPTION": "Conéctate con toda la comunidad Cunista y cuéntale a todos ¿Qué estás pensando?",
+
   "WELCOME_INTRO": "¡Sumérgete en la CUN!",
 
   "SETTINGS_TITLE": "Ajustes",
@@ -50,5 +57,21 @@
 
   "CARDS_TITLE": "Social",
 
-  "SEARCH_TITLE": "Buscar"
+  "SEARCH_TITLE": "Buscar",
+
+  "TITLE_MENU_NOTAS":"Tus Notas",
+  "TITLE_MENU_CARNE":"Carné",
+  "TITLE_MENU_CALENDARIO":"Calendario",
+  "TITLE_MENU_VIRTUAL":"Cun Virtual",
+  "TITLE_MENU_HORARIO":"Tu Horario",
+  "TITLE_MENU_DINERO":"Gana Dinero",
+  "TITLE_MENU_CUNMEDIA":"Cun Media",
+  "TITLE_MENU_APRENDE":"Aprende",
+  "TITLE_MENU_BIBLIOTECA":"Biblioteca",
+  "TITLE_MENU_CAPSULA":"Cun Cápsula", 
+  "TITLE_MENU_EMPLEO":"Empleo",
+  "TITLE_MENU_DIVIERTETE":"Diviértete"
+
+  
+
 }

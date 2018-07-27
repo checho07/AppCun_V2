@@ -8,6 +8,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { FirstRunPage,MenuCun } from '../pages';
 import { Settings } from '../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { timer } from 'rxjs/observable/timer';
 @Component({
   template:  
     `
@@ -40,7 +41,7 @@ export class MyApp {
   userData;
   imageUrl
   @ViewChild(Nav) nav: Nav;
-
+  
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
@@ -54,8 +55,11 @@ export class MyApp {
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'MenuCun', component: 'MenuCunPage' }
-  ]
-  
+
+  ];
+
+  showSplash = true;
+
   constructor(private translate: TranslateService,
               public  platform: Platform,
                       settings: Settings,
@@ -79,12 +83,15 @@ export class MyApp {
         env.userData = data;   
         env.imageUrl = data.picture;    
         env.rootPage = MenuCun;
+        env.splashScreen.hide();       
         env.openPage('MenuCunPage');
-        env.splashScreen.hide();      
-        
+        env.splashScreen.hide();   
+        timer(3000).subscribe(() => this.showSplash = false)
+
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
+       
       }
     )
     });

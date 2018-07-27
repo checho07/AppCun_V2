@@ -17,18 +17,22 @@
   "TUTORIAL_SKIP_BUTTON": "Skip",
   "TUTORIAL_CONTINUE_BUTTON": "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to CUNIDAD.",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "All your services in one place.",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+   "TUTORIAL_SLIDE2_TITLE": "SCHEDULE AND NOTES",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Manage your schedule and your notes whenever you want.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+  "TUTORIAL_SLIDE3_TITLE": "VIRTUAL PLATFORMS",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Learn and reinforce your knowledge with the virtual platforms that are at your disposal.",
 
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+  "TUTORIAL_SLIDE4_TITLE": "Entertainment",
+  "TUTORIAL_SLIDE4_DESCRIPTION": "Enjoy totally free games.",
 
-  "WELCOME_INTRO": "The starting point for your next great Ionic app",
+  "TUTORIAL_SLIDE5_TITLE": "COMMUNICATION",
+  "TUTORIAL_SLIDE5_DESCRIPTION": "Connect with the entire Cunista community and tell everyone What are you thinking?",
+
+  "WELCOME_INTRO": "Immerse yourself in the CUN!",
 
   "SETTINGS_TITLE": "Settings",
   "SETTINGS_OPTION1": "Option 1",
