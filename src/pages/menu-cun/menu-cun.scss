@@ -17,6 +17,7 @@ page-menu-cun {
         box-shadow: 0 8px 2px 0 rgba(0, 0, 0, 0.3) ,
                 0 3px 1px -2px rgba(0, 0, 0, 0.3) ,
                 0 1px 5px 0 rgba(0, 0, 0, 0.3) !important;
+        text-align: center;
     }
     .verdeOscuro{
         background-color: color($colors, third);
@@ -25,6 +26,7 @@ page-menu-cun {
         box-shadow: 0 8px 2px 0 rgba(0, 0, 0, 0.3) ,
                 0 3px 1px -2px rgba(0, 0, 0, 0.3) ,
                 0 1px 5px 0 rgba(0, 0, 0, 0.3) !important;
+        text-align: center;
     }
    
     .candadoIco{
@@ -36,7 +38,7 @@ page-menu-cun {
     .ImagenBoton{
         position: absolute;
         top: 15px;
-        right: 25%;
+        right: 30%;
         width: 40px;
         height: 35px;
         
@@ -45,10 +47,10 @@ page-menu-cun {
     .nombreBoton {
         
         position: absolute;
-        top: 45px;
-        left: 15%;        
+        top: 45px;       
         font-size:small;
         text-transform: capitalize;
+        text-align: center !important;
         
     }
     .imagenFooter{

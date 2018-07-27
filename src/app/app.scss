@@ -21,3 +21,102 @@
     border-radius: 50%;
     margin-top: 10px;
 }
+
+.splash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items:  center;
+    justify-content: center;
+    background-color: aqua !important;
+}
+
+#spinenr {
+    margin: 30px auto;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    perspective: 600px;    
+}
+
+
+ #girando {
+	margin: 20px auto;
+    width: 100px;
+    padding: 30px;
+    -webkit-animation-name: girando;
+      animation-name: girando;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 3s;
+    -moz-animation-iteration-count: 3s;
+    animation-iteration-count: 3s;
+    -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s;
+    animation-duration: 15s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+ }
+
+ #girando span {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+ }
+
+ .icon2 {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotateY(0deg) translateX(180px);
+    -moz-transform: rotateY(0deg) translateX(180px);
+    transform: rotateY(0deg) translateX(180px);
+}
+
+.icon3 {
+	-webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotateY(-72deg) translateX(180px);
+    -moz-transform: rotateY(0deg) translateX(180px);
+    transform: rotateY(0deg) translateX(180px);
+}
+
+.icon4 {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotateY(-144deg) translateX(180px);
+    -moz-transform: rotateY(-144deg) translateX(180px);
+    transform: rotateY(-144deg) translateX(180px);
+}
+
+.icon5{
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: rotateY(-216deg) translateX(180px);
+    -moz-transform: rotateY(-216deg) translateX(180px);
+    transform: rotateY(-216deg) translateX(180px);
+}
+
+
+@keyframes girando {
+	0% {
+	  transform: translateZ(-150px) rotateY(0deg);
+	  -webkit-animation-duration: 25s;
+	}
+	100% {
+	  transform: translateZ(-150px) rotateY(360deg);
+	  -webkit-animation-duration: 25s;
+	}
+  }  
+  /*
+  *hiuhi
+  */

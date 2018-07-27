@@ -7,6 +7,7 @@ import { Config, Nav, Platform } from 'ionic-angular';
 import { FirstRunPage,MenuCun } from '../pages';
 import { Settings } from '../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { timer } from 'rxjs/observable/timer';
 @Component({
   template:  
     `
@@ -37,7 +38,7 @@ export class MyApp {
   rootPage;  
   userdData ;
   @ViewChild(Nav) nav: Nav;
-
+  
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
@@ -51,7 +52,9 @@ export class MyApp {
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'MenuCun', component: 'MenuCunPage' }
-  ]
+  ];
+
+  showSplash = true;
 
   constructor(private translate: TranslateService,
                       platform: Platform,
@@ -73,9 +76,11 @@ export class MyApp {
         this.userdData = data;
         env.rootPage = MenuCun;
         env.splashScreen.hide();
+        timer(3000).subscribe(() => this.showSplash = false)
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
+        timer(3000).subscribe(() => this.showSplash = false)
       }
     )
     });

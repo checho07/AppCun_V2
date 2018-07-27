@@ -1,8 +1,8 @@
 {
   "name": "AppCun_v_2",
-  "app_id": "c5f8fb5f",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "c5f8fb5f"
 }
