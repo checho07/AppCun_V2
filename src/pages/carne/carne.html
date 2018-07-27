@@ -17,7 +17,7 @@
         <img src="assets/img/carnetblanco.png"/>
           <ion-item text-wrap  color="secondary"  >
             <ion-thumbnail item-right>
-              <img src="assets/img/Captura.PNG">
+              <img src="{{imgUrl}}">
               <p>#YOSOYCUN</p>
             </ion-thumbnail>        
             <p class="datosC"> {{qrData.nombre}}</p>
@@ -30,6 +30,7 @@
       <div class="codigo" *ngIf="displayQrCode()">
         <img *ngIf="displayQrCode()" [src]="generated" />
       </div>    
+
      </ion-content>
     <ion-footer>
       <div class="footerCarne">

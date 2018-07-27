@@ -276,12 +276,19 @@ showLoading(){
 
 playVideo(link){
   var x = document.createElement('video');
-  x.setAttribute('src',link)
+  let embedDiv = document.getElementById('ebedVideo');
+  x.setAttribute('src',link);
   x.setAttribute("controlsList", "nodownload"); 
   x.setAttribute("autoplay", "autoplay"); 
-  x.onpause = function(){x.webkitExitFullScreen()} 
-  document.body.appendChild(x);
+  x.onpause = function()
+  {
+   x.webkitExitFullScreen()
+    embedDiv.removeChild(embedDiv.firstChild);
+  }   
+  embedDiv.appendChild(x);
+  //document.body.appendChild(x);
   x.webkitEnterFullScreen();
+  //embedDiv.removeChild(embedDiv.firstChild);
   //x.requestFullscreen();
   
 }

@@ -19,8 +19,7 @@ import { MenuCun } from '../';
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
-  providers: [GooglePlus]
+  templateUrl: 'login.html'
 })
 export class LoginPage {
 
@@ -35,6 +34,10 @@ export class LoginPage {
   userId: any;
   imageUrl: any;
   isLoggedIn:boolean = false;
+  gender: any;
+  birthday:any;  
+  ageMin:any; 
+  ageMax:any;
 
   // The account fields for the login form.
   // If you're using the username field with or without email, make
@@ -52,165 +55,100 @@ export class LoginPage {
               private afAuth: AngularFireAuth,
               private platform : Platform,
               private nativeStorage : NativeStorage,
-              private loadingCtrl:LoadingController) {
-                this.login();
-  //   this.user = this.afAuth.authState;
-  //   this.platform.ready().then((readySource)=>{
-  //     alert("ready")
-  //     this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
-  //     'offline':true,
-  //     'scopes':'profile email'}).
-  //     then((res)=>
-  //     {alert(JSON.stringify(res))
-  //       this.isLoggedIn = true;
-  //     }).catch(err =>alert(JSON.stringify(err)));
-  //   })
-  }
+              private loadingCtrl:LoadingController) 
+              {
+                
+               this.user = this.afAuth.authState;
+               this.login();
+ 
+              }
 
   ionViewDidEnter(){
-    // alert("didEnter")
-    //   this.googlePlus.trySilentLogin({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
-    //   'offline':true,
-    //   'scopes':'profile email'}).
-    //   then((res)=>
-    //   {alert(JSON.stringify(res))
-    //     this.isLoggedIn = true;
-    //   })
-   
+  this.displayData();
   }
-
-
-///////googleLogin2
-googleLogin()
-{
-  if(this.platform.is('cordova')){
-    this.nativeGoogleLogin();
-  }else{
-    this.webGoogleLogin();
-  }
-
-}
-
-async nativeGoogleLogin(): Promise<any>{
-  try {
-    const gplusUser = await this.googlePlus.login({
-      'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
-      'offline':true,
-      'scopes':'profile email'
-    })
-  
-    return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider
-      .credential(gplusUser.idToken))
-      
-  } catch (error) {
-    console.log(error);
-  } 
-}
-async webGoogleLogin(): Promise<void>{
-    try {
-   
-
-
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const credential=  await this.afAuth.auth.signInWithPopup(provider);
-      console.log(provider)
-    } catch (error) {
-      console.log(error);
-    }
-}
 
 signOut(){
   this.afAuth.auth.signOut();
   if (this.platform.is('cordova')) {
     this.googlePlus.logout()
+    this.nativeStorage.remove('user');
+    this.navCtrl.push(LoginPage);
   } else {
     
   }
 }
-
-check(){
-  if (this.isLoggedIn) 
-  return true;
-    this.navCtrl.setRoot(MenuCun);
-    
-  
-}
-  ///////
-
-
-
-  login() {
+ login() {
     let nav = this.navCtrl;
     let env = this;
     let loading = this.loadingCtrl.create({
       content:'Espera por favor...'
     });
-    loading.present();
-    this.googlePlus.login({  'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
-    'offline':true,
-    'scopes':'profile email'})
-      .then(function(user) {
-        loading.dismiss();
-        this.displayName = user.displayName;
-        this.email = user.email;
-        this.familyName = user.familyName;
-        this.givenName = user.givenName;
-        this.userId = user.userId;
-        this.imageUrl = user.imageUrl;
-        this.isLoggedIn = true;
-        env.nativeStorage.setItem('user',{
-          name:user.displayName,
-          email:user.email,
-          picture:user.imageUrl
-      
 
-        }).then(function(){
-          this.navCtrl.setRoot(MenuCun);
+    loading.present();
+
+    this.googlePlus.login
+    ({ 
+       'webClientId':"537588800472-09dt0r3bviscgeep9c4eqla4v6h78mcb.apps.googleusercontent.com",
+       'offline':true,
+       'scopes':'profile email '
+    })
+     .then(res=>
+      
+      {  
+        
+        this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+
+        this.displayName = res.displayName;
+        this.email = res.email;
+        this.familyName = res.familyName;
+        this.givenName = res.givenName;
+        this.userId = res.userId;
+        this.imageUrl = res.imageUrl;
+        this.gender  =res.gender;
+        this.birthday=res.birthday;  
+        this.ageMin=res.ageRangeMin; 
+        this.ageMax=res.ageRangeMax;
+        
+        
+        this.nativeStorage.setItem('user',
+        {
+          name:res.displayName,
+          email:res.email,
+          picture:res.imageUrl,
+          gender :res.gender , 
+          birthday:res.birthday,  
+          ageMin:res.ageRangeMin, 
+          ageMax:res.ageRangeMax
+
+        }).then(function(res){
+          loading.dismiss();
+          env.navCtrl.setRoot(MenuCun);
+          let toast = this.toastCtrl.create({
+            message: 'Bienvenido ${res.givenName}',
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
         },function(err){
           alert(JSON.stringify(err))
         })
-      }, function(error){
-        loading.dismiss();
-      });
-       // console.log(res);
-        // this.displayName = res.displayName;
-        // this.email = res.email;
-        // this.familyName = res.familyName;
-        // this.givenName = res.givenName;
-        // this.userId = res.userId;
-        // this.imageUrl = res.imageUrl;
+  })
+  
 
-      //   this.isLoggedIn = true;
-      // })
-      // .catch(err => console.error(err));
   }
 
-  logout() {
-    this.googlePlus.logout()
-      .then(res => {
-        console.log(res);
-        this.displayName = "";
-        this.email = "";
-        this.familyName = "";
-        this.givenName = "";
-        this.userId = "";
-        this.imageUrl = "";
-
-        this.isLoggedIn = false;
-      })
-      .catch(err => console.error(err));
-  }
-
-  doGoogleLogout(){
-    let nav = this.navCtrl;
-    let env = this;
-    this.googlePlus.logout()
-    .then(function (response) {
-      env.nativeStorage.remove('user');
-      nav.push(LoginPage);
-    },function (error) {
-      console.log(error);
+  displayData(){
+    this.nativeStorage.getItem('user')
+    .then(function(data){
+      alert(JSON.stringify(data))
+      this.isLoggedIn = true;
+    },function(err){
+      console.log(JSON.stringify(err))
     })
   }
+
+  
+
+  
   
 }
