@@ -14,17 +14,22 @@
     <p>Email: {{email}}<br>
       Family Name: {{familyName}}<br>
       Given Name: {{givenName}}<br>
-      User ID: {{userId}}</p>
+      User ID: {{userId}}
+      Gender: {{gender}}<br>
+      birthday: {{birthday}}<br>
+      ageMin: {{ageMin}}</p>
     <p><ion-avatar item-left>
         <img src="{{imageUrl}}">
        </ion-avatar></p>
-    <p><button ion-button (click)="doGoogleLogout()">Logout From Google</button></p>
+    <p><button ion-button (click)="signOut()">Logout From Google</button></p>
+    <button ion-button block (click)="displayData()">Display Data</button>
   </div>
 
   <ng-template #loginTemplate>
     <h1>Please Login to see your Google Account Information</h1>
     <p><button ion-button (click)="login()">Login With Google</button></p>
-    <p><button ion-button (click)="doGoogleLogout()">Logout From Google</button></p>
+    <p><button ion-button (click)="signOut()">Logout From Google</button></p>
+    <button ion-button block (click)="displayData()">Display Data</button>
   </ng-template>
 </ion-content>
 

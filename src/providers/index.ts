@@ -8,3 +8,4 @@ export {ApiVimeoProvider} from './api-vimeo/api-vimeo'
 export {DirectorioProvider} from './directorio/directorio';
 export {WordpressProvider} from './wordpress/wordpress';
 export {SedesProvider} from './sedes/sedes';
+export {CalendarioProvider} from './calendario/calendario';

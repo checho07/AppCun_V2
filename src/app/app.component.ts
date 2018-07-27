@@ -1,9 +1,10 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { Config, Nav, Platform } from 'ionic-angular';
-
+import { Config, Nav, Platform, MenuController } from 'ionic-angular';
+import { GooglePlus } from '@ionic-native/google-plus';
 import { FirstRunPage,MenuCun } from '../pages';
 import { Settings } from '../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -12,7 +13,7 @@ import { timer } from 'rxjs/observable/timer';
 @Component({
   template:  
     `
-    <ion-menu [content]="content">
+    <ion-menu  [content]="content" >
 
     <ion-header>
       <ion-toolbar>
@@ -22,13 +23,13 @@ import { timer } from 'rxjs/observable/timer';
 
     <ion-content>
     
-      <img src="assets/img/marty-avatar.png" class="imgProfile">
+    <img src="{{imageUrl}}" class="imgProfile" >
     
       <ion-list>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           {{p.title}}
         </button>
-        <button ion-button block outline >Cerrar Sesion</button>
+        <button ion-button block outline (click)="signOut()" menuToggle  >Cerrar Sesion</button>
       </ion-list>
     </ion-content>
 
@@ -99,7 +100,8 @@ import { timer } from 'rxjs/observable/timer';
 })
 export class MyApp {
   rootPage;  
-  userdData ;
+  userData;
+  imageUrl
   @ViewChild(Nav) nav: Nav;
   
   pages: any[] = [
@@ -115,18 +117,19 @@ export class MyApp {
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'MenuCun', component: 'MenuCunPage' }
-  ];
 
+  ];
+    showSplash = true;
   constructor(private translate: TranslateService,
-                      platform: Platform,
+              public  platform: Platform,
                       settings: Settings,
+             private googlePlus: GooglePlus,
              private config: Config,
              private statusBar: StatusBar,
-             private splashScreen: SplashScreen,
-             private nativeStorage: NativeStorage) {
-    
-    let showSplash = true;
-            
+             public menuCtrl:MenuController,
+      private splashScreen: SplashScreen,
+      private nativeStorage: NativeStorage,
+      private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -135,23 +138,26 @@ export class MyApp {
       ///googlePlus check logged in.
       let env = this;
       this.nativeStorage.getItem('user')
-      .then(function(data){
-        alert(JSON.stringify(data))
-        this.userdData = data;
+      .then(function(data){ 
+        env.userData = data;   
+        env.imageUrl = data.picture;    
         env.rootPage = MenuCun;
-        env.splashScreen.hide();
-        timer(3000).subscribe(() => showSplash = false)
-        
+        env.splashScreen.hide();       
+        env.openPage('MenuCunPage');
+        env.splashScreen.hide();   
+        timer(3000).subscribe(() => env.showSplash = false)
+
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(3000).subscribe(() => showSplash = false)
+        timer(3000).subscribe(() => env.showSplash = false)
        
        
       }
     )
     });
     this.initTranslate();
+
   }
 
   initTranslate() {
@@ -185,4 +191,21 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  signOut(){
+    
+    this.afAuth.auth.signOut();
+    if (this.platform.is('cordova')) {
+      this.googlePlus.logout()
+      this.nativeStorage.remove('user').then(()=>{
+        this.nav.setRoot('WelcomePage');
+      });
+      
+    } 
+  }
+
+  
+
 }
+
+
