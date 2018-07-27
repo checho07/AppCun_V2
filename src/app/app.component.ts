@@ -8,6 +8,7 @@ import { FirstRunPage,MenuCun } from '../pages';
 import { Settings } from '../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { timer } from 'rxjs/observable/timer';
+
 @Component({
   template:  
     `
@@ -32,7 +33,69 @@ import { timer } from 'rxjs/observable/timer';
     </ion-content>
 
   </ion-menu>
-   <ion-nav #content [root]="rootPage"></ion-nav>`
+
+  <div  *ngIf="showSplash" class="splash">
+  <div class="spinner">
+                
+<div class="bubbles-container">
+<svg class="bubbles"  viewBox="0 580 701 1024" style="overflow: visible;">
+
+<g class="bubbles-large" stroke-width="">
+    <g>
+        <g transform="translate(1 940)">
+            <circle cx="25" cy="25" r="25"/>
+        </g>
+    </g>
+    <g>
+        <g transform="translate(373 940)">
+            <circle cx="25" cy="25" r="25"/>
+        </g>
+    </g>
+    
+</g>
+
+<g class="bubbles-small" stroke-width="2">
+    <g>
+        <g transform="translate(147 984)">
+            <circle cx="15" cy="15" r="15"/>
+        </g>
+    </g>
+    <g>
+        <g transform="translate(255 984)">
+            <circle cx="15" cy="15" r="15"/>
+        </g>
+    </g>
+    <g>
+        <g transform="translate(573 984)">
+            <circle cx="15" cy="15" r="15"/>
+        </g>
+    </g>
+    <g>
+        <g transform="translate(429 984)">
+            <circle cx="15" cy="15" r="15"/>
+        </g>
+    </g>
+    <g>
+        <g transform="translate(91 984)">
+            <circle cx="15" cy="15" r="15"/>
+        </g>
+    </g>
+    
+</g>
+
+</svg>
+</div>   
+
+    <div id="girando">                  
+      <span class="icon2"><img width="40" height="50" src="assets/img/icon-splash1.png"/> </span>
+      <span class="icon3"></span>
+      <span class="icon4"><img width="40" height="50" src="assets/img/icon-splash3.png"/></span>
+      <span class="icon5"><img width="40" height="50" src="assets/img/icon-splash4.png"/></span>
+      <span class="icon6"><img width="40" height="50" src="assets/img/icon-splash2.png"/></span>
+    </div>
+  </div> 
+</div>
+  <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
   rootPage;  
@@ -54,8 +117,6 @@ export class MyApp {
     { title: 'MenuCun', component: 'MenuCunPage' }
   ];
 
-  showSplash = true;
-
   constructor(private translate: TranslateService,
                       platform: Platform,
                       settings: Settings,
@@ -63,6 +124,9 @@ export class MyApp {
              private statusBar: StatusBar,
              private splashScreen: SplashScreen,
              private nativeStorage: NativeStorage) {
+    
+    let showSplash = true;
+            
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -76,11 +140,14 @@ export class MyApp {
         this.userdData = data;
         env.rootPage = MenuCun;
         env.splashScreen.hide();
-        timer(3000).subscribe(() => this.showSplash = false)
+        timer(3000).subscribe(() => showSplash = false)
+        
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(3000).subscribe(() => this.showSplash = false)
+        timer(3000).subscribe(() => showSplash = false)
+       
+       
       }
     )
     });
