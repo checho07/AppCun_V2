@@ -92,10 +92,6 @@ export class MyApp {
 
   }
 
- openMenu(){
-   this.menuCtrl.open();
- }   
-
   initTranslate() {
     // Set the default language for translation strings, and the current language.
     this.translate.setDefaultLang('es');
@@ -129,7 +125,6 @@ export class MyApp {
   }
 
   signOut(){
-
     
     this.afAuth.auth.signOut();
     if (this.platform.is('cordova')) {

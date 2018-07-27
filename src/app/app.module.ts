@@ -28,6 +28,7 @@ import {GooglePlus} from '@ionic-native/google-plus';
 import { WordpressProvider } from '../providers/wordpress/wordpress';
 import { SedesProvider } from '../providers/sedes/sedes';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { CalendarioProvider } from '../providers/calendario/calendario';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
@@ -107,7 +108,8 @@ export function provideSettings(storage: Storage) {
     GoogleMaps,GooglePlus,
     DirectorioProvider,
     WordpressProvider,
-    SedesProvider
+    SedesProvider,
+    CalendarioProvider
   ]
 })
 export class AppModule { }

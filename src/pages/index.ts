@@ -23,6 +23,7 @@ export const agenda = 'AgendaPage';
 export const ubicacion ='UbicacionPage';
 export const noticias = 'NoticiasPage';
 export const infoPost = 'InfoPostPage';
+export const calendario = 'CalendarioPage';
 //modal pages.
 export const horarioModal = 'HorariomodalPage';
 export const comentariosModal = 'ModalCommentsPage';
