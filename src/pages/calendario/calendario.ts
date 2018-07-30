@@ -45,7 +45,7 @@ export class CalendarioPage {
       monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
       weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
       weekStart:1,
-      daysConfig:this._daysConfig
+      daysConfig:this._daysConfig,
     };
     
   }
