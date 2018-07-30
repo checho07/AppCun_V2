@@ -29,7 +29,7 @@ import { WordpressProvider } from '../providers/wordpress/wordpress';
 import { SedesProvider } from '../providers/sedes/sedes';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { CalendarioProvider } from '../providers/calendario/calendario';
-
+import { CalendarModule } from "ion2-calendar";
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
   authDomain: "appcunhome.firebaseapp.com",
@@ -66,6 +66,7 @@ export function provideSettings(storage: Storage) {
   ],
   imports: [
     BrowserModule,
+    CalendarModule,
     HttpClientModule,
     AgmCoreModule.forRoot({apiKey:'AIzaSyA2Mr5jjkk_bsSNaL15TD4qurs7gwoaOHw'}),
     AngularFireModule.initializeApp(firebaseConfig), 

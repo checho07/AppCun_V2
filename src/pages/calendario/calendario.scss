@@ -1,3 +1,42 @@
 page-calendario {
 
+    color: red!important;
+    .conte {
+        display: flex;
+    }
+    
+    .iconSq {
+        margin: 5px 15px 10px 20px !important;
+    }
+    
+    .itemp {
+        margin: 5px 15px 10px 0px !important;
+    }
+    
+    /*
+    * estilos calendario 
+    */
+    
+    .aa {
+        background-color: rgb(201, 59, 59) !important;
+        color:  rgb(201, 59, 59) !important;    
+    }
+    .oa {
+        background-color: rgb(240, 240, 116) !important;   
+        color:  rgb(240, 240, 116) !important;   
+    }
+    .op {
+        background-color: rgb(0, 140, 255) !important;   
+        color: rgb(0, 140, 255) !important;
+    }
+    .cc {
+        background-color: rgb(221, 149, 15)!important;   
+        color: rgb(221, 149, 15)!important;   
+    }
+
+    .calend{
+        background-color:color($colors,secondary)!important;
+        color: blue !important;
+    }
+    
 }
