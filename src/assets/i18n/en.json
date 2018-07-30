@@ -17,7 +17,7 @@
   "TUTORIAL_SKIP_BUTTON": "Skip",
   "TUTORIAL_CONTINUE_BUTTON": "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to CUNIDAD.",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to CUN Móvil.",
   "TUTORIAL_SLIDE1_DESCRIPTION": "All your services in one place.",
 
    "TUTORIAL_SLIDE2_TITLE": "SCHEDULE AND NOTES",
@@ -68,5 +68,18 @@
   "CARDS_TITLE": "Social",
 
   "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\""
+  "SEARCH_PLACEHOLDER": "Search the items list, e.g. \"Donald Duck\"",
+
+  "TITLE_MENU_NOTAS":"Your notes",
+  "TITLE_MENU_CARNE":"Meat",
+  "TITLE_MENU_CALENDARIO":"Calendar",
+  "TITLE_MENU_VIRTUAL":"Cun Virtual",
+  "TITLE_MENU_HORARIO":"Your schedule",
+  "TITLE_MENU_DINERO":"Earn money",
+  "TITLE_MENU_CUNMEDIA":"Cun Media",
+  "TITLE_MENU_APRENDE":"Learn",
+  "TITLE_MENU_BIBLIOTECA":"Library",
+  "TITLE_MENU_CAPSULA":"Cun Capsule", 
+  "TITLE_MENU_EMPLEO":"Empleo",
+  "TITLE_MENU_DIVIERTETE":"Diviértete"
 }

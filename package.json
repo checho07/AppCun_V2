@@ -67,10 +67,8 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "minimist": "^1.2.0",
-
     "moment": "^2.22.2",
     "mx.ferreyra.callnumber": "~0.0.2",
-
     "ngx-qrcode2": "0.0.9",
     "qrcode": "^1.2.0",
     "rxjs": "5.5.11",

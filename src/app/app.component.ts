@@ -36,57 +36,54 @@ import { timer } from 'rxjs/observable/timer';
   </ion-menu>
 
   <div  *ngIf="showSplash" class="splash">
-  <div class="spinner">
-                
-<div class="bubbles-container">
-<svg class="bubbles"  viewBox="0 580 701 1024" style="overflow: visible;">
-
-<g class="bubbles-large" stroke-width="">
-    <g>
-        <g transform="translate(1 940)">
-            <circle cx="25" cy="25" r="25"/>
-        </g>
-    </g>
-    <g>
-        <g transform="translate(373 940)">
-            <circle cx="25" cy="25" r="25"/>
-        </g>
-    </g>
+  <div class="spinner">          
+    <div class="bubbles-container">
+      <svg class="bubbles"  viewBox="0 580 701 1024" style="overflow: visible;">
     
-</g>
-
-<g class="bubbles-small" stroke-width="2">
-    <g>
-        <g transform="translate(147 984)">
-            <circle cx="15" cy="15" r="15"/>
+        <g class="bubbles-large" stroke-width="">
+            <g>
+                <g transform="translate(1 940)">
+                    <circle cx="25" cy="25" r="25"/>
+                </g>
+            </g>
+            <g>
+                <g transform="translate(373 940)">
+                    <circle cx="25" cy="25" r="25"/>
+                </g>
+            </g>
+            
         </g>
-    </g>
-    <g>
-        <g transform="translate(255 984)">
-            <circle cx="15" cy="15" r="15"/>
-        </g>
-    </g>
-    <g>
-        <g transform="translate(573 984)">
-            <circle cx="15" cy="15" r="15"/>
-        </g>
-    </g>
-    <g>
-        <g transform="translate(429 984)">
-            <circle cx="15" cy="15" r="15"/>
-        </g>
-    </g>
-    <g>
-        <g transform="translate(91 984)">
-            <circle cx="15" cy="15" r="15"/>
-        </g>
-    </g>
-    
-</g>
-
-</svg>
-</div>   
-
+        
+        <g class="bubbles-small" stroke-width="2">
+            <g>
+                <g transform="translate(147 984)">
+                    <circle cx="15" cy="15" r="15"/>
+                </g>
+            </g>
+            <g>
+                <g transform="translate(255 984)">
+                    <circle cx="15" cy="15" r="15"/>
+                </g>
+            </g>
+            <g>
+                <g transform="translate(573 984)">
+                    <circle cx="15" cy="15" r="15"/>
+                </g>
+            </g>
+            <g>
+                <g transform="translate(429 984)">
+                    <circle cx="15" cy="15" r="15"/>
+                </g>
+            </g>
+            <g>
+                <g transform="translate(91 984)">
+                    <circle cx="15" cy="15" r="15"/>
+                </g>
+            </g>
+            
+        </g>    
+      </svg>
+    </div>   
     <div id="girando">                  
       <span class="icon2"><img width="40" height="50" src="assets/img/icon-splash1.png"/> </span>
       <span class="icon3"></span>
