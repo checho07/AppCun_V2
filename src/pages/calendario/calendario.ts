@@ -16,7 +16,7 @@ import {  DayConfig,CalendarComponentOptions } from "ion2-calendar";
   templateUrl: 'calendario.html',
 })
 export class CalendarioPage {
-  ocultar:any;
+
   dateMulti: string[];
   type: 'string'; 
    _daysConfig: DayConfig[] = [];   
@@ -31,14 +31,13 @@ export class CalendarioPage {
   
 
   constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider) {
-    this.ocultar = true;
+
     this.eventos = calendarioProvider.query();
     this.eventos.forEach(element => {
       this.createMarker(element)
     });
     this.dataMesFn(null,this.currentDate);
    
-
     this.optionsMulti = {
       pickMode: 'single',
       color: 'secondary',
@@ -52,7 +51,7 @@ export class CalendarioPage {
 
  
 
-  createMarker(data){
+  createMarker(data) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
     switch (data.area) {
@@ -79,8 +78,8 @@ export class CalendarioPage {
     this._daysConfig.push(arrayMarker)    
   }  
 
-  dataMesFn(target?,fecha?){
-    this.ocultar = true
+  dataMesFn(target?,fecha?) {    
+   
     this.dataMes = [];
     this.areas = [];
     this._daysConfig;
@@ -97,7 +96,7 @@ export class CalendarioPage {
         }      
       });
     }
-       //console.log(this.dataMes);
+
     for (let i = 0; i < this.dataMes.length ; i++) {
       if(this.areas.length == 0){
         this.areas.push(this.dataMes[i].area)
@@ -107,11 +106,17 @@ export class CalendarioPage {
           y ++;
         }else{ this.areas.push(this.dataMes[i].area) }  
       }    
-    };
+    };   
      //console.log(this.areas)
   }
-  ShowDate(item) {  
-     this.ocultar = false;    
+  onSelect(evento){
+
+    if ( this.dataMesFn(null,this.currentDate) == null) {
+      
+    }
+    let evento1 = evento
+    console.log(evento1);
+    
   }
 }
 
