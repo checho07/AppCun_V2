@@ -14,16 +14,16 @@
             [type]="type"
             [format]="'YYYY-MM-DD'"
             (monthChange)="dataMesFn($event)"
-            (onSelect) ="onSelect($evento)"
+            
 
   ></ion-calendar>
-  <ion-card class="calendarCard" [hidden]="ocultar">
+  <ion-card class="calendarCard">
       <ion-card-header>
        <p class="titleEven"><b>Eventos</b></p> 
       </ion-card-header>
     
       <ion-list>
-        <div ion-item *ngFor="let item of dataMes">                   
+        <div ion-item *ngFor="let item of dataMes" >                   
           <ion-icon name="people" item-start [ngClass]="{'oa':item.cssClass == 'oa', 'op': item.cssClass == 'op','cc':item.cssClass =='cc','aa':item.cssClass == 'aa'}"></ion-icon>       
           <h3 class="titleEven"><b>{{item.nombreEvento}}</b></h3>
           <p class="textCalendar">{{item.descripcion}}</p>

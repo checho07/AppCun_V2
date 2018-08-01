@@ -26,7 +26,7 @@ export class CalendarioProvider {
                     fecha:new Date(2018,6,19),
                     sede:'A',
                     area:'Brigadas',
-                    cssClass:'oa'
+                    cssClass:'oa' 
                   },
                   //
                   {
@@ -137,6 +137,16 @@ export class CalendarioProvider {
                     descripcion:'descripcion3',
                     hora:'1:50pm',
                     fecha:new Date(2018,10,28),
+                    sede:'C',
+                    area:'Orientación académica',
+                    cssClass:'aa'
+                  },
+                  //
+                  {
+                    nombreEvento:'evento 2019',
+                    descripcion:'descripcion3',
+                    hora:'1:50pm',
+                    fecha:new Date(2019,6,19),
                     sede:'C',
                     area:'Orientación académica',
                     cssClass:'aa'

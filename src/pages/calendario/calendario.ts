@@ -31,7 +31,7 @@ export class CalendarioPage {
   
 
   constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider) {
-
+   
     this.eventos = calendarioProvider.query();
     this.eventos.forEach(element => {
       this.createMarker(element)
@@ -83,20 +83,22 @@ export class CalendarioPage {
     this.dataMes = [];
     this.areas = [];
     this._daysConfig;
+   
     if(target){   
       this.eventos.forEach(element => {
-        if (target.newMonth.months == element.fecha.toISOString().split('-')[1]) {
+        if (target.newMonth.months == element.fecha.toISOString().split('-')[1] && target.newMonth.years == element.fecha.toISOString().split('-')[0]) {
           this.dataMes.push(element);
-        }      
+        }
       });
     }else{
       this.eventos.forEach(element => {
         if (fecha.toISOString().split('-')[1] == element.fecha.toISOString().split('-')[1]) {
           this.dataMes.push(element);
-        }      
+        }    
       });
     }
-
+    
+    //console.log(this.dataMes)
     for (let i = 0; i < this.dataMes.length ; i++) {
       if(this.areas.length == 0){
         this.areas.push(this.dataMes[i].area)
@@ -107,16 +109,7 @@ export class CalendarioPage {
         }else{ this.areas.push(this.dataMes[i].area) }  
       }    
     };   
-     //console.log(this.areas)
-  }
-  onSelect(evento){
-
-    if ( this.dataMesFn(null,this.currentDate) == null) {
-      
-    }
-    let evento1 = evento
-    console.log(evento1);
-    
+    //console.log(this.areas)
   }
 }
 
