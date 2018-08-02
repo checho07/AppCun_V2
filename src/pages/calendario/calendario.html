@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Calendario</ion-title>
+    <ion-title>{{ 'PAGE_CALENDARIO_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,27 +10,25 @@
 
 <ion-content class="has-header">
   <ion-calendar  class="calend"
-            [options]="optionsMulti"
-            [type]="type"
-            [format]="'YYYY-MM-DD'"
-            (monthChange)="dataMesFn($event)"
-
+                [options]="optionsMulti"
+                [type]="type"
+                [format]="'YYYY-MM-DD'"
+                (monthChange)="dataMesFn($event)"
   ></ion-calendar>
-  <ion-card>
+  <ion-card class="calendarCard">
       <ion-card-header>
-        Eventos
+       <p class="titleEven"><b> {{ 'PAGE_CALENDARIO_EVENT' | translate }}</b></p> 
       </ion-card-header>
     
       <ion-list>
-        <button ion-item *ngFor="let item of dataMes"> 
-                  
-          <ion-icon name="square" item-start [ngClass]="{'oa':item.cssClass == 'oa', 'op': item.cssClass == 'op','cc':item.cssClass =='cc','aa':item.cssClass == 'aa'}"></ion-icon>
-       
-          <h3 >{{item.nombreEvento}}</h3>
-          <p>{{item.descripcion}}</p>
-          <p><b>Hora: </b>{{item.hora}} - <b>Sede: </b>{{item.sede}}</p>
-          <p><b>Area: </b>{{item.area}}</p>
-        </button>
+        <div ion-item *ngFor="let item of dataMes" >                   
+          <ion-icon name="people" item-start [ngClass]="{'oa':item.cssClass == 'oa', 'op': item.cssClass == 'op','cc':item.cssClass =='cc','aa':item.cssClass == 'aa'}"></ion-icon>       
+          <h3 class="titleEven"><b>{{item.nombreEvento}}</b></h3>
+          <p class="textCalendar">{{item.descripcion}}</p>
+          <p class="textCalendar"><b>Hora: </b>{{item.hora}} - <b>Sede: </b>{{item.sede}}</p>
+          <p class="textCalendar"><b>Area: </b>{{item.area}}</p>
+          <p class="textCalendar"><b>Fecha: </b>{{item.fecha.toDateString()}} </p>
+        </div>
       </ion-list>
     </ion-card>
 </ion-content>

@@ -7,7 +7,7 @@
           </ion-avatar>
         </button>
       </ion-buttons>
-      <ion-title end>Carnet</ion-title>   
+      <ion-title end>{{ 'PAGE_CARNE_TITLE' | translate }}</ion-title>   
     </ion-navbar>
   </ion-header>
 
@@ -18,7 +18,7 @@
           <ion-item text-wrap  color="secondary"  >
             <ion-thumbnail item-right>
               <img src="{{imgUrl}}">
-              <p>#YOSOYCUN</p>
+              <p>{{ 'PAGE_CARNE_CUN' | translate }}</p>
             </ion-thumbnail>        
             <p class="datosC"> {{qrData.primerNombre}} {{qrData.segundoNombre}} {{qrData.primerApellido}} {{qrData.segundoApellido}}</p>
             <p class="datosC">Cc: {{qrData.cc}}</p>
@@ -34,8 +34,6 @@
      </ion-content>
     <ion-footer>
       <div class="footerCarne">
-        <p class="textFooter">Este carné es unico e intransferible, identifica al portador y supone
-          la conformidad del titular con las condiciones establecidas por la institución.
-        </p>
+        <p class="textFooter">{{ 'PAGE_CARNE_fOOTER_TEXT' | translate }}</p>
       </div>
     </ion-footer>

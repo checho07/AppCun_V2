@@ -31,17 +31,16 @@ export class CalendarioPage {
   
 
   constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider) {
-    
+   
     this.eventos = calendarioProvider.query();
     this.eventos.forEach(element => {
       this.createMarker(element)
     });
     this.dataMesFn(null,this.currentDate);
    
-
     this.optionsMulti = {
       pickMode: 'single',
-      color: 'primary',
+      color: 'secondary',
       monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
       weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
       weekStart:1,
@@ -52,23 +51,23 @@ export class CalendarioPage {
 
  
 
-  createMarker(data){
+  createMarker(data) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
     switch (data.area) {
-      case 'recursoHumano':
+      case 'Brigadas':
         arrayMarker.cssClass = 'oa'
-        arrayMarker.subTitle = 'RRHH'
+        arrayMarker.subTitle = 'BR'
         break;
-        case 'capitalSocial':
+     case 'capital Social':
         arrayMarker.cssClass = 'op'
         arrayMarker.subTitle  = 'CS'
         break;
-        case 'cebiac':
+      case 'Bienestar':
         arrayMarker.cssClass = 'cc'
-        arrayMarker.subTitle  = 'CE'
+        arrayMarker.subTitle  = 'BI'
         break;
-        case 'academicos':
+      case 'Orientación académica':
         arrayMarker.cssClass = 'aa'
         arrayMarker.subTitle  = 'OA'
         break;
@@ -79,39 +78,39 @@ export class CalendarioPage {
     this._daysConfig.push(arrayMarker)    
   }  
 
-dataMesFn(target?,fecha?){
-  this.dataMes = [];
-  this.areas = [];
-  this._daysConfig;
-  if(target){   
-    this.eventos.forEach(element => {
-      if (target.newMonth.months == element.fecha.toISOString().split('-')[1]) {
-        this.dataMes.push(element);
-      }      
-    });
-  }else{
-    this.eventos.forEach(element => {
-      if (fecha.toISOString().split('-')[1] == element.fecha.toISOString().split('-')[1]) {
-        this.dataMes.push(element);
-      }      
-    });
+  dataMesFn(target?,fecha?) {    
+   
+    this.dataMes = [];
+    this.areas = [];
+    this._daysConfig;
+   
+    if(target){   
+      this.eventos.forEach(element => {
+        if (target.newMonth.months == element.fecha.toISOString().split('-')[1] && target.newMonth.years == element.fecha.toISOString().split('-')[0]) {
+          this.dataMes.push(element);
+        }
+      });
+    }else{
+      this.eventos.forEach(element => {
+        if (fecha.toISOString().split('-')[1] == element.fecha.toISOString().split('-')[1]) {
+          this.dataMes.push(element);
+        }    
+      });
+    }
+    
+    //console.log(this.dataMes)
+    for (let i = 0; i < this.dataMes.length ; i++) {
+      if(this.areas.length == 0) {
+        this.areas.push(this.dataMes[i].area)
+      }
+      for (let y = 0; y < this.areas.length; y++) {
+        if(this.dataMes[i].area == this.areas[y]) {
+          y ++;
+        } else { this.areas.push(this.dataMes[i].area) }  
+      }    
+    };   
+    //console.log(this.areas)
   }
- console.log(this.dataMes);
-
-for (let i = 0; i < this.dataMes.length ; i++) 
-{
-  if(this.areas.length == 0){
-    this.areas.push(this.dataMes[i].area)
-  }
-for (let y = 0; y < this.areas.length; y++) {
-   if(this.dataMes[i].area == this.areas[y]){
-       y ++;
-  }else{ this.areas.push(this.dataMes[i].area) }  
-}    
-};
- //console.log(this.areas)
-}
-
 }
 
 

@@ -33,6 +33,7 @@ export class NotasPage {
   @ViewChild('tr') tr : ElementRef;
 
   clase: string;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public screenOrientation: ScreenOrientation,
@@ -40,6 +41,7 @@ export class NotasPage {
               private nativeStorage: NativeStorage,
               private cunMovilAPI : CunapiProvider,
               private loadingCtrl :LoadingController ) {
+
     // activación de orientación de pantalla
     screenOrientation.unlock(); 
     this.ocultar = false;
