@@ -194,9 +194,13 @@ export class MyApp {
     this.afAuth.auth.signOut();
     if (this.platform.is('cordova')) {
       this.googlePlus.logout()
-      this.nativeStorage.remove('user').then(()=>{
+
+      
+      this.nativeStorage.clear().then(()=>{
+        this.nav.popToRoot();
         this.nav.setRoot('WelcomePage');
-      });
+      })
+     
       
     } 
   }

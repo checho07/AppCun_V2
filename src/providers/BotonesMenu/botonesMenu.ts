@@ -1,3 +1,4 @@
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Injectable } from '@angular/core';
 import { Item } from '../../models/item';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +13,7 @@ export interface items{
 export class BotonesMenu {
 
   items: Item[] = [];
+  constructor( private translate:TranslateService,nativeStorage:NativeStorage) {
 
   constructor( private translate:TranslateService) {
     translate.get([
@@ -34,12 +36,14 @@ export class BotonesMenu {
           {
             nombre:  values.TITLE_MENU_NOTAS,
             imagen:  "assets/img/4notas.png",
-            page:    "NotasPage"
+            page:    "NotasPage", 
+            cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_CARNE,
             imagen: "assets/img/5carne.png",
-            page:   "CarnePage"
+            page:   "CarnePage", 
+          cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_CALENDARIO,
@@ -55,7 +59,8 @@ export class BotonesMenu {
           {
             nombre: values.TITLE_MENU_HORARIO,
             imagen: "assets/img/8horario.png",
-            page:   "HorarioPage"
+            page:   "HorarioPage", 
+          cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_DINERO,
@@ -102,22 +107,42 @@ export class BotonesMenu {
     )
   }
 
+  // query(params?: any) {
+  //   if (!params) {
+  //     return this.items;
+  //   }
+
+  //   return this.items.filter((item) => {
+  //     for (let key in params) {
+  //       let field = item[key];
+  //       if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+  //         return item;
+  //       } else if (field == params[key]) {
+  //         return item;
+  //       }
+  //     }
+  //     return null;
+  //   });
+  // }
+
   query(params?: any) {
+    let filterItems =[];
     if (!params) {
       return this.items;
     }
 
-    return this.items.filter((item) => {
-      for (let key in params) {
-        let field = item[key];
-        if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
-          return item;
-        } else if (field == params[key]) {
-          return item;
-        }
+     this.items.filter((item) => {
+       
+      if(item.cunOnly){
+        item.candado =  "assets/img/IconoCandado.png";
+        item.page = 'noCunPage';
+        filterItems.push(item)
+      }else{
+        filterItems.push(item)
       }
-      return null;
+
     });
+    return filterItems
   }
 
   add(item: Item) {

@@ -31,6 +31,7 @@
     "@ionic-native/geolocation": "^4.11.0",
     "@ionic-native/google-maps": "^4.9.1",
     "@ionic-native/google-plus": "^4.10.0",
+    "@ionic-native/http": "^4.11.0",
     "@ionic-native/in-app-browser": "^4.10.0",
     "@ionic-native/media-capture": "^4.10.0",
     "@ionic-native/native-storage": "^4.10.0",
@@ -45,6 +46,7 @@
     "angularfire2": "^5.0.0-rc.11",
     "call-number": "^1.0.1",
     "cordova-android": "7.0.0",
+    "cordova-plugin-advanced-http": "^1.11.1",
     "cordova-plugin-appavailability": "^0.4.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-email-composer": "^0.8.15",
@@ -102,9 +104,13 @@
       },
       "cordova-plugin-nativestorage": {},
       "call-number": {},
+
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       }
+
+      "cordova-plugin-advanced-http": {}
+
     },
     "platforms": [
       "android"
