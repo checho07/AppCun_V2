@@ -1,3 +1,5 @@
+import { CunapiProvider } from './../../providers';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
@@ -29,16 +31,69 @@ export class MenuCunPage {
               private toggle : MenuController,
               private googlePlus: GooglePlus,
               private afAuth: AngularFireAuth,
-              private platform : Platform
-            
+              private platform : Platform,
+              private nativeStorage: NativeStorage,
+              private cunMovilAPI : CunapiProvider          
             
             ) {
-    this.currentButtons = this.buttons.query();
-    console.log(this.currentButtons)
+                      
+    this.currentButtons = [];
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter(){   
+  //  this.currentButtons = this.buttons.query();
+  //  this.nativeStorage.getItem('user').then(userRes =>{
+  //   let email = userRes.email;
+      
+  //  this.setStudentData(email);
+  //  })
+ 
+  
+
+   this.loadButtons()
+  
   }
+  ionViewDidLeave(){
+    this.currentButtons = [];
+  }
+
+  setStudentData(email){
+    this.nativeStorage.getItem('student').then(res=>{
+      console.log('student already exists');
+    }).catch(err =>{
+
+      this.cunMovilAPI.getUserByEmail(email).subscribe(userRes =>{
+        this.nativeStorage.setItem('student',{ccid:userRes[0].NUM_IDENTIFICACION})
+
+      },err =>{
+        alert(JSON.stringify(err));
+      })
+    })
+   
+  };   
+
+
+  loadButtons(){
+    let env = this;
+    env.currentButtons = [];
+              this.nativeStorage.getItem('user')
+              .then(function(data){ 
+                let email = data.email.split('@')[1];
+                if(email !== 'cun.edu.co'){
+                  env.currentButtons = env.buttons.query('nocun');
+                }else{
+                  env.setStudentData(data.email)
+                  env.currentButtons = env.buttons.query();
+                }
+                
+              },function(err){
+                
+                env.currentButtons = env.buttons.query('nocun');
+                console.log(env.currentButtons)
+              }
+            ) 
+  }
+  
 
   openPage(page){
      if (page == 'CunVirtualPage'){

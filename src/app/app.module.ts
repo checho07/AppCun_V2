@@ -30,6 +30,8 @@ import { SedesProvider } from '../providers/sedes/sedes';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { CalendarioProvider } from '../providers/calendario/calendario';
 import { CalendarModule } from "ion2-calendar";
+import { CunapiProvider } from '../providers/cunapi/cunapi';
+import { HTTP } from '@ionic-native/http';
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
   authDomain: "appcunhome.firebaseapp.com",
@@ -68,6 +70,7 @@ export function provideSettings(storage: Storage) {
     BrowserModule,
     CalendarModule,
     HttpClientModule,
+    
     AgmCoreModule.forRoot({apiKey:'AIzaSyA2Mr5jjkk_bsSNaL15TD4qurs7gwoaOHw'}),
     AngularFireModule.initializeApp(firebaseConfig), 
     AngularFireAuthModule,
@@ -88,6 +91,7 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
+    HTTP,
     Items,
     BotonesMenu,
     ApiVimeoProvider,
@@ -110,7 +114,8 @@ export function provideSettings(storage: Storage) {
     DirectorioProvider,
     WordpressProvider,
     SedesProvider,
-    CalendarioProvider
+    CalendarioProvider,
+    CunapiProvider
   ]
 })
 export class AppModule { }

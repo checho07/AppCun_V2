@@ -146,7 +146,7 @@ alert.present();
 recordVideo()
 {
 
-    let options: CaptureVideoOptions = { limit: 1,duration:10,quality:100};
+    let options: CaptureVideoOptions = { limit: 1,duration:15,quality:100};
  
     this.mediaCapture.captureVideo(options)
     .then((data: MediaFile[]) => data.forEach(element => {

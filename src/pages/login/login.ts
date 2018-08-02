@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController,Nav } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -22,7 +22,7 @@ import { MenuCun } from '../';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-
+  @ViewChild(Nav) nav: Nav;
   ////////googleLogin 2
   user:Observable<firebase.User>;
   ///////
@@ -55,7 +55,8 @@ export class LoginPage {
               private afAuth: AngularFireAuth,
               private platform : Platform,
               private nativeStorage : NativeStorage,
-              private loadingCtrl:LoadingController) 
+              private loadingCtrl:LoadingController,
+              private toastCtrl : ToastController) 
               {
                 
                this.user = this.afAuth.authState;
@@ -113,6 +114,7 @@ signOut(){
         this.nativeStorage.setItem('user',
         {
           name:res.displayName,
+          givenName:res.givenName,
           email:res.email,
           picture:res.imageUrl,
           gender :res.gender , 
@@ -121,15 +123,20 @@ signOut(){
           ageMax:res.ageRangeMax
 
         }).then(function(res){
+         
+         
+          
           loading.dismiss();
-          env.navCtrl.setRoot(MenuCun);
-          let toast = this.toastCtrl.create({
-            message: 'Bienvenido ${res.givenName}',
+          //env.nav.setRoot('MenuCunPage')
+          env.navCtrl.setRoot(MenuCun)
+          let toast = env.toastCtrl.create({
+            message: 'Bienvenido ' +res.givenName,
             duration: 3000,
             position: 'top'
           });
           toast.present();
         },function(err){
+          loading.dismiss();
           alert(JSON.stringify(err))
         })
   })

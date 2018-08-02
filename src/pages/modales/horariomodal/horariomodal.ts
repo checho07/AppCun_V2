@@ -1,12 +1,9 @@
+import { Materia } from './../../notas/notas';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 
-/**
- * Generated class for the HorariomodalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,24 +11,55 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController } 
   templateUrl: 'horariomodal.html',
 })
 export class HorariomodalPage {
-
+  
+  public materias = [];
+  public materiasVirtuales = [];
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public ViewCtrl:ViewController,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              public inAppBrowser:InAppBrowser) {
+
+               this.materias =  navParams.get('materias')
+               this.materiasVirtuales = navParams.get('materiasVirtuales')
+               
+
+
+               console.log(this.materiasVirtuales)
   }
 
   ionViewDidLoad() {
-   
+    
+    if(this.materias){
+      let materias = this.materias;
+      
+    if(materias.length == 0  ){
+      let alert = this.alertCtrl.create(
+        {title:"Estas Libre Hoy..", message:'parece que no tienes clases el dia de hoy.',buttons:[{text:'Ok',handler: () => {
+          this.closemodal();
+        }}]})
+        alert.present();
+    }
+    }
+    if(this.materiasVirtuales){
+      let materiasVirtuales = this.materiasVirtuales
+      if(materiasVirtuales.length == 0  ){
+        let alert = this.alertCtrl.create(
+          {title:"Estas Libre Hoy..", message:'parece que no tienes clases el dia de hoy.',buttons:[{text:'Ok'}]})
+          alert.present();
+      }
+    }
+
+  
   }
   closemodal(){
     this.ViewCtrl.dismiss();
   }
 
-  showAlert() {
+  showAlert(materia) {
     const alert = this.alertCtrl.create({      
       title: 'Calculo Multivariado',
-      subTitle: 'Fecha inicio: <br> \n  Fecha final:<br> \n Nivel:<br> \nCréditos: <br>\nHoras:\n<br> Cod Programa:<br> \nCod pensum:',
+      subTitle: 'Fecha inicio: '+materia.FEC_INICIO+' <br> \n  Fecha final: '+materia.FEC_FIN+'<br> \n Nivel: '+materia.NUM_NIVEL+'<br> \nCréditos: '+materia.CREDITOS+' <br>\n Nom Unidad: '+materia.NOM_UNIDAD+'<br> \nCod pensum: '+materia.COD_PENSUM+'',
       cssClass: 'alertDetallesA',
       buttons: [
         {
@@ -41,6 +69,10 @@ export class HorariomodalPage {
       ],  
     });
     alert.present();
+  }
+
+  abrirMediacionVirtual(){
+    this.inAppBrowser.create("http://virtual.cun.edu.co/mediacionvirtual/","_blank",)
   }
   
 }

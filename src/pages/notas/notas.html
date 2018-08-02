@@ -30,13 +30,13 @@
             <th>DEF</th>                  
           </thead>                  
           <tbody id="tablaBody"> <!-- Cuerpo de la tabla -->
-            <tr  [ngClass]="{'fondoTr': selectedItem == nota}" (click)="seleccionarNota(nota,i)" *ngFor="let nota of notas; let i = index" >
+            <tr  [ngClass]="{'fondoTr': selectedItem == nota}" (click)="seleccionarNota(nota,i)" *ngFor="let nota of Notas; let i = index" >
               <td><p>{{i+1}}.</p></td>
-              <td><span class="asignaturas">{{nota.asignatura}}</span></td>
+              <td><span class="asignaturas">{{nota.nombreAsignatura}}</span></td>
               <td>{{nota.c1}}</td>
               <td>{{nota.c2}}</td>
               <td>{{nota.c3}}</td>
-              <td>{{nota.c1}}</td>                   
+              <td>{{nota.final}}</td>                   
             </tr>                   
           </tbody>
         </table>

@@ -1,15 +1,19 @@
-
+import { CunapiProvider } from './../../providers';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ToastController } from 'ionic-angular';
 
-/**
- * Generated class for the NotasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+export interface Materia {
+  nombreAsignatura:string,
+  c1:string,
+  c2:string,
+  c3:string,
+  final:string
+
+}
 
 @IonicPage()
 @Component({
@@ -20,21 +24,63 @@ export class NotasPage {
 
   selectedItem: any;
   ocultar:any;
+  Notas:Materia[] = []
+
+  
   @ViewChild('corte1Input') corte1Input : ElementRef;
   @ViewChild('corte2Input') corte2Input : ElementRef;
   @ViewChild('mensaje') mensaje : ElementRef;
   @ViewChild('tr') tr : ElementRef;
 
   clase: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, screenOrientation: ScreenOrientation, private toastCtrl:ToastController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public screenOrientation: ScreenOrientation,
+              private toastCtrl:ToastController,
+              private nativeStorage: NativeStorage,
+              private cunMovilAPI : CunapiProvider,
+              private loadingCtrl :LoadingController ) {
     // activación de orientación de pantalla
     screenOrientation.unlock(); 
     this.ocultar = false;
   }
 
-  ionViewDidLoad() {
-  
-  }
+  ionViewDidLoad(){
+    let loading = this.loadingCtrl.create({
+    content:'Cargando tus notas...'
+    });
+    loading.present();
+
+   let evn = this;
+   var studentcc;  
+   this.nativeStorage.getItem('student').then((res)=>{
+      
+        studentcc = res.ccid;
+      
+      this.cunMovilAPI.getUserGrades(studentcc).subscribe(grades =>{
+        console.log(grades[0]);
+
+        for (const key in grades) {
+          let nota:Materia = {
+                             nombreAsignatura:grades[key].NOMBRE_ASIGNATURA,
+                             c1:grades[key]["1er 30%"],
+                             c2:grades[key][ "2do 30%"],
+                             c3:grades[key]["3er 40%"],
+                             final:grades[key][ "UNICA 100%"]
+                           }
+                           
+                           this.Notas.push(nota)
+        }
+        
+        loading.dismiss();
+      })
+
+     },err =>{
+       loading.dismiss();
+       alert(JSON.stringify(err))
+     });
+   }
+
 
   /**
    *  funcion que mapea en los input del DOM las notas seleccionadas
@@ -143,27 +189,5 @@ export class NotasPage {
   }
 
   // array  de notas 
-  notas = [
-    {
-      asignatura:'Calculo',c1:35,c2:40,c3:50
-    },
-    {
-      asignatura:'Base de Datos',c1:30,c2:42,c3:10
-    },
-    {
-      asignatura:'Programacion Web',c1:25,c2:30,c3:40
-    },
-    {
-      asignatura:'Programacion f',c1:25,c2:10,c3:40
-    },
-    {
-      asignatura:'Administracion de base de datos ',c1:35,c2:40,c3:40
-    },
-    {
-      asignatura:'Refinamiento de software',c1:50,c2:20,c3:40
-    },
-    {
-      asignatura:'Proeyecto de grado I',c1:45,c2:32,c3:40
-    }
-  ]
+ 
 }
