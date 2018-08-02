@@ -81,5 +81,60 @@
   "TITLE_MENU_BIBLIOTECA":"Library",
   "TITLE_MENU_CAPSULA":"Cun Capsule", 
   "TITLE_MENU_EMPLEO":"Employment",
-  "TITLE_MENU_DIVIERTETE":"Have fun"
+  "TITLE_MENU_DIVIERTETE":"Have fun",
+
+
+  "PAGE_NOTAS_TITLE":"Notes",
+  "PAGE_NOTAS_ASIGNATURAS":"SUBJECTS",
+  "PAGE_NOTAS_BUTTON_TITLE":"QUICK CALCULATION",
+  "PAGE_NOTAS_BUTON_CALCULAR":"CALCULATE",
+  "PAGE_NOTAS_BUTON_CORTE1":"Cut 1",
+  "PAGE_NOTAS_BUTON_CORTE2":"Cut 2",
+
+  "PAGE_CARNE_TITLE":"Identity Card",
+  "PAGE_CARNE_CUN":"#IAMCUN",
+  "PAGE_CARNE_fOOTER_TEXT":"This card is unique and non-transferable, identifies the carrier and assumes the agreement of the holder with the conditions established by the institution.",
+
+  "PAGE_CALENDARIO_TITLE":"Calendario",
+  "PAGE_CALENDARIO_EVENT":"Eventos",
+
+  "PAGE_CALENDARIO_TITLE_EVENT1":"Brigada de salud",
+  "PAGE_CALENDARIO_EVENT_DESC1":"Asiste a la primera brigada de salud CUN",
+  "PAGE_CALENDARIO_EVENT_AREA1":" Brigadas ",
+
+  "PAGE_CALENDARIO_TITLE_EVENT2":"Salud y vida",
+  "PAGE_CALENDARIO_EVENT_DESC2":"El cuerpo es nuestro jardín, la voluntad es nuestro jardinero (William Shakespeare)",
+  "PAGE_CALENDARIO_EVENT_AREA2":" Brigadas ",
+
+  "PAGE_CALENDARIO_TITLE_EVENT3":"Semana Cun",
+  "PAGE_CALENDARIO_EVENT_DESC3":"Presenta tu proyecto!! No te quedes atras",
+  "PAGE_CALENDARIO_EVENT_AREA3":" Bienestar ",
+
+  "PAGE_CALENDARIO_TITLE_EVENT4":"final de parciales",
+  "PAGE_CALENDARIO_EVENT_DESC4":"descripcion3",
+  "PAGE_CALENDARIO_EVENT_AREA4":" Orientación académica ",
+
+  "PAGE_CALENDARIO_TITLE_EVENT5":"evento",
+  "PAGE_CALENDARIO_EVENT_DESC5":"descripcion",
+  "PAGE_CALENDARIO_EVENT_AREA5":"Orientación académica ",
+
+  "PAGE_CUNMEDIA_TITLE":"Cun Radio",
+
+  "PAGE_CUNCAPSULA_TITLE":"Cun Capsula",
+  
+  "PAGE_BIBLIOTECA_TITLE":"Biblioteca",
+  "PAGE_BIBLIOTECA_BUTTON_V":"Biblioteca Virtual",
+  "PAGE_BIBLIOTECA_BUTTON_C":"Biblioteca Catálogo",
+
+  
+  "PAGE_DIVIERTETE_TITLE":"Diviértete"
+
+
+
+
+
+
+
+
+
 }

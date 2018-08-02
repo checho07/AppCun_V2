@@ -26,7 +26,7 @@ export class NotasPage {
   @ViewChild('tr') tr : ElementRef;
 
   clase: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, screenOrientation: ScreenOrientation, private toastCtrl:ToastController) {
+  constructor( public navCtrl: NavController, public navParams: NavParams, screenOrientation: ScreenOrientation, private toastCtrl:ToastController) {
     // activación de orientación de pantalla
     screenOrientation.unlock(); 
     this.ocultar = false;

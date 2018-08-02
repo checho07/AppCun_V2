@@ -28,8 +28,8 @@ export class BotonesMenu {
                   "TITLE_MENU_EMPLEO",
                   "TITLE_MENU_DIVIERTETE",
     ]).subscribe(
-      (values) =>{
-        console.log('valores', values);
+      (values) => {
+        
         let items = [
           {
             nombre:  values.TITLE_MENU_NOTAS,

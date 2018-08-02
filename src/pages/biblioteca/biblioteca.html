@@ -11,7 +11,7 @@
           <ion-icon name="close"></ion-icon>
         </button>
     </ion-buttons>
-    <ion-title end>{{BibliotecaTitulo}}</ion-title>   
+    <ion-title end>{{ 'PAGE_BIBLIOTECA_TITLE' | translate }}</ion-title>   
   </ion-navbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
       <ion-col col-6 >
         <button class="bibliotecaU" (click)="bibvirtual()">
           <ion-icon class="iconB" name="bookmarks"></ion-icon>
-          <p>Biblioteca Virtual </p>
+          <p>{{ 'PAGE_BIBLIOTECA_BUTTON_V' | translate }}</p>
         </button>           
       </ion-col>        
     </ion-row> 
@@ -31,7 +31,7 @@
       <ion-col col-6  (click)="bibcat()">
         <button class="bibliotecaC" >
           <ion-icon class="iconB" name="book"></ion-icon>
-          <p>Biblioteca Catálogo</p>
+          <p>{{ 'PAGE_BIBLIOTECA_BUTTON_C' | translate }}</p>
         </button>            
       </ion-col>
     </ion-row>

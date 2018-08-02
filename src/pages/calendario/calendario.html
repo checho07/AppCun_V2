@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Calendario</ion-title>
+    <ion-title>{{ 'PAGE_CALENDARIO_TITLE' | translate }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,16 +10,14 @@
 
 <ion-content class="has-header">
   <ion-calendar  class="calend"
-            [options]="optionsMulti"
-            [type]="type"
-            [format]="'YYYY-MM-DD'"
-            (monthChange)="dataMesFn($event)"
-            
-
+                [options]="optionsMulti"
+                [type]="type"
+                [format]="'YYYY-MM-DD'"
+                (monthChange)="dataMesFn($event)"
   ></ion-calendar>
   <ion-card class="calendarCard">
       <ion-card-header>
-       <p class="titleEven"><b>Eventos</b></p> 
+       <p class="titleEven"><b> {{ 'PAGE_CALENDARIO_EVENT' | translate }}</b></p> 
       </ion-card-header>
     
       <ion-list>

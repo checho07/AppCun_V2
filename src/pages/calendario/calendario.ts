@@ -100,13 +100,13 @@ export class CalendarioPage {
     
     //console.log(this.dataMes)
     for (let i = 0; i < this.dataMes.length ; i++) {
-      if(this.areas.length == 0){
+      if(this.areas.length == 0) {
         this.areas.push(this.dataMes[i].area)
       }
       for (let y = 0; y < this.areas.length; y++) {
-        if(this.dataMes[i].area == this.areas[y]){
+        if(this.dataMes[i].area == this.areas[y]) {
           y ++;
-        }else{ this.areas.push(this.dataMes[i].area) }  
+        } else { this.areas.push(this.dataMes[i].area) }  
       }    
     };   
     //console.log(this.areas)
