@@ -108,7 +108,7 @@ export class NotasPage {
     if (!(this.corte1Input.nativeElement.innerText === "")) {
       let nota1 = c1  * 3;
       let nota2 = c2  * 3;
-      let res = parseFloat(((300 -(nota1+nota2)) /40).toFixed(1));   
+      let res = (((300 -(nota1+nota2)) /40).toFixed(1));   
       this.mensaje.nativeElement.innerText = "Con " + res + " Pasas la materia en 3.0 \n" +  this.msgNotas(res);
     } else {
       

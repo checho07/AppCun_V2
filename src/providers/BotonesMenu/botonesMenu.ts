@@ -15,8 +15,8 @@ export class BotonesMenu {
   items: Item[] = [];
   constructor( private translate:TranslateService,nativeStorage:NativeStorage) {
 
-  constructor( private translate:TranslateService) {
-    translate.get([
+ 
+    this.translate.get([
                   "TITLE_MENU_NOTAS",
                   "TITLE_MENU_CARNE",
                   "TITLE_MENU_CALENDARIO",
@@ -48,8 +48,7 @@ export class BotonesMenu {
           {
             nombre: values.TITLE_MENU_CALENDARIO,
             imagen: "assets/img/6calendario.png",
-            page:   "CalendarioPage",
-            candado: "assets/img/IconoCandado.png"
+            page:   "CalendarioPage"
           },
           {
             nombre: values.TITLE_MENU_VIRTUAL,
@@ -60,7 +59,7 @@ export class BotonesMenu {
             nombre: values.TITLE_MENU_HORARIO,
             imagen: "assets/img/8horario.png",
             page:   "HorarioPage", 
-          cunOnly: true
+            cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_DINERO,

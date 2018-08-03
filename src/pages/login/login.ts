@@ -98,7 +98,6 @@ signOut(){
       {  
         
         this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
-
         this.displayName = res.displayName;
         this.email = res.email;
         this.familyName = res.familyName;
@@ -152,10 +151,5 @@ signOut(){
     },function(err){
       console.log(JSON.stringify(err))
     })
-  }
-
-  
-
-  
-  
+  }  
 }
