@@ -15,7 +15,6 @@ export class BotonesMenu {
   items: Item[] = [];
   constructor( private translate:TranslateService,nativeStorage:NativeStorage) {
 
- 
     this.translate.get([
                   "TITLE_MENU_NOTAS",
                   "TITLE_MENU_CARNE",
