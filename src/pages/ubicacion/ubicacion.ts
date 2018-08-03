@@ -47,9 +47,9 @@ export class UbicacionPage {
       center:location,
       zoom:15,
       styles: [
-        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+        {elementType: 'geometry', stylers: [{color: '#144148'}]},
         {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#dfdfe5'}]},
         {
           featureType: 'administrative.locality',
           elementType: 'labels.text.fill',
@@ -73,7 +73,7 @@ export class UbicacionPage {
         {
           featureType: 'road',
           elementType: 'geometry',
-          stylers: [{color: '#38414e'}]
+          stylers: [{color: '#00695c'}]
         },
         {
           featureType: 'road',
@@ -113,7 +113,7 @@ export class UbicacionPage {
         {
           featureType: 'water',
           elementType: 'geometry',
-          stylers: [{color: '#17263c'}]
+          stylers: [{color: '#117090'}]
         },
         {
           featureType: 'water',
@@ -172,7 +172,9 @@ export class UbicacionPage {
       position:locationSede,
       map:map,
       title:sedeInfo.nombre,
-      label:sedeInfo.label
+      label:sedeInfo.label,
+      animation: google.maps.Animation.DROP,
+      icon:'assets/img/logo3.png'
     })
     marker.addListener('click', function() {
       infowindow.open(map, marker);
