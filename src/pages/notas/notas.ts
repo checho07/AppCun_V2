@@ -55,6 +55,27 @@ export class NotasPage {
 
    let evn = this;
    var studentcc;  
+/////
+this.cunMovilAPI.getUserGrades('1031148001').subscribe(grades =>{
+  console.log(grades[0]);
+
+  for (const key in grades) {
+    let nota:Materia = {
+                       nombreAsignatura:grades[key].NOMBRE_ASIGNATURA,
+                       c1:grades[key]["1er 30%"],
+                       c2:grades[key][ "2do 30%"],
+                       c3:grades[key]["3er 40%"],
+                       final:grades[key][ "UNICA 100%"]
+                     }
+                     
+                     this.Notas.push(nota)
+  }
+  
+  loading.dismiss();
+})
+
+   /////
+
    this.nativeStorage.getItem('student').then((res)=>{
       
         studentcc = res.ccid;
@@ -108,7 +129,7 @@ export class NotasPage {
     if (!(this.corte1Input.nativeElement.innerText === "")) {
       let nota1 = c1  * 3;
       let nota2 = c2  * 3;
-      let res = (((300 -(nota1+nota2)) /40).toFixed(1));   
+      let res = parseFloat(((30 -(nota1+nota2)) /4).toFixed(1));   
       this.mensaje.nativeElement.innerText = "Con " + res + " Pasas la materia en 3.0 \n" +  this.msgNotas(res);
     } else {
       
@@ -132,7 +153,7 @@ export class NotasPage {
     let random = Math.round(Math.random()*2);
     let rango;
 
-    var mensajes=[{
+    var mensajes = [ {
 
       rango:2,msgArray:["Eres un Sabelotodo","Eres un Genio","Eres un Master"] 
     },
@@ -147,16 +168,26 @@ export class NotasPage {
     }];
 
     
-    if (res > 1 && res < 2) {
+    if (res = 0) {
       
-      rango= 2;
+      rango= 1;
   
       for (let index = 0; index < mensajes.length; index++) {
         
         if(mensajes[index].rango === rango)
         return mensajes[index].msgArray[random];
         
-      }
+      } 
+    }else if (res > 1 && res < 2) {
+      
+        rango= 2;
+    
+        for (let index = 0; index < mensajes.length; index++) {
+          
+          if(mensajes[index].rango === rango)
+          return mensajes[index].msgArray[random];
+          
+        }
       
     } else if (res > 2 && res < 3) {
       rango= 3;

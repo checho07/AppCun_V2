@@ -41,16 +41,16 @@ export class MenuCunPage {
   }
 
   ionViewWillEnter(){   
-  //  this.currentButtons = this.buttons.query();
-  //  this.nativeStorage.getItem('user').then(userRes =>{
-  //   let email = userRes.email;
+   this.currentButtons = this.buttons.query();
+   this.nativeStorage.getItem('user').then(userRes =>{
+    let email = userRes.email;
       
-  //  this.setStudentData(email);
-  //  })
+   this.setStudentData(email);
+   })
  
   
 
-   this.loadButtons()
+   //this.loadButtons()
   
   }
   ionViewDidLeave(){
