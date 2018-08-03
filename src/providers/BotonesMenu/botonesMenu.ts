@@ -58,7 +58,7 @@ export class BotonesMenu {
             nombre: values.TITLE_MENU_HORARIO,
             imagen: "assets/img/8horario.png",
             page:   "HorarioPage", 
-          cunOnly: true
+            cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_DINERO,
