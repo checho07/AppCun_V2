@@ -104,13 +104,10 @@
       },
       "cordova-plugin-nativestorage": {},
       "call-number": {},
-
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
-
+      },
       "cordova-plugin-advanced-http": {}
-
     },
     "platforms": [
       "android"
