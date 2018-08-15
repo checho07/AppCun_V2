@@ -102,18 +102,18 @@ export class NotasPage {
   calcularNota() {   
     this.ocultar = false;
     
-    let c1 =parseInt( this.corte1Input.nativeElement.innerText);
-    let c2 =parseInt( this.corte2Input.nativeElement.innerText);
+    let c1 =parseFloat( this.corte1Input.nativeElement.innerText);
+    let c2 =parseFloat( this.corte2Input.nativeElement.innerText);
 
     if (!(this.corte1Input.nativeElement.innerText === "")) {
       let nota1 = c1  * 3;
       let nota2 = c2  * 3;
-      let res = (((300 -(nota1+nota2)) /40).toFixed(1));   
+      let res = parseFloat(((30 -(nota1+nota2)) /4).toFixed(1));   
       this.mensaje.nativeElement.innerText = "Con " + res + " Pasas la materia en 3.0 \n" +  this.msgNotas(res);
     } else {
       
       let toast = this.toastCtrl.create({
-        message: 'Seleccionar Materia',
+        message: 'Aún no se han registrado tus notas',
         duration: 1500,
         position: 'bottom',
         cssClass:''
@@ -128,26 +128,57 @@ export class NotasPage {
  * @returns {string} retorna el mensaje destinado segun el random
  */
 
-    msgNotas(res){
+  msgNotas(res) {
     let random = Math.round(Math.random()*2);
     let rango;
 
-    var mensajes=[{
-
-      rango:2,msgArray:["Eres un Sabelotodo","Eres un Genio","Eres un Master"] 
-    },
-    {
-      rango:3,msgArray:["Aún puedes mejorar","Seguro es una materia de relleno","Animo!! El semestre no se acaba"] 
-    },
-    {
-      rango:4,msgArray:["Esfuerzate mas","Solicita tutorias","Pide ayuda a un amigo"] 
-    },
-    {
-      rango:5,msgArray:["Mejor vende Avon","Necesitas un milagro","Ni resando pasas"] 
-    }];
+    var mensajes=[
+                  {
+                    rango:0,msgArray:["Upps!! Ya no tienes oportunidad de pasar esta materia "," El siguiente semestre sera tuyo","No te preocupes.. Esfuerzate más el proximo semestre "] 
+                  },
+                  {
+                    rango:1,msgArray:["owww!! Eres un Genio ","sigue asi y tu promedio sera el mejor ","Impresionante!! Eres un Master"] 
+                  },
+                  {
+                    rango:2,msgArray:["Eres un Sabelotodo","Eres un Genio","Eres un Master"] 
+                  },
+                  {
+                    rango:3,msgArray:["Aún puedes mejorar","Seguro es una materia de relleno","Animo!! El semestre no se acaba"] 
+                  },
+                  {
+                    rango:4,msgArray:["Esfuerzate mas","Solicita tutorias","Pide ayuda a un amigo"] 
+                  },
+                  {
+                    rango:5,msgArray:["Mejor vende Avon","Necesitas un milagro","Ni resando pasas"] 
+                  }
+    ];
 
     
-    if (res > 1 && res < 2) {
+    if (res == NaN) {
+      this.ocultar = true;         
+    }
+
+    if (res > 5) {
+        rango = 0;
+  
+        for (let index = 0; index < mensajes.length; index++) {
+        
+          if(mensajes[index].rango === rango)
+          return mensajes[index].msgArray[random];
+          
+        }
+
+    } else if (res >= 0 && res < 1 ) {
+  
+      rango = 1;
+  
+      for (let index = 0; index < mensajes.length; index++) {
+        
+        if(mensajes[index].rango === rango)
+        return mensajes[index].msgArray[random];
+      }
+
+    } else if (res > 1 && res < 2) {
       
       rango= 2;
   
@@ -193,3 +224,4 @@ export class NotasPage {
   // array  de notas 
  
 }
+
