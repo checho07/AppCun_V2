@@ -16,4 +16,18 @@
 <ion-content>
   <!-- <div id="map_canvas"></div> -->
  <div #map id="map"></div>
+ <div #panel id=panel >
+
+  <ion-item>
+    <ion-label >llevame a la ..</ion-label>
+    <ion-select interface="alert"  [(ngModel)]="sedeNavigator" id="end"  (ionChange)="onChangeHandler($event)">
+      
+      <ion-option  *ngFor="let sede of sedes" value="{{sede.lat}} {{sede.lng}}">{{sede.nombre}}</ion-option>
+      
+    </ion-select>
+
+  </ion-item>
+  <button ion-button block (click)="navegar()" icon-only>Vamos... </button>
+ 
+ </div>
 </ion-content>

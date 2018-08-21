@@ -3,17 +3,10 @@ import { horario } from './../index';
 import { SedesProvider } from '../../providers';
 import { Component,ViewChild,ElementRef } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
+import { LaunchNavigator} from '@ionic-native/launch-navigator';
 import {
   GoogleMaps,
-  GoogleMap,
-  GoogleMapsEvent,
-  GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
-  Marker
 } from '@ionic-native/google-maps';
-import { assert } from 'ionic-angular/umd/util/util';
-import { ReturnStatement } from '@angular/compiler';
 //import { google } from '@agm/core/services/google-maps-types';
  declare var google:any;
 
@@ -26,8 +19,13 @@ import { ReturnStatement } from '@angular/compiler';
 
 export class UbicacionPage {
   @ViewChild('map') mapref :ElementRef;
+  @ViewChild('panel') panelRef :ElementRef;
   sedes = [];
-  constructor(public googleMaps:GoogleMaps,sedesProvider:SedesProvider) {
+  onChangeHandler:Function ;
+  sedeNavigator:string= '';
+  constructor(public googleMaps:GoogleMaps,
+              private sedesProvider:SedesProvider,
+              private LaunchNav :LaunchNavigator) {
     this.sedes = sedesProvider.query();
   }
 
@@ -37,15 +35,35 @@ export class UbicacionPage {
     // let location = {lat:4.600018,lng:-74.074696,zoom:12}
   }
   
+  
+
+
+   calculateAndDisplayRoute(directionsService, directionsDisplay,infoSede,myPos) {
+    directionsService.route({
+      origin:myPos,
+      destination:infoSede,
+      travelMode: 'WALKING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
 
 
 
   showMap(){
-    const infoWindow = new google.maps.InfoWindow;
+    const infoWindow = new google.maps.InfoWindow;   
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
     const location = new google.maps.LatLng(4.600638,-74.074987 )
     const options = {
       center:location,
       zoom:15,
+      mapTypeControl: false,
+     
       styles: [
         {elementType: 'geometry', stylers: [{color: '#144148'}]},
         {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -55,6 +73,13 @@ export class UbicacionPage {
           elementType: 'labels.text.fill',
           stylers: [{color: '#d59563'}]
         },
+        { 
+          featureType: "poi", 
+          elementType: "labels", 
+          stylers: [ 
+              { visibility: "off" } 
+          ] 
+         } ,
         {
           featureType: 'poi',
           elementType: 'labels.text.fill',
@@ -131,23 +156,38 @@ export class UbicacionPage {
    
 
     const map = new google.maps.Map(this.mapref.nativeElement,options);
-
+    directionsDisplay.setMap(map);
+    
+   
     if(navigator.geolocation){
       navigator.geolocation.watchPosition((position)=>{
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('Location Found');
-        infoWindow.open(map);
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          icon:'assets/img/student.png'
+        });
         map.setCenter(pos);
+
+        
+        this.onChangeHandler = function(infoSede) {
+          this.calculateAndDisplayRoute(directionsService, directionsDisplay,infoSede,pos);
+        }
+     
+   
+ 
+
       },err =>{
         handleLocationError(true, infoWindow, map.getCenter());
       });
     }else{
       handleLocationError(false, infoWindow, map.getCenter());
-    }
+    } 
+
+
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
@@ -174,7 +214,7 @@ export class UbicacionPage {
       title:sedeInfo.nombre,
       label:sedeInfo.label,
       animation: google.maps.Animation.DROP,
-      icon:'assets/img/logo3.png'
+      icon:'assets/img/googleIcon.png'
     })
     marker.addListener('click', function() {
       infowindow.open(map, marker);
@@ -240,5 +280,9 @@ return marker;
   //     console.log(error);
   //   });
   // }
+
+  navegar(){
+    this.LaunchNav.navigate(this.sedeNavigator)
+  }
 
 }

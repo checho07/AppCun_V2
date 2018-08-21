@@ -32,6 +32,7 @@ import { CalendarioProvider } from '../providers/calendario/calendario';
 import { CalendarModule } from "ion2-calendar";
 import { CunapiProvider } from '../providers/cunapi/cunapi';
 import { HTTP } from '@ionic-native/http';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
   authDomain: "appcunhome.firebaseapp.com",
@@ -115,7 +116,9 @@ export function provideSettings(storage: Storage) {
     WordpressProvider,
     SedesProvider,
     CalendarioProvider,
-    CunapiProvider
+    CunapiProvider,
+    LaunchNavigator
+    
   ]
 })
 export class AppModule { }

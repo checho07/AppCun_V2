@@ -95,6 +95,8 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>We want your location! Best regards NSA</string>
     </edit-config>
-    <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
+    <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="^4.2.1">
+        <variable name="OKHTTP_VERSION" value="3.+" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
 </widget>
