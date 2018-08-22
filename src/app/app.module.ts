@@ -32,6 +32,9 @@ import { CalendarioProvider } from '../providers/calendario/calendario';
 import { CalendarModule } from "ion2-calendar";
 import { CunapiProvider } from '../providers/cunapi/cunapi';
 import { HTTP } from '@ionic-native/http';
+import { OneSignal } from '@ionic-native/onesignal';
+import { PushnotificationProvider } from '../providers/pushnotification/pushnotification';
+
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
@@ -117,8 +120,10 @@ export function provideSettings(storage: Storage) {
     SedesProvider,
     CalendarioProvider,
     CunapiProvider,
+    OneSignal,
+    PushnotificationProvider,
     LaunchNavigator
-    
+
   ]
 })
 export class AppModule { }

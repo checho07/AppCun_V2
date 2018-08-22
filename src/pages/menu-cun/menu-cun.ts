@@ -77,10 +77,11 @@ export class MenuCunPage {
     let env = this;
     env.currentButtons = [];
               this.nativeStorage.getItem('user')
-              .then(function(data){ 
+              .then(function(data) { 
                 let email = data.email.split('@')[1];
                 if(email !== 'cun.edu.co'){
                   env.currentButtons = env.buttons.query('nocun');
+                  env.currentButtons = [];
                 }else{
                   env.setStudentData(data.email)
                   env.currentButtons = env.buttons.query();
@@ -162,15 +163,20 @@ export class MenuCunPage {
   noticiasPush(){
     this.navCtrl.push('NoticiasPage');
   }
+  notificaciones(){
+    this.navCtrl.push('NotificacionesPage');
+  }
 
   logOut(){
     this.afAuth.auth.signOut();
-    this.navCtrl.setRoot("LoginPage");
-    if (this.platform.is('cordova')) {
-      this.googlePlus.logout()
-    } else {
-      
-    }
+  if (this.platform.is('cordova')) {
+    
+    this.googlePlus.logout()
+    this.nativeStorage.remove('user');
+    
+  } else {
+    
+  }
   }
 
 
