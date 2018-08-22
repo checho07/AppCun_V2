@@ -34,6 +34,8 @@ import { CunapiProvider } from '../providers/cunapi/cunapi';
 import { HTTP } from '@ionic-native/http';
 import { OneSignal } from '@ionic-native/onesignal';
 import { PushnotificationProvider } from '../providers/pushnotification/pushnotification';
+
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
   authDomain: "appcunhome.firebaseapp.com",
@@ -119,7 +121,9 @@ export function provideSettings(storage: Storage) {
     CalendarioProvider,
     CunapiProvider,
     OneSignal,
-    PushnotificationProvider
+    PushnotificationProvider,
+    LaunchNavigator
+
   ]
 })
 export class AppModule { }
