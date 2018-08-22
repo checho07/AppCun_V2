@@ -96,5 +96,6 @@
         <string>We want your location! Best regards NSA</string>
     </edit-config>
     <plugin name="cordova-plugin-advanced-http" spec="^1.11.1" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.4.2" />
     <engine name="android" spec="7.0.0" />
 </widget>

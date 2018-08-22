@@ -9,6 +9,7 @@ import { FirstRunPage,MenuCun } from '../pages';
 import { Settings } from '../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { timer } from 'rxjs/observable/timer';
+import { PushnotificationProvider } from '../providers/pushnotification/pushnotification';
 
 @Component({
   template:  
@@ -117,16 +118,19 @@ export class MyApp {
 
   ];
     showSplash = true;
-  constructor(private translate: TranslateService,
-              public  platform: Platform,
-                      settings: Settings,
-             private googlePlus: GooglePlus,
-             private config: Config,
-             private statusBar: StatusBar,
-             public menuCtrl:MenuController,
-      private splashScreen: SplashScreen,
-      private nativeStorage: NativeStorage,
-      private afAuth: AngularFireAuth) {
+  constructor (
+                private translate: TranslateService,
+                public  platform: Platform,
+                        settings: Settings,
+                private googlePlus: GooglePlus,
+                private config: Config,
+                private statusBar: StatusBar,
+                public  menuCtrl:MenuController,
+                private splashScreen: SplashScreen,
+                private nativeStorage: NativeStorage,
+                private afAuth: AngularFireAuth,
+                public  PushNotification:PushnotificationProvider
+  ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -141,7 +145,8 @@ export class MyApp {
         env.rootPage = MenuCun;
         env.splashScreen.hide();       
         env.openPage('MenuCunPage');
-        env.splashScreen.hide();   
+        env.splashScreen.hide();
+        env.PushNotification.initNotification();
         timer(3000).subscribe(() => env.showSplash = false)
 
       },function(err){
@@ -189,21 +194,14 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  signOut(){
-    
-        this.afAuth.auth.signOut();
-        this.googlePlus.logout()      
-        this.nativeStorage.clear().then(()=>{
-        this.nav.popToRoot();
-        this.nav.setRoot('WelcomePage');
-      })
-     
-      
-    
+  signOut(){    
+    this.afAuth.auth.signOut();      
+    this.googlePlus.logout()      
+    this.nativeStorage.clear().then(()=>{
+      this.nav.popToRoot();
+      this.nav.setRoot('WelcomePage');
+    }) 
   }
-
-  
-
 }
 
 
