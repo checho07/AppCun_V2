@@ -81,7 +81,6 @@ export class MenuCunPage {
                 let email = data.email.split('@')[1];
                 if(email !== 'cun.edu.co'){
                   env.currentButtons = env.buttons.query('nocun');
-                  env.currentButtons = [];
                 }else{
                   env.setStudentData(data.email)
                   env.currentButtons = env.buttons.query();
@@ -169,14 +168,12 @@ export class MenuCunPage {
 
   logOut(){
     this.afAuth.auth.signOut();
-  if (this.platform.is('cordova')) {
-    
-    this.googlePlus.logout()
-    this.nativeStorage.remove('user');
-    
-  } else {
-    
-  }
+    this.navCtrl.setRoot("LoginPage");
+    if (this.platform.is('cordova')) {
+      this.googlePlus.logout()
+    } else {
+      
+    }
   }
 
 
