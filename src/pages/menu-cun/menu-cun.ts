@@ -2,7 +2,7 @@ import { CunapiProvider } from './../../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
@@ -22,19 +22,20 @@ import {AngularFireAuth} from 'angularfire2/auth';
 export class MenuCunPage {
   currentButtons: Item[];
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public buttons:BotonesMenu,
-              private device: Device,
-              public AppAvailability:AppAvailability,
-              private inAppBrowser: InAppBrowser,
-              private toggle : MenuController,
-              private googlePlus: GooglePlus,
-              private afAuth: AngularFireAuth,
-              private platform : Platform,
-              private nativeStorage: NativeStorage,
-              private cunMovilAPI : CunapiProvider          
-            
+  constructor (
+                public  navCtrl: NavController,
+                public  navParams: NavParams,
+                public  buttons:BotonesMenu,
+                private device: Device,
+                public  AppAvailability:AppAvailability,
+                private inAppBrowser: InAppBrowser,
+                private toggle : MenuController,
+                private googlePlus: GooglePlus,
+                private afAuth: AngularFireAuth,
+                private platform : Platform,
+                private nativeStorage: NativeStorage,
+                private cunMovilAPI : CunapiProvider,
+                public  modalCtrl: ModalController           
             ) {
                       
     this.currentButtons = [];
@@ -162,9 +163,13 @@ export class MenuCunPage {
   noticiasPush(){
     this.navCtrl.push('NoticiasPage');
   }
-  notificaciones(){
-    this.navCtrl.push('NotificacionesPage');
+
+  notificaciones() {
+    let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
+    NotificacionPush.present();
   }
+ 
+
 
   logOut(){
     this.afAuth.auth.signOut();

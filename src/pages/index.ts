@@ -24,9 +24,10 @@ export const ubicacion ='UbicacionPage';
 export const noticias = 'NoticiasPage';
 export const infoPost = 'InfoPostPage';
 export const calendario = 'CalendarioPage';
-export const notificaciones = 'NotificacionesPage';
+
 
 //modal pages.
 export const horarioModal = 'HorariomodalPage';
 export const comentariosModal = 'ModalCommentsPage';
+export const notificacionesModal = 'NotificacionmodalPage';
 
