@@ -70,6 +70,8 @@ export class CarnePage {
       self.generated = url;
     })
   }
-
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 
 }

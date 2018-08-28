@@ -222,6 +222,8 @@ export class NotasPage {
   }
 
   // array  de notas 
- 
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 }
 

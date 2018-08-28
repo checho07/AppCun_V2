@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController, LoadingController,Nav } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, LoadingController,Nav, AlertController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -136,9 +136,37 @@ signOut(){
           toast.present();
         },function(err){
           loading.dismiss();
-          alert(JSON.stringify(err))
+          let toast = this.toastCtrl.create({
+            message:'! Error de Registro de usuario ¡ \n ('+err+')',
+            
+            position:'bottom',
+            showCloseButton:true
+           });
+           toast.onDidDismiss(()=>{
+             this.navCtrl.setRoot('WelcomePage')
+           });
+           toast.present();
         })
-  })
+  }).catch(err => {
+    loading.dismiss();
+    console.log(err)
+   let toast = this.toastCtrl.create({
+    message:'! Error de inicio de sesion ¡ \n ('+err+')',
+    
+    position:'bottom',
+    showCloseButton:true
+   });
+   toast.onDidDismiss(()=>{
+     this.navCtrl.setRoot('WelcomePage')
+   });
+   toast.present();
+  })  
+
+
+ {
+    
+
+  }
   
 
   }

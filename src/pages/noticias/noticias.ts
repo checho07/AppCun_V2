@@ -64,5 +64,7 @@ export class NoticiasPage {
         item: post
       });
     }
-
+    goHome(){
+      this.navCtrl.setRoot('MenuCunPage')
+    }
 }

@@ -93,6 +93,9 @@ export class CunMediaPage {
   
 
 
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 
 
 }

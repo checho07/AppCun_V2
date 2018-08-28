@@ -53,4 +53,7 @@ export class DiviertetePage {
       }
     );
   }
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 }

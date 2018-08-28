@@ -62,7 +62,9 @@ export class HorarioPage {
      })
      
   }
-  
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
  
 
 

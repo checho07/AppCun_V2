@@ -37,7 +37,9 @@ export class ModalCommentsPage {
 
   getVideos()
   {
-    var loader = this.loading.create({content: 'Cargando Comentarios...'});
+    var loader = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Comentarios...</div> `});
     loader.present();
     
     this.fatherPage = this.params.get('videoInfo');
@@ -70,7 +72,9 @@ export class ModalCommentsPage {
   }
 
   addComment(){
-    var loaderCommentAdd = this.loading.create({content: 'Posteando Comentario...'});
+    var loaderCommentAdd = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Posteando...</div> `});
       
     loaderCommentAdd.present().then(()=>{
 

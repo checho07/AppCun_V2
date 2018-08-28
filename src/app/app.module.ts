@@ -86,7 +86,17 @@ export function provideSettings(storage: Storage) {
         deps: [HttpClient]
       }
     }),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      menuType:'push',
+      activator:'ripple',
+      pageTransition:'wp-transition',
+      platforms:{
+        ios:{
+          menuType:'push'
+        }
+        
+      }
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
