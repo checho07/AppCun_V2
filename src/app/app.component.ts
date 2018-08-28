@@ -23,8 +23,8 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
      <div class="bgProfile">
     
         <img src="../assets/img/marty-avatar.png" class="imgProfile" >
-        <h2 align='center'>{{userName}}Sergio Velandia</h2>
-        <h6 align='center'>{{email}}sergio.velandia@cun.edu.co</h6>
+        <h2 align='center'>{{givenName}}</h2>
+        <h6 align='center'>{{email}}</h6>
     
      </div>
 
@@ -37,9 +37,9 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
           SedesCun
         </button>
 
-         <button ion-item>
+         <button ion-item (click)="signOut()" menuToggle>
 
-            <button ion-button block  (click)="signOut()" menuToggle  >
+            <button ion-button block>
                 <ion-icon name="log-out" class="buttonProfile" ></ion-icon>
                 Cerrar Sesion         
             </button> 
@@ -122,7 +122,7 @@ export class MyApp {
   rootPage;  
   userData;
   imageUrl;
-  userName;
+  givenName;
   email;
   @ViewChild(Nav) nav: Nav;
   
@@ -167,18 +167,23 @@ export class MyApp {
         env.userData = data;   
         env.imageUrl = data.picture; 
         env.email = data.email;
-        env.userName = data.displayName;   
+        env.givenName = data.givenName;   
         env.rootPage = MenuCun;
         env.splashScreen.hide();       
         env.openPage('MenuCunPage');
-        env.splashScreen.hide();
         env.PushNotification.initNotification();
-        timer(3000).subscribe(() => env.showSplash = false)
+        env.showSplash = false;
+        if(!data.email){
+          timer(3000).subscribe(() => env.showSplash = false)
+        }else{
+          timer(1000).subscribe(()=>env.showSplash = false);
+        }
+       
 
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(3000).subscribe(() => env.showSplash = false)
+        timer(3000).subscribe(()=>env.showSplash = false);
        
        
       }

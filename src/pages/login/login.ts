@@ -81,9 +81,9 @@ signOut(){
  login() {
     let nav = this.navCtrl;
     let env = this;
-    let loading = this.loadingCtrl.create({
-      content:'Espera por favor...'
-    });
+    let loading = this.loadingCtrl.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Espera...</div> `});
 
     loading.present();
 
