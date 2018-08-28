@@ -47,5 +47,8 @@ export class AgendaPage {
       this.emailComposer.open(email);
     }
    
+    goHome(){
+      this.navCtrl.setRoot('MenuCunPage')
+    }
 
 }

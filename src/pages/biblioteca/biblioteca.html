@@ -2,7 +2,7 @@
 <ion-header >
   <ion-navbar color="primary" hideBackButton="{{bibliotecaBotones}}" >
     <ion-buttons end>
-      <button icon-only ion-button [hidden]="bibliotecaBotones">
+      <button icon-only ion-button [hidden]="bibliotecaBotones" (click)="goHome()">
         <ion-avatar >
           <img src="assets/img/icono-cun-verde.png" width="30px" height="30px;" style="margin-right: 10px; padding: 5px" >
         </ion-avatar>

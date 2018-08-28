@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage} from 'ionic-angular';
+import { IonicPage, NavController} from 'ionic-angular';
 import { ModalController, Modal } from 'ionic-angular';
 import { ApiVimeoProvider } from '../../providers/';
 import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
@@ -36,7 +36,8 @@ export class CunCapsulaPage {
               public loading: LoadingController,
               public modalCtrl: ModalController,
               private alertCtr: AlertController,
-              private toastCtrl: ToastController) 
+              private toastCtrl: ToastController,
+            private navCtrl: NavController) 
               {
                 this.getVideos()  
                }
@@ -48,8 +49,12 @@ export class CunCapsulaPage {
   
   getVideos()
   {
-    let loader = this.loading.create({content: 'Cargando Pagina...'});
-    let loader1 = this.loading.create({content: 'Cargando los ultimos videos...'});
+    let loader = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Pagina...</div> `});
+    let loader1 = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Videos...</div> `});
 
    loader.present().then(() => {
 
@@ -184,14 +189,18 @@ openGallery()
 
 requestPOSTTus(videoInfo):void{
 
-  let loader = this.loading.create({content: 'Obteniendo Enlace para Subir Video...',});
+  let loader = this.loading.create(
+    {spinner: 'hide',
+  content: ` <div class="loader">Obteniendo enlace...</div> `});
   loader.present().then(() => 
   {
   
       this.rest.POST_tus(videoInfo).subscribe(result => 
         {
   
-          let loader1 = this.loading.create({content: 'Subiendo Video...',});
+          let loader1 = this.loading.create(
+            {spinner: 'hide',
+          content: ` <div class="loader">Subiendo Video...</div> `});
           loader1.present().then(()=>{
             this.resPOST = result
             let inputTus = document.getElementById('tusInput');
@@ -202,7 +211,7 @@ requestPOSTTus(videoInfo):void{
                   loader1.dismiss(); 
                   let toast = this.toastCtrl.create({
                     message: 'Tu video pasara a revision y sera publicado',
-                    duration: 3000,
+                    duration: 4000,
                     position: 'bottom'
                   }); 
                   toast.onDidDismiss(() => {
@@ -333,6 +342,8 @@ OnchangeInput(video) {
   
   this.requestPOSTTus(this.videoInfo)
  }
-
+ goHome(){
+  this.navCtrl.setRoot('MenuCunPage')
+}
 
 }

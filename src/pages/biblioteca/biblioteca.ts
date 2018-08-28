@@ -44,4 +44,7 @@ export class BibliotecaPage {
     this.BibliotecaTitulo = "Biblioteca";
   }
 
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 }

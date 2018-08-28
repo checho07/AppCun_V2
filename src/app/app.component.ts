@@ -14,24 +14,46 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
 @Component({
   template:  
     `
-    <ion-menu  [content]="content" >
+    <ion-menu side="left" type="overlay"  [content]="content" >
 
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Perfil Cun</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-    
-    <img src="{{imageUrl}}" class="imgProfile" >
+   <ion-content class="sideMenuCun">
     
       <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
+
+     <div class="bgProfile">
+    
+        <img src="../assets/img/marty-avatar.png" class="imgProfile" >
+        <h2 align='center'>{{givenName}}</h2>
+        <h6 align='center'>{{email}}</h6>
+    
+     </div>
+
+        <button ion-button block  (click)="openPage({component:'MenuCunPage'})" menuToggle  >
+          <ion-icon name="home" class="buttonProfile" ></ion-icon>
+          MenuCun
         </button>
-        <button ion-button block outline (click)="signOut()" menuToggle  >Cerrar Sesion</button>
-      </ion-list>
+        <button ion-button block  (click)="openPage({component:'UbicacionPage'})" menuToggle  >
+          <ion-icon name="locate" class="buttonProfile" ></ion-icon>
+          SedesCun
+        </button>
+
+         <button ion-item (click)="signOut()" menuToggle>
+
+            <button ion-button block>
+                <ion-icon name="log-out" class="buttonProfile" ></ion-icon>
+                Cerrar Sesion         
+            </button> 
+
+         </button>
+         
+
+         <ion-item>         
+         <button ion-button menuClose detail-none outline item-end >Cerrar Menu</button>
+       </ion-item>
+
+   
+      </ion-list> 
+      
     </ion-content>
 
   </ion-menu>
@@ -99,7 +121,9 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
 export class MyApp {
   rootPage;  
   userData;
-  imageUrl
+  imageUrl;
+  givenName;
+  email;
   @ViewChild(Nav) nav: Nav;
   
   pages: any[] = [
@@ -141,18 +165,25 @@ export class MyApp {
       this.nativeStorage.getItem('user')
       .then(function(data){ 
         env.userData = data;   
-        env.imageUrl = data.picture;    
+        env.imageUrl = data.picture; 
+        env.email = data.email;
+        env.givenName = data.givenName;   
         env.rootPage = MenuCun;
         env.splashScreen.hide();       
         env.openPage('MenuCunPage');
-        env.splashScreen.hide();
         env.PushNotification.initNotification();
-        timer(3000).subscribe(() => env.showSplash = false)
+        env.showSplash = false;
+        if(!data.email){
+          timer(3000).subscribe(() => env.showSplash = false)
+        }else{
+          timer(1000).subscribe(()=>env.showSplash = false);
+        }
+       
 
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(3000).subscribe(() => env.showSplash = false)
+        timer(3000).subscribe(()=>env.showSplash = false);
        
        
       }

@@ -14,14 +14,25 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+
 .imgProfile{
     width: 150px!important;
     height: 150px!important;
-    margin-left: 30%!important;
+    margin-left: 20%!important;
     border-radius: 50%;
     margin-top: 10px;
 }
-
+.bgProfile{
+    // background-image: url("../assets/img/gradProfile.jpg");
+    // background-repeat:  round no-repeat;
+    // background-size: 100% 100%;
+    
+}
+.buttonProfile{
+    margin-right: 20px!important;
+}
 .splash {
     position: absolute;
     width: 100%;
@@ -407,4 +418,11 @@
         transform: translateY(-1024px);
     }
     
+    
+}
+
+.sideMenuCun{
+   background-image: url('../assets/img/desenfocada2.png');
+   background-repeat:  round;
+   
 }

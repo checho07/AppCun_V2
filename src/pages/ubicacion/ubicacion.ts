@@ -2,7 +2,7 @@ import { horario } from './../index';
 
 import { SedesProvider } from '../../providers';
 import { Component,ViewChild,ElementRef } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { LaunchNavigator} from '@ionic-native/launch-navigator';
 import {
   GoogleMaps,
@@ -25,7 +25,8 @@ export class UbicacionPage {
   sedeNavigator:string= '';
   constructor(public googleMaps:GoogleMaps,
               private sedesProvider:SedesProvider,
-              private LaunchNav :LaunchNavigator) {
+              private LaunchNav :LaunchNavigator,
+              private navCtrl :NavController) {
     this.sedes = sedesProvider.query();
   }
 
@@ -284,5 +285,7 @@ return marker;
   navegar(){
     this.LaunchNav.navigate(this.sedeNavigator)
   }
-
+  goHome(){
+    this.navCtrl.setRoot('MenuCunPage')
+  }
 }

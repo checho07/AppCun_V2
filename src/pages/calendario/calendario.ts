@@ -1,6 +1,6 @@
 import { CalendarioProvider } from './../../providers';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {  DayConfig,CalendarComponentOptions } from "ion2-calendar";
 
 /**
@@ -30,8 +30,8 @@ export class CalendarioPage {
   areas=[];
   
 
-  constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider) {
-   
+  constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider ,private loadingCtrl: LoadingController) {
+   this.presentLoadingCustom();
     this.eventos = calendarioProvider.query();
     this.eventos.forEach(element => {
       this.createMarker(element)
@@ -111,6 +111,25 @@ export class CalendarioPage {
     };   
     //console.log(this.areas)
   }
+
+
+  presentLoadingCustom() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `
+      
+        <div class="loader">Obteniendo enlace...</div>
+        `,
+      duration: 5000
+    });
+  
+    loading.onDidDismiss(() => {
+      console.log('Dismissed loading');
+    });
+  
+    loading.present();
+  }
+
 }
 
 
