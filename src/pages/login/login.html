@@ -19,18 +19,18 @@
       birthday: {{birthday}}<br>
       ageMin: {{ageMin}}</p>
     <p><ion-avatar item-left>
-        <img src="{{imageUrl}}">
-       </ion-avatar></p>
+      <img src="{{imageUrl}}">
+      </ion-avatar></p>
     <p><button ion-button (click)="signOut()">Logout From Google</button></p>
     <button ion-button block (click)="displayData()">Display Data</button>
   </div>
 
-  <ng-template #loginTemplate>
+  <!-- <ng-template #loginTemplate>
     <h1>Please Login to see your Google Account Information</h1>
     <p><button ion-button (click)="login()">Login With Google</button></p>
     <p><button ion-button (click)="signOut()">Logout From Google</button></p>
     <button ion-button block (click)="displayData()">Display Data</button>
-  </ng-template>
+  </ng-template> -->
 </ion-content>
 
 <!-- <div *ngIf="(user | async) || {} as user">
