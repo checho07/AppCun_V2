@@ -1,4 +1,5 @@
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CalendarioModel } from '../../models/calendarioModel';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,10 +7,24 @@ import { TranslateService } from '@ngx-translate/core';
 @Injectable()
 export class CalendarioProvider {
   items: CalendarioModel[] = [];
+ private path:string;
+ private params:any;
+ private calendar:any;
  
- 
-  constructor ( private translate:TranslateService) {
-    translate.get([
+  constructor ( 
+                private translate:TranslateService,
+                public  http: HttpClient
+              ) {
+
+   
+    this.path = "https://calendario-dcefa.firebaseio.com";
+    this.params = {
+      "Content-Type": "application/json"     
+    }
+    
+
+    
+   /* translate.get([
                     "PAGE_CALENDARIO_TITLE_EVENT1",
                     "PAGE_CALENDARIO_TITLE_EVENT2",
                     "PAGE_CALENDARIO_TITLE_EVENT3",
@@ -177,13 +192,23 @@ export class CalendarioProvider {
           this.items.push(new CalendarioModel(item));
         }
       }
-    )
+    )*/
+
+
+
   }
+  
+  getcalendar() {
+    this.calendar = {
+      headers: this.params
+    }
+    return this.http.get(this.path + "/eventosCun/evento.json",this.calendar)
+  }
+
   query(params?: any) {
     if (!params) {
       return this.items;
-    }
- 
+    } 
     return this.items.filter((item) => {
       for (let key in params) {
         let field = item[key];
@@ -204,4 +229,4 @@ export class CalendarioProvider {
   delete(item: CalendarioModel) {
     this.items.splice(this.items.indexOf(item), 1);
   }
- }
+}

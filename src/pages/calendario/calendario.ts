@@ -28,10 +28,49 @@ export class CalendarioPage {
   dataMes=[];
   currentDate:Date = new Date();
   areas=[];
+  CalendarData =[];
   
 
-  constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider ,private loadingCtrl: LoadingController) {
-   this.presentLoadingCustom();
+  constructor(
+    public navCtrl: NavController,
+    private calendarioProvider:CalendarioProvider ,
+    private loadingCtrl: LoadingController) {
+
+      var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
+
+        var dataCalendar = Object.keys(res).map(i => res[i])
+        return dataCalendar
+       
+        //  var dataCalendar = Object.keys(res).map(key => ({type:key,value:res[key]}));
+        //   console.log(dataCalendar);
+        //   return dataCalendar
+         // Object.keys(res).map(function(k) { return res[k] });
+
+
+        /*var resultArray = Object.keys(res).map(function(calendarEvents){
+          calendarData ={};
+          var calendarData = res[calendarEvents];
+          return calendarData;
+        
+        
+        /*let arrayparams = [];
+        for ( let ParamsCal of calendarData){
+          arrayparams.push(calendarData[ParamsCal])
+        }*/
+        });
+      // }, err => {
+      //     console.log(err);
+     // });
+
+
+     /* var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
+        let ParamsCal = Object.keys(res);
+        let arrayparams = [];
+        for ( let calendarData of ParamsCal){
+          arrayparams.push(ParamsCal[calendarData])
+        }*/
+      
+
     this.eventos = calendarioProvider.query();
     this.eventos.forEach(element => {
       this.createMarker(element)
@@ -49,7 +88,11 @@ export class CalendarioPage {
     
   }
 
- 
+showcalendar() {
+
+}
+
+
 
   createMarker(data) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
@@ -110,24 +153,6 @@ export class CalendarioPage {
       }    
     };   
     //console.log(this.areas)
-  }
-
-
-  presentLoadingCustom() {
-    let loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: `
-      
-        <div class="loader">Obteniendo enlace...</div>
-        `,
-      duration: 5000
-    });
-  
-    loading.onDidDismiss(() => {
-      console.log('Dismissed loading');
-    });
-  
-    loading.present();
   }
 
 }
