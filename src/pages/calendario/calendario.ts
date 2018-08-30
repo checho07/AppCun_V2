@@ -28,73 +28,40 @@ export class CalendarioPage {
   dataMes=[];
   currentDate:Date = new Date();
   areas=[];
-  CalendarData =[];
+  public calendarData:object[]=[];
   
 
-  constructor(
-    public navCtrl: NavController,
-    private calendarioProvider:CalendarioProvider ,
-    private loadingCtrl: LoadingController) {
-
-      var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
-
-        var dataCalendar = Object.keys(res).map(i => res[i])
-        return dataCalendar
+  constructor (
+                public navCtrl: NavController,
+                private calendarioProvider:CalendarioProvider ,
+                private loadingCtrl: LoadingController
+              ) {   
        
-        //  var dataCalendar = Object.keys(res).map(key => ({type:key,value:res[key]}));
-        //   console.log(dataCalendar);
-        //   return dataCalendar
-         // Object.keys(res).map(function(k) { return res[k] });
-
-
-        /*var resultArray = Object.keys(res).map(function(calendarEvents){
-          calendarData ={};
-          var calendarData = res[calendarEvents];
-          return calendarData;
-        
-        
-        /*let arrayparams = [];
-        for ( let ParamsCal of calendarData){
-          arrayparams.push(calendarData[ParamsCal])
-        }*/
-        });
-      // }, err => {
-      //     console.log(err);
-     // });
-
-
-     /* var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
-        let ParamsCal = Object.keys(res);
-        let arrayparams = [];
-        for ( let calendarData of ParamsCal){
-          arrayparams.push(ParamsCal[calendarData])
-        }*/
-      
-
-    this.eventos = calendarioProvider.query();
-    this.eventos.forEach(element => {
-      this.createMarker(element)
+    var env = this; 
+    var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
+      var resultArray = Object.keys(res).map(function(calendarEvents) {
+        env.calendarData.push(res[calendarEvents])
+        // env.createMarker(res[calendarEvents])       
+      });      
+      console.log("prueba")
+      this.optionsMulti = {
+                            pickMode: 'single',
+                            color: 'secondary',
+                            monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
+                            weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
+                            weekStart:1,
+                            daysConfig:this._daysConfig,
+                          };
+      this.dataMesFn(null,this.currentDate);
+      this.calendarData.forEach(element =>{
+        this.createMarker(element) 
+      })
+    }, err => {
+       console.log(err);
     });
-    this.dataMesFn(null,this.currentDate);
-   
-    this.optionsMulti = {
-      pickMode: 'single',
-      color: 'secondary',
-      monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
-      weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
-      weekStart:1,
-      daysConfig:this._daysConfig,
-    };
-    
   }
 
-showcalendar() {
-
-}
-
-
-
-  createMarker(data) {
+  createMarker(data,setClass?) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
     switch (data.area) {
@@ -117,44 +84,62 @@ showcalendar() {
       default:
         break;
     }
-    arrayMarker.date  = data.fecha;  
+    if(setClass !== undefined){
+      this.dataMes[setClass].cssClass = arrayMarker.cssClass
+    }
+    let fecha = data.fecha.split('-')[0]+","+data.fecha.split('-')[1]+','+data.fecha.split('-')[2]
+    arrayMarker.date  =new Date(fecha);  
     this._daysConfig.push(arrayMarker)    
   }  
 
+  
   dataMesFn(target?,fecha?) {    
-   
+    console.log(this.calendarData)
     this.dataMes = [];
     this.areas = [];
     this._daysConfig;
-   
-    if(target){   
-      this.eventos.forEach(element => {
-        if (target.newMonth.months == element.fecha.toISOString().split('-')[1] && target.newMonth.years == element.fecha.toISOString().split('-')[0]) {
+    console.log(target);
+    
+    if(target) {   
+      
+      this.calendarData.forEach(element => {
+        let  split = element['fecha'].split('-')[0]+","+((element['fecha'].split('-')[1]*2 /2))+','+element['fecha'].split('-')[2]
+     
+        let fecha  = new Date(split);  
+     if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
           this.dataMes.push(element);
         }
       });
+      this.dataMes.forEach((element,index)=>{
+        this.createMarker(element,index)
+      })
     }else{
-      this.eventos.forEach(element => {
-        if (fecha.toISOString().split('-')[1] == element.fecha.toISOString().split('-')[1]) {
+      this.calendarData.forEach(element => {
+        let  split1 = element['fecha'].split('-')[0]+","+element['fecha'].split('-')[1]+','+element['fecha'].split('-')[2];
+        let fecha1 = new Date(split1);
+        if (fecha.toISOString().split('-')[1] == fecha1.toISOString().split('-')[1]) {
           this.dataMes.push(element);
         }    
       });
     }
     
     //console.log(this.dataMes)
-    for (let i = 0; i < this.dataMes.length ; i++) {
-      if(this.areas.length == 0) {
-        this.areas.push(this.dataMes[i].area)
-      }
-      for (let y = 0; y < this.areas.length; y++) {
-        if(this.dataMes[i].area == this.areas[y]) {
-          y ++;
-        } else { this.areas.push(this.dataMes[i].area) }  
-      }    
-    };   
+    // for (let i = 0; i < this.calendarData.length ; i++) {
+    //   if(this.areas.length == 0) {
+    //     this.areas.push(this.calendarData[i]['area'])
+    //   }
+    //   for (let y = 0; y < this.areas.length; y++) {
+    //     if( this.calendarData[i]['area'] == this.areas[y]) {
+    //       y ++;
+    //     } else { this.areas.push(this.calendarData[i]['area']) 
+    //     console.log('entro aqui');
+    //     console.log(this.calendarData);
+        
+    //      }  
+    //   }    
+    // };   
     //console.log(this.areas)
   }
-
 }
 
 

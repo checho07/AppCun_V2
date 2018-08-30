@@ -97,7 +97,7 @@ export class CalendarioProvider {
                       nombreEvento:'evento 2',
                       descripcion:'descripcion 2',
                       hora:'1:50pm',
-                      fecha:new Date(2018,8,12),
+                      fecha:2018-8-12,
                       sede:'C',
                       area:'Orientación académica',
                       cssClass:'aa'
