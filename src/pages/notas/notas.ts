@@ -134,22 +134,22 @@ export class NotasPage {
 
     var mensajes=[
                   {
-                    rango:0,msgArray:["Upps!! Ya no tienes oportunidad de pasar esta materia "," El siguiente semestre sera tuyo","No te preocupes.. Esfuerzate más el proximo semestre "] 
+                    rango:0,msgArray:["¡Ups! Ya no tienes oportunidad de pasar esta materia "," El siguiente semestre será tuyo ","No te preocupes. Esfuérzate más el próximo semestre  "] 
                   },
                   {
-                    rango:1,msgArray:["owww!! Eres un Genio ","sigue asi y tu promedio sera el mejor ","Impresionante!! Eres un Master"] 
+                    rango:1,msgArray:["¡Owww! Eres un Genio  ","Sigue así y tu promedio será el mejor  ","¡Impresionante! Eres un Master"] 
                   },
                   {
                     rango:2,msgArray:["Eres un Sabelotodo","Eres un Genio","Eres un Master"] 
                   },
                   {
-                    rango:3,msgArray:["Aún puedes mejorar","Seguro es una materia de relleno","Animo!! El semestre no se acaba"] 
+                    rango:3,msgArray:["Aún puedes mejorar","Seguro es una materia de relleno","¡Animo! El semestre no se acaba "] 
                   },
                   {
-                    rango:4,msgArray:["Esfuerzate mas","Solicita tutorias","Pide ayuda a un amigo"] 
+                    rango:4,msgArray:["Esfuérzate mas","Solicita tutorías","Pide ayuda a un amigo"] 
                   },
                   {
-                    rango:5,msgArray:["Mejor vende Avon","Necesitas un milagro","Ni resando pasas"] 
+                    rango:5,msgArray:["Mejor vende Avon","Necesitas un milagro","Ni rezando pasas"] 
                   }
     ];
 

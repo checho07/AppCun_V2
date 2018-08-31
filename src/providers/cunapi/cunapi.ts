@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CunapiProvider {
 
-  url: string = '  http://9269753d.ngrok.io';
+  url: string = 'https://c73e314e.ngrok.io';
 
 
   constructor(private http: HttpClient) {
