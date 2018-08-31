@@ -100,13 +100,12 @@ export class CalendarioPage {
     this._daysConfig;
     console.log(target);
     
-    if(target) {   
-      
+    if(target) {     
       this.calendarData.forEach(element => {
-        let  split = element['fecha'].split('-')[0]+","+((element['fecha'].split('-')[1]*2 /2))+','+element['fecha'].split('-')[2]
-     
-        let fecha  = new Date(split);  
-     if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
+        let  split = element['fecha'].split('-')[0]+","+(element['fecha'].split('-')[1])+','+element['fecha'].split('-')[2]     
+        let fecha  = new Date(split);
+
+        if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
           this.dataMes.push(element);
         }
       });
@@ -119,26 +118,18 @@ export class CalendarioPage {
         let fecha1 = new Date(split1);
         if (fecha.toISOString().split('-')[1] == fecha1.toISOString().split('-')[1]) {
           this.dataMes.push(element);
-        }    
-      });
+        }
+        this.dataMes.forEach((element,index)=>{
+          this.createMarker(element,index)
+        })  
+      });     
     }
-    
-    //console.log(this.dataMes)
-    // for (let i = 0; i < this.calendarData.length ; i++) {
-    //   if(this.areas.length == 0) {
-    //     this.areas.push(this.calendarData[i]['area'])
-    //   }
-    //   for (let y = 0; y < this.areas.length; y++) {
-    //     if( this.calendarData[i]['area'] == this.areas[y]) {
-    //       y ++;
-    //     } else { this.areas.push(this.calendarData[i]['area']) 
-    //     console.log('entro aqui');
-    //     console.log(this.calendarData);
-        
-    //      }  
-    //   }    
-    // };   
-    //console.log(this.areas)
+
+    if (target == null) {
+      
+    } else {
+      
+    }
   }
 }
 
