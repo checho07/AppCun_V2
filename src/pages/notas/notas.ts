@@ -178,7 +178,7 @@ export class NotasPage {
         return mensajes[index].msgArray[random];
       }
 
-    } else if (res > 1 && res < 2) {
+    } else if (res >=1 && res < 2) {
       
       rango= 2;
   
@@ -189,7 +189,7 @@ export class NotasPage {
         
       }
       
-    } else if (res > 2 && res < 3) {
+    } else if (res >= 2 && res < 3) {
       rango= 3;
   
       for (let index = 0; index < mensajes.length; index++) {
@@ -199,7 +199,7 @@ export class NotasPage {
         
       }
       
-    } else if (res > 3 && res < 4) {
+    } else if (res >= 3 && res < 4) {
       rango= 4;
   
       for (let index = 0; index < mensajes.length; index++) {
@@ -209,7 +209,7 @@ export class NotasPage {
         
       }
       
-    } else if (res > 4 && res < 5) {
+    } else if (res >= 4 && res < 5) {
       rango= 5;
   
       for (let index = 0; index < mensajes.length; index++) {
