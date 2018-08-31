@@ -15,107 +15,48 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
   template:  
     `
     <ion-menu side="left" type="overlay"  [content]="content" >
-
-   <ion-content class="sideMenuCun">
-    
-      <ion-list>
-
-     <div class="bgProfile">
-    
-        <img src="../assets/img/marty-avatar.png" class="imgProfile" >
-        <h2 align='center'>{{givenName}}</h2>
-        <h6 align='center'>{{email}}</h6>
-    
-     </div>
-
-        <button ion-button block  (click)="openPage({component:'MenuCunPage'})" menuToggle  >
-          <ion-icon name="home" class="buttonProfile" ></ion-icon>
-          MenuCun
-        </button>
-        <button ion-button block  (click)="openPage({component:'UbicacionPage'})" menuToggle  >
-          <ion-icon name="locate" class="buttonProfile" ></ion-icon>
-          SedesCun
-        </button>
-
-         <button ion-item (click)="signOut()" menuToggle>
-
+      <ion-content class="sideMenuCun">    
+        <ion-list>
+          <div class="bgProfile">    
+            <img src="../assets/img/marty-avatar.png" class="imgProfile" >
+            <h2 align='center'>{{givenName}}</h2>
+            <h6 align='center'>{{email}}</h6>    
+          </div>
+          <button ion-button block  (click)="openPage({component:'MenuCunPage'})" menuToggle  >
+            <ion-icon name="home" class="buttonProfile" ></ion-icon>
+            MenuCun
+          </button>
+          <button ion-button block  (click)="openPage({component:'UbicacionPage'})" menuToggle  >
+            <ion-icon name="locate" class="buttonProfile" ></ion-icon>
+            SedesCun
+          </button>
+          <button ion-item (click)="signOut()" menuToggle>
             <button ion-button block>
                 <ion-icon name="log-out" class="buttonProfile" ></ion-icon>
                 Cerrar Sesion         
             </button> 
+          </button>
+          <ion-item>         
+            <button ion-button menuClose detail-none outline item-end >Cerrar Menu</button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
 
-         </button>
-         
-
-         <ion-item>         
-         <button ion-button menuClose detail-none outline item-end >Cerrar Menu</button>
-       </ion-item>
-
-   
-      </ion-list> 
-      
-    </ion-content>
-
-  </ion-menu>
-
-  <div  *ngIf="showSplash" class="splash">
-  <div class="spinner">          
-    <div class="bubbles-container">
-      <svg class="bubbles"  viewBox="0 580 701 1024" style="overflow: visible;">
-    
-        <g class="bubbles-large" stroke-width="">
-            <g>
-                <g transform="translate(1 940)">
-                    <circle cx="25" cy="25" r="25"/>
-                </g>
-            </g>
-            <g>
-                <g transform="translate(373 940)">
-                    <circle cx="25" cy="25" r="25"/>
-                </g>
-            </g>
-            
-        </g>
-        
-        <g class="bubbles-small" stroke-width="2">
-            <g>
-                <g transform="translate(147 984)">
-                    <circle cx="15" cy="15" r="15"/>
-                </g>
-            </g>
-            <g>
-                <g transform="translate(255 984)">
-                    <circle cx="15" cy="15" r="15"/>
-                </g>
-            </g>
-            <g>
-                <g transform="translate(573 984)">
-                    <circle cx="15" cy="15" r="15"/>
-                </g>
-            </g>
-            <g>
-                <g transform="translate(429 984)">
-                    <circle cx="15" cy="15" r="15"/>
-                </g>
-            </g>
-            <g>
-                <g transform="translate(91 984)">
-                    <circle cx="15" cy="15" r="15"/>
-                </g>
-            </g>
-            
-        </g>    
-      </svg>
-    </div>   
-    <div id="girando">                  
-      <span class="icon2"><img width="40" height="50" src="assets/img/icon-splash1.png"/> </span>
-      <span class="icon3"></span>
-      <span class="icon4"><img width="40" height="50" src="assets/img/icon-splash3.png"/></span>
-      <span class="icon5"><img width="40" height="50" src="assets/img/icon-splash4.png"/></span>
-      <span class="icon6"><img width="40" height="50" src="assets/img/icon-splash2.png"/></span>
-    </div>
-  </div> 
-</div>
+    <div *ngIf="showSplash" class="splash">
+      <div class="spinner">
+        <div class="view">
+          <div class="plane main">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+          </div>
+        </div>   
+      </div>
+    </div> 
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
@@ -174,16 +115,16 @@ export class MyApp {
         env.PushNotification.initNotification();
         env.showSplash = false;
         if(!data.email){
-          timer(3000).subscribe(() => env.showSplash = false)
+          timer(4000).subscribe(() => env.showSplash = false)
         }else{
-          timer(1000).subscribe(()=>env.showSplash = false);
+          timer(3000).subscribe(()=>env.showSplash = false);
         }
        
 
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(3000).subscribe(()=>env.showSplash = false);
+        timer(4000).subscribe(()=>env.showSplash = false);
        
        
       }
