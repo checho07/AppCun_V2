@@ -59,7 +59,12 @@ export class CalendarioPage {
        console.log(err);
     });
   }
-
+  /**
+    * Se realiza comparacion de fecha mes y año para ser mapeadas en el calendario, y se declaran las clases css que va tener cada area estipulada en el calendario
+    * @method createMarker
+    * @param data // trae el json de firebase 
+    * @param setClass 
+  */
   createMarker(data,setClass?) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
