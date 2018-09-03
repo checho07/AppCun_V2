@@ -78,9 +78,9 @@ export class CunMediaPage {
                 grd.addColorStop(0, "LawnGreen ");
                 grd.addColorStop(1, "#003138");
             ctx.fillStyle = grd;
-            bars = 100;
+            bars = 200;
             for (var i = 0; i < bars; i++) {
-               bar_x = i*8;
+               bar_x = i*5;
                bar_width = 2;
                bar_height = -(fbc_array[i] / 2);
                ctx.fillRect(bar_x,canvas.height, bar_width, bar_height)               

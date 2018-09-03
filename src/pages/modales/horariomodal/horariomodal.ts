@@ -74,5 +74,9 @@ export class HorariomodalPage {
   abrirMediacionVirtual(){
     this.inAppBrowser.create("http://virtual.cun.edu.co/mediacionvirtual/","_blank",)
   }
+
+  openUbicacion(){
+    this.navCtrl.push('UbicacionPage');
+  }
   
 }

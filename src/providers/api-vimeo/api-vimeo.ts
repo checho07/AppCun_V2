@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -172,13 +173,14 @@ return this.http.patch(uploadLink,video,this.options)
     }
     return this.http.get(this.vimeoURl + URI,this.options)
   }
-  postComment(videoId,comment:string){
+  postComment(videoId,comment:string,user){
+  
     this.options={
 
       headers: this.headersParams,
       body: 
       JSON.stringify({
-       text:comment
+       text:"Nombre:"+user+":comentario:"+comment
       })
    }
     return this.http.post<any>(this.vimeoURl +"/videos/" + videoId + "/comments",this.options.body,this.options)

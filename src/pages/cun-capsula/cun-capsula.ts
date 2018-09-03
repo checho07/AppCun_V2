@@ -40,15 +40,22 @@ export class CunCapsulaPage {
     this.getVideos()  
   }
 
-  getVideos() {
-    let loader = this.loading.create({ 
-      spinner: 'hide',
-      content: ` <div class="loader">Cargando Pagina...</div> `
-    });
-    let loader1 = this.loading.create({
-      spinner: 'hide',
-      content: ` <div class="loader">Cargando Videos...</div> `
-    });
+
+  
+  getVideos()
+  {
+    let loader = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Página...</div> `});
+    let loader1 = this.loading.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Videos...</div> `});
+
+   loader.present().then(() => {
+
+      this.rest.getVideos().subscribe(result =>
+          {
+
 
     loader.present().then(() => {
       this.rest.getVideos().subscribe(result => {
@@ -68,10 +75,12 @@ export class CunCapsulaPage {
     });    
   }
 
+
   addVideo() {
     let alert = this.alertCtr.create ({
       title: 'Datos de tu video',
       inputs: [
+
         {
           name: 'videoName',
           placeholder: 'Titulo de tu video'
@@ -114,6 +123,7 @@ export class CunCapsulaPage {
     });
     alert.present();      
   }
+
   
   addVideoHd() {
     let alert = this.alertCtr.create({
@@ -123,6 +133,7 @@ export class CunCapsulaPage {
     });
     alert.present();
   }
+
   recordVideo() {
     let options: CaptureVideoOptions = { limit: 1,duration:15,quality:100}; 
     this.mediaCapture.captureVideo(options).then((data: MediaFile[]) => data.forEach(element => {
@@ -183,6 +194,7 @@ export class CunCapsulaPage {
         })         
         loader.dismiss();
       }, error => {
+          loader.dismiss();
           alert(<any>error.message);
           console.log("requestPOSTError: " + error.message);
       });
@@ -264,6 +276,7 @@ export class CunCapsulaPage {
     // }      
   }
 
+
   OnchangeInput(video) {
     const videoFile = video.target.files[0];
     this.videoInfo.size = videoFile.size;  
@@ -272,4 +285,17 @@ export class CunCapsulaPage {
   goHome(){
     this.navCtrl.setRoot('MenuCunPage')
   }
+
+
+
+doRefresh(refresher) {
+
+  this.rest.getVideos().subscribe(result =>{
+        this.videoRes = result;
+        this.videoList = this.videoRes.data;
+        refresher.complete();
+  });
+}
+
+
 }

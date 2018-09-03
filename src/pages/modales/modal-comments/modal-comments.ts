@@ -1,3 +1,4 @@
+import { NativeStorage } from '@ionic-native/native-storage';
 import { Component } from '@angular/core';
 import {  IonicPage, NavParams, ViewController, LoadingController, ToastController  } from 'ionic-angular';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
@@ -13,16 +14,22 @@ export class ModalCommentsPage {
 
    
   comments:any;
+  commentsArr:object[];
+  names:string[]=[];
+  userComment:string[] = [];
   fatherPage:any;
+
   public formulario : FormGroup;
   private videoId;
+  
 
   constructor(private params: NavParams,
               private view :ViewController,
               private formBuilder: FormBuilder,
               private apiVimeo: ApiVimeoProvider,
               private loading:LoadingController,
-              private toastCtrl:ToastController) {
+              private toastCtrl:ToastController,
+              private nativeStorage: NativeStorage) {
 
                 do {
      
@@ -37,6 +44,9 @@ export class ModalCommentsPage {
 
   getVideos()
   {
+    this.names = [];
+    this.userComment = [];
+    this.commentsArr = [];
     var loader = this.loading.create(
       {spinner: 'hide',
     content: ` <div class="loader">Cargando Comentarios...</div> `});
@@ -49,7 +59,15 @@ export class ModalCommentsPage {
     this.comments = this.apiVimeo.getComments(this.fatherPage.uri)
     .subscribe(comments =>
       {
-    this.comments =  comments;
+     this.comments =  comments;
+     this.comments.data.forEach(element => {
+       this.names.push(element.text.split(':')[1])
+       this.userComment.push(element.text.split(':')[3])
+     });
+     for (let index = 0; index < this.names.length; index++) {
+        let obj = {nombre:this.names[index],comentario:this.userComment[index]}
+       this.commentsArr.push(obj);
+     }       
     loader.dismiss();
      
       },error =>
@@ -72,14 +90,18 @@ export class ModalCommentsPage {
   }
 
   addComment(){
+    
     var loaderCommentAdd = this.loading.create(
       {spinner: 'hide',
     content: ` <div class="loader">Posteando...</div> `});
       
     loaderCommentAdd.present().then(()=>{
+        var userName;
+      this.nativeStorage.getItem('user').then((userInfo)=>{
+        userName = userInfo.givenName;
+      
+      this.apiVimeo.postComment(this.videoId,this.formulario.value.text,userName).subscribe(response =>{
 
-      this.apiVimeo.postComment(this.videoId,this.formulario.value.text).subscribe(response =>{
-            
         if(response)
         {
           this.presentToast();
@@ -92,9 +114,16 @@ export class ModalCommentsPage {
           console.log("addCommentPOSTError: " + error.message);
       })
       loaderCommentAdd.dismiss();
-    })
-  
+    });
+  });
    }
+
+   doRefresh(refresher) {
+    setTimeout(() => {
+     this.getVideos()
+      refresher.complete();
+    }, 2000);
+  }
 
    presentToast() {
     let toast = this.toastCtrl.create({
@@ -104,5 +133,6 @@ export class ModalCommentsPage {
     });
     toast.present();
   }
+
 
 }

@@ -48,9 +48,9 @@ export class NotasPage {
   }
 
   ionViewDidLoad(){
-    let loading = this.loadingCtrl.create({
-    content:'Cargando tus notas...'
-    });
+    let loading = this.loadingCtrl.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Notas...</div> `});
     loading.present();
 
    let evn = this;
@@ -75,11 +75,24 @@ export class NotasPage {
         }
         
         loading.dismiss();
+      },err =>{
+        loading.dismiss();
+        let toast = this.toastCtrl.create({
+         message: 'Revisa tu conexion a internet (' + err +')',
+         duration: 3000,
+         position: 'bottom'
+       });
+       toast.present();
       })
 
      },err =>{
        loading.dismiss();
-       alert(JSON.stringify(err))
+       let toast = this.toastCtrl.create({
+        message: 'Usuario no encontrado (' + err +')',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
      });
    }
 

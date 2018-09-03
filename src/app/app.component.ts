@@ -13,35 +13,8 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
 
 @Component({
   template:  
-    `
-    <ion-menu side="left" type="overlay"  [content]="content" >
-      <ion-content class="sideMenuCun">    
-        <ion-list>
-          <div class="bgProfile">    
-            <img src="../assets/img/marty-avatar.png" class="imgProfile" >
-            <h2 align='center'>{{givenName}}</h2>
-            <h6 align='center'>{{email}}</h6>    
-          </div>
-          <button ion-button block  (click)="openPage({component:'MenuCunPage'})" menuToggle  >
-            <ion-icon name="home" class="buttonProfile" ></ion-icon>
-            MenuCun
-          </button>
-          <button ion-button block  (click)="openPage({component:'UbicacionPage'})" menuToggle  >
-            <ion-icon name="locate" class="buttonProfile" ></ion-icon>
-            SedesCun
-          </button>
-          <button ion-item (click)="signOut()" menuToggle>
-            <button ion-button block>
-                <ion-icon name="log-out" class="buttonProfile" ></ion-icon>
-                Cerrar Sesion         
-            </button> 
-          </button>
-          <ion-item>         
-            <button ion-button menuClose detail-none outline item-end >Cerrar Menu</button>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-    </ion-menu>
+    
+
 
     <div *ngIf="showSplash" class="splash">
       <div class="spinner">
@@ -57,6 +30,7 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
         </div>   
       </div>
     </div> 
+
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
@@ -166,14 +140,7 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  signOut(){    
-    this.afAuth.auth.signOut();      
-    this.googlePlus.logout()      
-    this.nativeStorage.clear().then(()=>{
-      this.nav.popToRoot();
-      this.nav.setRoot('WelcomePage');
-    }) 
-  }
+
 }
 
 

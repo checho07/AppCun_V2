@@ -42,4 +42,17 @@ page-biblioteca {
         width: 100% !important;
         height: 100% !important;
     }
+    .help {
+        color:color($colors, yellowIcon) !important;
+        font-size: 1.8em;
+        float: right;
+        position: absolute;
+        top:14%;
+        right:29%;
+    }
+
+    .alertClass{
+        background-color: red !important;
+        color :red !important;
+    }
 }

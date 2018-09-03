@@ -57,6 +57,7 @@ export class CalendarioPage {
       })
     }, err => {
        console.log(err);
+
     });
   }
   /**
@@ -127,6 +128,7 @@ export class CalendarioPage {
       });     
     }
   }
+
 }
 
 
