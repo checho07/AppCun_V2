@@ -37,7 +37,7 @@ export class HorarioProvider {
           },
           {
             dia:   "Domingo",
-            imagen:"assets/img/10media.png"
+            imagen:"assets/img/virtual.png"
           }
     ];
 

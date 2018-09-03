@@ -28,30 +28,45 @@ export class CalendarioPage {
   dataMes=[];
   currentDate:Date = new Date();
   areas=[];
-  
+  public calendarData:object[]=[];  
 
-  constructor(public navCtrl: NavController,calendarioProvider:CalendarioProvider ,private loadingCtrl: LoadingController) {
-   
-    this.eventos = calendarioProvider.query();
-    this.eventos.forEach(element => {
-      this.createMarker(element)
+  constructor (
+                public navCtrl: NavController,
+                private calendarioProvider:CalendarioProvider ,
+                private loadingCtrl: LoadingController
+              ) {   
+       
+    var env = this; 
+    var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
+      var resultArray = Object.keys(res).map(function(calendarEvents) {
+        env.calendarData.push(res[calendarEvents])
+        // env.createMarker(res[calendarEvents])       
+      });      
+      console.log("prueba")
+      this.optionsMulti = {
+                            pickMode: 'single',
+                            color: 'secondary',
+                            monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
+                            weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
+                            weekStart:1,
+                            daysConfig:this._daysConfig,
+                          };
+      this.dataMesFn(null,this.currentDate);
+      this.calendarData.forEach(element => {
+        this.createMarker(element) 
+      })
+    }, err => {
+       console.log(err);
+
     });
-    this.dataMesFn(null,this.currentDate);
-   
-    this.optionsMulti = {
-      pickMode: 'single',
-      color: 'secondary',
-      monthPickerFormat:	['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
-      weekdays:['D', 'L', 'M', 'MI', 'J', 'V', 'S'],
-      weekStart:1,
-      daysConfig:this._daysConfig,
-    };
-    
   }
-
- 
-
-  createMarker(data) {
+  /**
+    * Se realiza comparacion de fecha mes y año para ser mapeadas en el calendario, y se declaran las clases css que va tener cada area estipulada en el calendario
+    * @method createMarker
+    * @param data // trae el json de firebase 
+    * @param setClass 
+  */
+  createMarker(data,setClass?) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
     switch (data.area) {
@@ -74,46 +89,45 @@ export class CalendarioPage {
       default:
         break;
     }
-    arrayMarker.date  = data.fecha;  
+    if(setClass !== undefined){
+      this.dataMes[setClass].cssClass = arrayMarker.cssClass
+    }
+    let fecha = data.fecha.split('-')[0]+","+data.fecha.split('-')[1]+','+data.fecha.split('-')[2]
+    arrayMarker.date  =new Date(fecha);  
     this._daysConfig.push(arrayMarker)    
-  }  
+  } 
 
   dataMesFn(target?,fecha?) {    
-   
+    console.log(this.calendarData)
     this.dataMes = [];
     this.areas = [];
     this._daysConfig;
-   
-    if(target){   
-      this.eventos.forEach(element => {
-        if (target.newMonth.months == element.fecha.toISOString().split('-')[1] && target.newMonth.years == element.fecha.toISOString().split('-')[0]) {
+    console.log(target);
+    
+    if(target) {     
+      this.calendarData.forEach(element => {
+        let  split = element['fecha'].split('-')[0]+","+(element['fecha'].split('-')[1])+','+element['fecha'].split('-')[2]     
+        let fecha  = new Date(split);
+        if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
           this.dataMes.push(element);
         }
       });
+      this.dataMes.forEach((element,index)=>{
+        this.createMarker(element,index)
+      })
     }else{
-      this.eventos.forEach(element => {
-        if (fecha.toISOString().split('-')[1] == element.fecha.toISOString().split('-')[1]) {
+      this.calendarData.forEach(element => {
+        let  split1 = element['fecha'].split('-')[0]+","+element['fecha'].split('-')[1]+','+element['fecha'].split('-')[2];
+        let fecha1 = new Date(split1);
+        if (fecha.toISOString().split('-')[1] == fecha1.toISOString().split('-')[1]) {
           this.dataMes.push(element);
-        }    
-      });
+        }
+        this.dataMes.forEach((element,index)=>{
+          this.createMarker(element,index)
+        })  
+      });     
     }
-    
-    //console.log(this.dataMes)
-    for (let i = 0; i < this.dataMes.length ; i++) {
-      if(this.areas.length == 0) {
-        this.areas.push(this.dataMes[i].area)
-      }
-      for (let y = 0; y < this.areas.length; y++) {
-        if(this.dataMes[i].area == this.areas[y]) {
-          y ++;
-        } else { this.areas.push(this.dataMes[i].area) }  
-      }    
-    };   
-    //console.log(this.areas)
   }
-
-
-
 
 }
 
