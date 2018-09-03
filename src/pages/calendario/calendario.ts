@@ -28,8 +28,7 @@ export class CalendarioPage {
   dataMes=[];
   currentDate:Date = new Date();
   areas=[];
-  public calendarData:object[]=[];
-  
+  public calendarData:object[]=[];  
 
   constructor (
                 public navCtrl: NavController,
@@ -53,7 +52,7 @@ export class CalendarioPage {
                             daysConfig:this._daysConfig,
                           };
       this.dataMesFn(null,this.currentDate);
-      this.calendarData.forEach(element =>{
+      this.calendarData.forEach(element => {
         this.createMarker(element) 
       })
     }, err => {
@@ -90,9 +89,8 @@ export class CalendarioPage {
     let fecha = data.fecha.split('-')[0]+","+data.fecha.split('-')[1]+','+data.fecha.split('-')[2]
     arrayMarker.date  =new Date(fecha);  
     this._daysConfig.push(arrayMarker)    
-  }  
+  } 
 
-  
   dataMesFn(target?,fecha?) {    
     console.log(this.calendarData)
     this.dataMes = [];
@@ -104,7 +102,6 @@ export class CalendarioPage {
       this.calendarData.forEach(element => {
         let  split = element['fecha'].split('-')[0]+","+(element['fecha'].split('-')[1])+','+element['fecha'].split('-')[2]     
         let fecha  = new Date(split);
-
         if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
           this.dataMes.push(element);
         }
@@ -123,12 +120,6 @@ export class CalendarioPage {
           this.createMarker(element,index)
         })  
       });     
-    }
-
-    if (target == null) {
-      
-    } else {
-      
     }
   }
 }
