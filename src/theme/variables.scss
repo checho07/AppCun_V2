@@ -83,8 +83,8 @@ $text-color:color($colors,ghost);
 @import "roboto";
 @import "noto-sans";
 
-$toast-ios-background :rgba(0,125,100,0.30);
-$toast-md-background :rgba(0,125,100,0.30);
+$toast-ios-background :rgba(0,125,100,0.50);
+$toast-md-background :rgba(0,125,100,0.50);
 $card-md-border-radius:10px;
 $card-ios-border-radius:10px;
 $card-md-box-shadow:	10px 10px 10px 0 rgba(0, 0, 0, .14),-10px 10px 10px 0 rgba(0, 0, 0, .14), 2px 5px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
@@ -106,3 +106,16 @@ $content-margin:0 0 80px 0;
 $content-padding:12px;
 
 $loading-md-background:transparent;
+
+$refresher-icon-color:#258c68;
+$refresher-border-color:#258c68;
+
+/////Alerts
+$alert-md-border-radius:15px;
+$alert-md-background-color:rgba(0, 125, 100, 0.9);
+$alert-md-message-text-color:white;
+$alert-md-button-text-color: #CD9B5A;
+$alert-md-message-text-color:  #144148;
+
+$badge-md-border-radius:50%;
+$badge-md-background-color:darkred;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { DirectorioProvider } from '../../providers';
 import { CallNumber } from '@ionic-native/call-number';
 import { EmailComposer } from '@ionic-native/email-composer';
@@ -18,7 +18,8 @@ export class AgendaPage {
               public navParams: NavParams,
               public callNumber: CallNumber, 
               public emailComposer: EmailComposer,
-              public directorioProvider:DirectorioProvider) {
+              public directorioProvider:DirectorioProvider,
+              private toastCtrl :ToastController) {
 
                 this.directorio = directorioProvider.query()
   }
@@ -30,8 +31,22 @@ export class AgendaPage {
   
   callPhone(numero) {  
     this.callNumber.callNumber(numero, true)
-    .then(() => alert('Launched dialer!'))
-    .catch(() => alert('Error launching dialer'));
+    .then(() =>{
+      let toast = this.toastCtrl.create({
+        message: 'Abriendo telefono',
+        duration: 2000,
+        position: 'bottom'
+      });
+      toast.present();
+    })
+    .catch(() => {
+      let toast = this.toastCtrl.create({
+        message: 'Error al abrir telefono',
+        duration: 2000,
+        position: 'bottom'
+      });
+      toast.present();
+    });
   }
 
   sendEmail(emailData) {

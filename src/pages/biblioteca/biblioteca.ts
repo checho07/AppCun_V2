@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
@@ -14,7 +14,11 @@ export class BibliotecaPage {
   public bibliotecaCatalogo: boolean = false;
   public BibliotecaTitulo:string = 'Biblioteca';
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,private inAppBrowser:InAppBrowser) {
+  constructor(
+      public navCtrl: NavController,
+      public navParams: NavParams,
+      private inAppBrowser:InAppBrowser,
+      private alertCtrl : AlertController) {
   }
 
   ionViewDidLoad() {
@@ -46,5 +50,20 @@ export class BibliotecaPage {
 
   goHome(){
     this.navCtrl.setRoot('MenuCunPage')
+  }
+
+  showInfo(){
+    let alert = this.alertCtrl.create({
+      title:'Crédenciales',
+      message:'Usuario : Correo institucional \n Contraseña : # de documento',
+      cssClass:'alertClass',
+      buttons:[{
+        text:'Ok',
+        role: 'cancel',
+        cssClass:'alertClass'
+      }]
+      
+    })
+    alert.present();
   }
 }

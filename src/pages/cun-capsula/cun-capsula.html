@@ -16,12 +16,15 @@
 
 <ion-content padding id="back">
    
-  
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
   <ion-card [hidden]="hideContent" *ngFor="let card of videoList; let i = index"  >
 
     <ion-item>
       <ion-avatar item-start>
-       <ion-icon name="person"></ion-icon>
+       <ion-icon ><img src="assets/img/student.png" alt=""></ion-icon>
       </ion-avatar>
       <h2  class="whiteText">{{card.name}}</h2>
  

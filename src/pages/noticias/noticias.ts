@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import {WordpressProvider} from '../../providers';
 
 @IonicPage()
@@ -11,7 +11,11 @@ export class NoticiasPage {
 
   public wpPosts;
   morePagesAvailable:boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private wp:WordpressProvider,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private wp:WordpressProvider,
+     public loadingCtrl: LoadingController,
+     private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -25,12 +29,25 @@ export class NoticiasPage {
   
 
   getPosts(){
-    let loader = this.loadingCtrl.create({content: 'Cargando Noticias...',spinner:'dots',showBackdrop:false});
+    let loader = this.loadingCtrl.create(
+      {spinner: 'hide',
+    content: ` <div class="loader">Cargando Noticias...</div> `});
     
     loader.present().then(()=>{
       this.wp.getRecentPosts(1).subscribe(data =>{
         this.wpPosts = data;
         loader.dismiss();
+      },err =>{
+        loader.dismiss();
+        let toast = this.toastCtrl.create({
+          message: 'No conexion a Internet (' + err +')',
+          duration: 2000,
+          position: 'bottom'
+        });
+        toast.present();
+        toast.onDidDismiss(()=>{
+          this.navCtrl.setRoot('MenuCunPage');
+        })
       })
      
     })

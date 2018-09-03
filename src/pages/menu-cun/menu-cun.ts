@@ -2,7 +2,7 @@ import { CunapiProvider } from './../../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController, ToastController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
@@ -18,9 +18,14 @@ import {AngularFireAuth} from 'angularfire2/auth';
 @Component({
   selector: 'page-menu-cun',
   templateUrl: 'menu-cun.html',
+ 
 })
 export class MenuCunPage {
   currentButtons: Item[];
+  givenName: string ;
+  email: string;
+  imageUrl:string;
+  
 
   constructor (
                 public  navCtrl: NavController,
@@ -35,13 +40,35 @@ export class MenuCunPage {
                 private platform : Platform,
                 private nativeStorage: NativeStorage,
                 private cunMovilAPI : CunapiProvider,
-                public  modalCtrl: ModalController           
+                public  modalCtrl: ModalController,
+                private toastCtrl: ToastController           
             ) {
                       
     this.currentButtons = [];
+
+   
   }
 
   ionViewWillEnter(){   
+    let env = this;
+    env.nativeStorage.getItem('user')
+    .then(function(data){   
+      env.imageUrl = data.picture; 
+      env.email = data.email;
+      env.givenName = data.givenName; 
+      
+  
+    },function(err){
+  
+      let toast = env.toastCtrl.create({
+        message: 'Error al cargar Informacion de usuario (' + err +')',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+     
+      }
+    );
   //  this.currentButtons = this.buttons.query();
   //  this.nativeStorage.getItem('user').then(userRes =>{
   //   let email = userRes.email;
@@ -59,20 +86,29 @@ export class MenuCunPage {
   }
 
   setStudentData(email){
-    this.nativeStorage.getItem('student').then(res=>{
+
+    let env = this;
+    env.nativeStorage.getItem('student').then(res=>{
       console.log('student already exists');
     }).catch(err =>{
 
-      this.cunMovilAPI.getUserByEmail(email).subscribe(userRes =>{
-        this.nativeStorage.setItem('student',{ccid:userRes[0].NUM_IDENTIFICACION})
+      env.cunMovilAPI.getUserByEmail(email).subscribe(userRes =>{
+        env.nativeStorage.setItem('student',{ccid:userRes[0].NUM_IDENTIFICACION})
 
       },err =>{
-        alert(JSON.stringify(err));
+        let toast = env.toastCtrl.create({
+          message: 'No conexion a Servidor (' + err +')',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
       })
     })
    
   };   
 
+  
+  
 
   loadButtons(){
     let env = this;
@@ -179,6 +215,16 @@ export class MenuCunPage {
     } else {
       
     }
+  }
+
+  signOut(){    
+     
+    this.nativeStorage.clear().then(()=>{
+      this.afAuth.auth.signOut();     
+      this.googlePlus.logout()  
+      this.navCtrl.popToRoot();
+      this.navCtrl.setRoot('WelcomePage');
+    }) 
   }
 
 

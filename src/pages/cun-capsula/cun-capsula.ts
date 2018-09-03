@@ -51,7 +51,7 @@ export class CunCapsulaPage {
   {
     let loader = this.loading.create(
       {spinner: 'hide',
-    content: ` <div class="loader">Cargando Pagina...</div> `});
+    content: ` <div class="loader">Cargando Página...</div> `});
     let loader1 = this.loading.create(
       {spinner: 'hide',
     content: ` <div class="loader">Cargando Videos...</div> `});
@@ -72,8 +72,16 @@ export class CunCapsulaPage {
 
           },
         error => {
-            alert(<any>error);
-            console.log("getVideosError: " +error)
+          loader.dismiss();
+          let toast = this.toastCtrl.create({
+            message: 'No conexion a Internet (' + error +')',
+            duration: 2000,
+            position: 'bottom'
+          });
+          toast.present();
+          toast.onDidDismiss(()=>{
+            this.navCtrl.setRoot('MenuCunPage');
+          })
         },() =>
         {
 
@@ -96,15 +104,15 @@ export class CunCapsulaPage {
   {
 
 let alert = this.alertCtr.create({
-  title: 'Datos de tu video',
+  title: 'Datos de tu vídeo',
   inputs: [
     {
       name: 'videoName',
-      placeholder: 'Titulo de tu video'
+      placeholder: 'Título de tu vídeo'
     },
     {
       name: 'description',
-      placeholder: 'Descripcion y tu correo',
+      placeholder: 'Descripción y tu correo',
       type: 'text'
       
     }
@@ -129,7 +137,7 @@ let alert = this.alertCtr.create({
          } else {
           let alert = this.alertCtr.create({
             title: 'Faltan Datos',
-            subTitle: 'por favor brindanos un titulo y una descripcion para tu video, y si quieres tu correo',
+            subTitle: 'por favor bríndanos un título y una descripción para tu vídeo, y si quieres tu correo',
             buttons:[{
               text:'Ok',
               role:'cancel',
@@ -200,7 +208,7 @@ requestPOSTTus(videoInfo):void{
   
           let loader1 = this.loading.create(
             {spinner: 'hide',
-          content: ` <div class="loader">Subiendo Video...</div> `});
+          content: ` <div class="loader">Subiendo vídeo...</div> `});
           loader1.present().then(()=>{
             this.resPOST = result
             let inputTus = document.getElementById('tusInput');
@@ -210,7 +218,7 @@ requestPOSTTus(videoInfo):void{
                  if (res) {
                   loader1.dismiss(); 
                   let toast = this.toastCtrl.create({
-                    message: 'Tu video pasara a revision y sera publicado',
+                    message: 'Tu vídeo pasará a revisión y será publicado',
                     duration: 4000,
                     position: 'bottom'
                   }); 
@@ -231,6 +239,7 @@ requestPOSTTus(videoInfo):void{
         
         },
       error => {
+        loader.dismiss();
           alert(<any>error.message);
           console.log("requestPOSTError: " + error.message);
       }
@@ -344,6 +353,15 @@ OnchangeInput(video) {
  }
  goHome(){
   this.navCtrl.setRoot('MenuCunPage')
+}
+
+doRefresh(refresher) {
+
+  this.rest.getVideos().subscribe(result =>{
+        this.videoRes = result;
+        this.videoList = this.videoRes.data;
+        refresher.complete();
+  });
 }
 
 }
