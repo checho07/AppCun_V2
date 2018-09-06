@@ -11,14 +11,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="back">
-
-   
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+     <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card [hidden]="hideContent" *ngFor="let card of videoList; let i = index"  >
-
     <ion-item>
       <ion-avatar item-start>
        <ion-icon ><img src="assets/img/student.png" alt=""></ion-icon>
@@ -55,8 +51,9 @@
     </ion-row>
   </ion-card>
   <ion-fab middle center>
-    <button ion-fab  (click)="openGallery()"  [hidden]= "showBtnGaleria" id="btnGaleria" color="danger"><ion-icon name="folder" ></ion-icon></button>
+    <button ion-fab  (click)="openGallery()"  [hidden]= "showBtnGaleria" id="btnGaleria" color="danger"><ion-icon name="folder"></ion-icon></button>
   </ion-fab>
+  <div class="textVideo"  [hidden]= "showBtnGaleria"><p>Elige tu video</p></div>
   <div id="embed"  [hidden]="false">
     <input type="file" id="tusInput" (change)="OnchangeInput($event)">
   </div>

@@ -15,7 +15,7 @@
     <ion-card-header>
       <p class="titleEven"><b> {{ 'PAGE_CALENDARIO_EVENT' | translate }}</b></p> 
     </ion-card-header>    
-    <ion-list>
+    <ion-card-content>
       <div ion-item *ngFor="let item of dataMes" >                   
         <ion-icon name="people" item-start [ngClass]="{'oa':item.cssClass == 'oa', 'op': item.cssClass == 'op','cc':item.cssClass =='cc','aa':item.cssClass == 'aa'}"></ion-icon>       
         <h3 class="titleEven"><b>{{item.titulo}}</b></h3>
@@ -25,6 +25,6 @@
         <p class="textCalendar"><b>Fecha inicial: </b>{{item.fecha}}</p>
         <p class="textCalendar"><b>Fecha final:</b>{{item.fechaFin}} </p>
       </div>
-    </ion-list>
+    </ion-card-content>
   </ion-card>    
 </ion-content>

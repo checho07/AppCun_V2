@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api, BotonesMenu, HorarioProvider,ApiVimeoProvider,DirectorioProvider } from '../providers';
 import { MyApp } from './app.component';
@@ -127,6 +127,7 @@ export function provideSettings(storage: Storage) {
     GoogleMaps,GooglePlus,
     DirectorioProvider,
     WordpressProvider,
+    
     SedesProvider,
     CalendarioProvider,
     CunapiProvider,

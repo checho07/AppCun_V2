@@ -40,7 +40,7 @@ export class NoticiasPage {
       },err =>{
         loader.dismiss();
         let toast = this.toastCtrl.create({
-          message: 'No conexion a Internet (' + err +')',
+          message: 'No conexion a Internet',
           duration: 2000,
           position: 'bottom'
         });

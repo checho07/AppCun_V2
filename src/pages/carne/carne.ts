@@ -86,7 +86,8 @@ export class CarnePage {
             
           },err => {
             let toast = this.toastCtrl.create({
-              message: 'No Tienes acceso a carnet ('+err+ ')',
+             // message: 'No Tienes acceso a carnet ('+err+ ')',
+              message: 'No Tienes acceso a carnet',
               duration: 3000,
               position: 'middle'
             });

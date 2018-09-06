@@ -59,7 +59,7 @@ export class HorariomodalPage {
   showAlert(materia) {
     const alert = this.alertCtrl.create({      
       title: 'Calculo Multivariado',
-      subTitle: 'Fecha inicio: '+materia.FEC_INICIO+' <br> \n  Fecha final: '+materia.FEC_FIN+'<br> \n Nivel: '+materia.NUM_NIVEL+'<br> \nCréditos: '+materia.CREDITOS+' <br>\n Nom Unidad: '+materia.NOM_UNIDAD+'<br> \nCod pensum: '+materia.COD_PENSUM+'',
+      subTitle: '<b>Fecha inicio:</b> '+materia.FEC_INICIO+' <br> \n  <b>Fecha final:</b> '+materia.FEC_FIN+'<br> \n <b>Nivel:</b> '+materia.NUM_NIVEL+'<br> \n <b>Créditos:</b> '+materia.CREDITOS+' <br>\n <b>Nom Unidad:</b> '+materia.NOM_UNIDAD+'<br> \n <b>Cod pensum:</b> '+materia.COD_PENSUM+'',
       cssClass: 'alertDetallesA',
       buttons: [
         {
@@ -72,7 +72,7 @@ export class HorariomodalPage {
   }
 
   abrirMediacionVirtual(){
-    this.inAppBrowser.create("http://virtual.cun.edu.co/mediacionvirtual/","_blank",)
+    this.inAppBrowser.create("http://virtual.cun.edu.co/virtual/","_blank",)
   }
 
   openUbicacion(){

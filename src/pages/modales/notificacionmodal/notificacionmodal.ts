@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {PushnotificationProvider} from '../../../providers/pushnotification/pushnotification';
+import { OneSignal } from '@ionic-native/onesignal';
 
 /**
  * Generated class for the NotificacionmodalPage page.
@@ -20,25 +21,31 @@ export class NotificacionmodalPage {
   constructor ( 
                 public navCtrl: NavController,
                 public navParams: NavParams,
-                public notificationProvider:PushnotificationProvider
+                public notificationProvider:PushnotificationProvider,
+                private oneSignal:OneSignal
               ) {
 
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter(){
     console.log('ionViewDidLoad NotificacionmodalPage');
     this.getNotifications();
   }
 
-  showDataNot(){
-    let notiPush = this.notificationProvider.initNotification;
-    
+  getNotifications(){
+    this.Notificaciones = [];
+    let notData = this.notificationProvider.getNotifications().subscribe((datano)=>{     
+      this.Notificaciones = datano['notifications']; 
+    })
   }
 
-  getNotifications(){
-    let notData = this.notificationProvider.getNotifications().subscribe((datano)=>{
-     
-      this.Notificaciones = datano['notifications'];
+  doRefresh(refresher) {
+    this.notificationProvider.getNotifications().subscribe(dataRefresh =>{
+      this.Notificaciones = dataRefresh['notifications'];
     })
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
   }
 }

@@ -2,7 +2,7 @@ import { CunapiProvider } from './../../providers';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, MenuController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController, ToastController, ViewController, Alert } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { Item } from '../../models/item';
 import { BotonesMenu } from '../../providers';
@@ -12,6 +12,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GooglePlus } from '@ionic-native/google-plus';
 import {Platform} from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {PushnotificationProvider} from '../../providers/pushnotification/pushnotification';
+import { OneSignal } from '@ionic-native/onesignal';
 
 
 @IonicPage()
@@ -24,7 +26,9 @@ export class MenuCunPage {
   currentButtons: Item[];
   givenName: string ;
   email: string;
-  imageUrl:string;
+  imageUrl:string; 
+  Notificaciones;
+  public contador:boolean = true;
   
 
   constructor (
@@ -37,20 +41,29 @@ export class MenuCunPage {
                 private toggle : MenuController,
                 private googlePlus: GooglePlus,
                 private afAuth: AngularFireAuth,
-                private platform : Platform,
+                private platform : Platform,                     
                 private nativeStorage: NativeStorage,
                 private cunMovilAPI : CunapiProvider,
                 public  modalCtrl: ModalController,
-                private toastCtrl: ToastController           
+                private toastCtrl: ToastController,
+                public oneSignal :OneSignal,
+                public notificationProvider:PushnotificationProvider,
+                public viewCtrl: ViewController           
             ) {
-                      
-    this.currentButtons = [];
-
-   
+              
+              
+              
   }
 
   ionViewWillEnter(){   
     let env = this;
+    
+    env.nativeStorage.getItem('badge').then((res)=>{
+      
+      env.contador = false; 
+      env.Notificaciones= res;
+       
+     });
     env.nativeStorage.getItem('user')
     .then(function(data){   
       env.imageUrl = data.picture; 
@@ -61,7 +74,7 @@ export class MenuCunPage {
     },function(err){
   
       let toast = env.toastCtrl.create({
-        message: 'Error al cargar Informacion de usuario (' + err +')',
+        message: 'Error al cargar Informacion de usuario',
         duration: 3000,
         position: 'bottom'
       });
@@ -81,6 +94,34 @@ export class MenuCunPage {
    this.loadButtons()
   
   }
+  ionViewDidLoad(){
+
+    let env = this;  
+    this.oneSignal.startInit('23154f20-404c-4127-ad54-7622ef56481f', '528719470511');
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification); 
+      this.oneSignal.handleNotificationReceived().subscribe((data) => {
+        env.nativeStorage.getItem('badge').then((data)=>{
+          env.nativeStorage.setItem('badge',(data)+1 ).then((datares)=>{
+            //alert(datares);
+            let activePage = env.navCtrl.isActive(env.viewCtrl);  
+              if(activePage){
+                env.navCtrl.setRoot('MenuCunPage');
+              }                   
+          })
+        },()=>{
+          env.nativeStorage.setItem('badge',1).then(() => {
+            let activePage = env.navCtrl.isActive(env.viewCtrl);  
+              if(activePage){
+                env.navCtrl.setRoot('MenuCunPage');
+              }                                                                       
+           }) 
+        })
+    
+          
+ })
+ this.oneSignal.endInit();
+  }
+ 
   ionViewDidLeave(){
     this.currentButtons = [];
   }
@@ -97,7 +138,7 @@ export class MenuCunPage {
 
       },err =>{
         let toast = env.toastCtrl.create({
-          message: 'No conexion a Servidor (' + err +')',
+          message: 'No hay conexión al Servidor, intenta mas tarde ',
           duration: 3000,
           position: 'bottom'
         });
@@ -105,10 +146,7 @@ export class MenuCunPage {
       })
     })
    
-  };   
-
-  
-  
+  };     
 
   loadButtons(){
     let env = this;
@@ -201,9 +239,16 @@ export class MenuCunPage {
   }
 
   notificaciones() {
-    let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
-    NotificacionPush.present();
-  }
+    this.nativeStorage.remove('badge').then(() =>{
+      console.log('Elemento eliminado');
+      let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
+      NotificacionPush.onDidDismiss(data => {
+        this.navCtrl.setRoot('MenuCunPage');
+      });
+      NotificacionPush.present();
+      
+    })
+};
  
 
 

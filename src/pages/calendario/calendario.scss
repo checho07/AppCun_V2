@@ -85,9 +85,10 @@ page-calendario {
         font-size: 20px;
     }
     .textCalendar {
-        color:#bdbdbd; 
+        color:#bdbdbd;
+        white-space: initial;
+        text-overflow: unset;
     }
-
 }
 /////////////////
 

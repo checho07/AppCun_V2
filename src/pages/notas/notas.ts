@@ -75,20 +75,20 @@ export class NotasPage {
         }
         
         loading.dismiss();
-      },err =>{
+      }, err => {
         loading.dismiss();
-        let toast = this.toastCtrl.create({
-         message: 'Revisa tu conexion a internet (' + err +')',
-         duration: 3000,
-         position: 'bottom'
-       });
-       toast.present();
+        let toast = this.toastCtrl.create ({
+          message: 'Revisa tu conexión a internet',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
       })
 
      },err =>{
        loading.dismiss();
        let toast = this.toastCtrl.create({
-        message: 'Usuario no encontrado (' + err +')',
+        message: 'Usuario no encontrado',
         duration: 3000,
         position: 'bottom'
       });

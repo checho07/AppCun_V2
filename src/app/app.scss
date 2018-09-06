@@ -4,8 +4,6 @@ html, body {
     overflow: hidden;
 
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -19,12 +17,6 @@ html, body {
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
-
-
-
-
-  
   .view {
     position: absolute;
     top: 0;
@@ -129,13 +121,8 @@ html, body {
               transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
     }
   }
-/*
-*Burbujas
-*/
-
-
-.sideMenuCun{
-   background-image: url('../assets/img/desenfocada2.png');
-   background-repeat:  round;
-   
+  .sideMenuCun{
+    background-image: url('../assets/img/desenfocada2.png');
+    background-repeat:  round;   
+  }
 }

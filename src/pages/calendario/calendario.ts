@@ -1,6 +1,6 @@
 import { CalendarioProvider } from './../../providers';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import {  DayConfig,CalendarComponentOptions } from "ion2-calendar";
 
 /**
@@ -33,9 +33,15 @@ export class CalendarioPage {
   constructor (
                 public navCtrl: NavController,
                 private calendarioProvider:CalendarioProvider ,
-                private loadingCtrl: LoadingController
-              ) {   
-       
+                private loadingCtrl: LoadingController,
+                private toastCtrl:ToastController,
+              ) {  
+    let loading = this.loadingCtrl.create ({
+      spinner: 'hide',
+      content: ''
+    });
+    loading.present();
+
     var env = this; 
     var getData = this.calendarioProvider.getcalendar().subscribe((res)=> {
       var resultArray = Object.keys(res).map(function(calendarEvents) {
@@ -43,6 +49,7 @@ export class CalendarioPage {
         // env.createMarker(res[calendarEvents])       
       });      
       console.log("prueba")
+
       this.optionsMulti = {
                             pickMode: 'single',
                             color: 'secondary',
@@ -55,17 +62,24 @@ export class CalendarioPage {
       this.calendarData.forEach(element => {
         this.createMarker(element) 
       })
+      loading.dismiss();  
     }, err => {
-       console.log(err);
-
+      loading.dismiss(); 
+      let toast = this.toastCtrl.create({
+        message: 'Revisa tu conexión',
+        duration: 3000,
+      })
+      toast.present();
     });
   }
+
   /**
     * Se realiza comparacion de fecha mes y año para ser mapeadas en el calendario, y se declaran las clases css que va tener cada area estipulada en el calendario
     * @method createMarker
     * @param data // trae el json de firebase 
     * @param setClass 
   */
+
   createMarker(data,setClass?) {
     let arrayMarker= {cssClass:'',date:new Date(),subTitle:''}
 
@@ -128,7 +142,6 @@ export class CalendarioPage {
       });     
     }
   }
-
 }
 
 

@@ -137,7 +137,7 @@ signOut(){
         },function(err){
           loading.dismiss();
           let toast = this.toastCtrl.create({
-            message:'! Error de Registro de usuario ¡ \n ('+err+')',
+            message:'! Error de Registro de usuario ¡ \n ',
             
             position:'bottom',
             showCloseButton:true
@@ -151,7 +151,7 @@ signOut(){
     loading.dismiss();
     console.log(err)
    let toast = this.toastCtrl.create({
-    message:'! Error de inicio de sesion ¡ \n ('+err+')',
+    message:'! Error de inicio de sesion ¡ \n ',
     
     position:'bottom',
     showCloseButton:true

@@ -13,10 +13,8 @@ import { PushnotificationProvider } from '../providers/pushnotification/pushnoti
 
 @Component({
   template:  
-    
-
-
-    <div *ngIf="showSplash" class="splash">
+  `
+  <div *ngIf="showSplash" class="splash">
       <div class="spinner">
         <div class="view">
           <div class="plane main">

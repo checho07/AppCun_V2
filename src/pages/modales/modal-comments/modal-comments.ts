@@ -127,7 +127,7 @@ export class ModalCommentsPage {
 
    presentToast() {
     let toast = this.toastCtrl.create({
-      message: 'Tu comentario ha sido posteado exitosamente,Gracias.',
+      message: 'Tu comentario ha sido posteado exitosamente, Gracias.',
       duration: 2000,
       position: 'bottom'
     });

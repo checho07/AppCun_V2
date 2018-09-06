@@ -57,17 +57,25 @@ export class CunCapsulaPage {
           {
 
 
-    loader.present().then(() => {
-      this.rest.getVideos().subscribe(result => {
-        loader1.present().then(()=> {
+    loader.present().then(() => 
+    {
+      
           this.videoRes = result;
           this.videoList = this.videoRes.data;             
           console.log(this.videoList);
           this.progress = "50";
         })        
       },error => {
-        alert(<any>error);
-        console.log("getVideosError: " +error)
+        loader.dismiss();
+        let toast = this .toastCtrl.create({
+          message:'Revisa tu conexion a Internet',
+          duration:2000,
+          position:'bottom'
+        });
+        toast.present();
+        toast.onDidDismiss(()=>{
+          this.navCtrl.setRoot('MenuCunPage');
+        })  
       },() => {
         loader1.dismiss();
         loader.dismiss();       
@@ -158,7 +166,7 @@ export class CunCapsulaPage {
 
   openGallery() {    
     var inputFile =document.getElementById("tusInput");    
-    inputFile.click();      
+    inputFile.click();    
   }
 
   requestPOSTTus(videoInfo):void {  
