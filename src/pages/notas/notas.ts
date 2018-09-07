@@ -167,7 +167,6 @@ export class NotasPage {
     
     if (res == NaN || res == undefined || res == 0) {
       this.ocultar = true; 
-      mensajes = [];
     }
 
     if (res > 5) {
