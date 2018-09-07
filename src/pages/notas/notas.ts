@@ -22,6 +22,7 @@ export interface Materia {
 })
 export class NotasPage {
 
+  rango: any;
   selectedItem: any;
   ocultar:any;
   Notas:Materia[] = []
@@ -34,14 +35,16 @@ export class NotasPage {
 
   clase: string;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public screenOrientation: ScreenOrientation,
-              private toastCtrl:ToastController,
-              private nativeStorage: NativeStorage,
-              private cunMovilAPI : CunapiProvider,
-              private loadingCtrl :LoadingController ) {
-
+  constructor (
+                public  navCtrl: NavController,
+                public  navParams: NavParams,
+                public  screenOrientation: ScreenOrientation,
+                private toastCtrl:ToastController,
+                private nativeStorage: NativeStorage,
+                private cunMovilAPI : CunapiProvider,
+                private loadingCtrl :LoadingController
+              )
+  {
     // activación de orientación de pantalla
     screenOrientation.unlock(); 
     this.ocultar = false;
@@ -49,31 +52,27 @@ export class NotasPage {
 
   ionViewDidLoad(){
     let loading = this.loadingCtrl.create(
-      {spinner: 'hide',
-    content: ` <div class="loader">Cargando Notas...</div> `});
+      {
+        spinner: 'hide',
+        content: ` <div class="loader">Cargando Notas...</div> `
+      });
     loading.present();
-
-   let evn = this;
-   var studentcc;  
-   this.nativeStorage.getItem('student').then((res)=>{
-      
-        studentcc = res.ccid;
-      
+    let evn = this;
+    var studentcc;  
+    this.nativeStorage.getItem('student').then((res)=>{      
+      studentcc = res.ccid;      
       this.cunMovilAPI.getUserGrades(studentcc).subscribe(grades =>{
         console.log(grades[0]);
-
         for (const key in grades) {
           let nota:Materia = {
-                             nombreAsignatura:grades[key].NOMBRE_ASIGNATURA,
-                             c1:grades[key]["1er 30%"],
-                             c2:grades[key][ "2do 30%"],
-                             c3:grades[key]["3er 40%"],
-                             final:grades[key][ "UNICA 100%"]
-                           }
-                           
-                           this.Notas.push(nota)
-        }
-        
+                               nombreAsignatura:grades[key].NOMBRE_ASIGNATURA,
+                               c1:grades[key]["1er 30%"],
+                               c2:grades[key][ "2do 30%"],
+                               c3:grades[key]["3er 40%"],
+                               final:grades[key][ "UNICA 100%"]
+                             }                           
+          this.Notas.push(nota)
+        }        
         loading.dismiss();
       }, err => {
         loading.dismiss();
@@ -123,8 +122,8 @@ export class NotasPage {
       let nota2 = c2  * 3;
       let res = parseFloat(((30 -(nota1+nota2)) /4).toFixed(1));   
       this.mensaje.nativeElement.innerText = "Con " + res + " Pasas la materia en 3.0 \n" +  this.msgNotas(res);
-    } else {
-      
+    } else { 
+      this.mensaje.nativeElement.innerText = "";
       let toast = this.toastCtrl.create({
         message: 'Aún no se han registrado tus notas',
         duration: 1500,
@@ -143,7 +142,7 @@ export class NotasPage {
 
   msgNotas(res) {
     let random = Math.round(Math.random()*2);
-    let rango;
+    this.rango;
 
     var mensajes=[
                   {
@@ -165,69 +164,69 @@ export class NotasPage {
                     rango:5,msgArray:["Mejor vende Avon","Necesitas un milagro","Ni rezando pasas"] 
                   }
     ];
-
     
-    if (res == NaN) {
-      this.ocultar = true;         
+    if (res == NaN || res == undefined || res == 0) {
+      this.ocultar = true; 
+      mensajes = [];
     }
 
     if (res > 5) {
-        rango = 0;
+        this.rango = 0;
   
         for (let index = 0; index < mensajes.length; index++) {
         
-          if(mensajes[index].rango === rango)
+          if(mensajes[index].rango === this.rango)
           return mensajes[index].msgArray[random];
           
         }
 
     } else if (res >= 0 && res < 1 ) {
   
-      rango = 1;
+      this.rango = 1;
   
       for (let index = 0; index < mensajes.length; index++) {
         
-        if(mensajes[index].rango === rango)
+        if(mensajes[index].rango === this.rango)
         return mensajes[index].msgArray[random];
       }
 
     } else if (res >=1 && res < 2) {
       
-      rango= 2;
+      this.rango= 2;
   
       for (let index = 0; index < mensajes.length; index++) {
         
-        if(mensajes[index].rango === rango)
+        if(mensajes[index].rango === this.rango)
         return mensajes[index].msgArray[random];
         
       }
       
     } else if (res >= 2 && res < 3) {
-      rango= 3;
+      this.rango= 3;
   
       for (let index = 0; index < mensajes.length; index++) {
         
-        if(mensajes[index].rango === rango)
+        if(mensajes[index].rango === this.rango)
         return mensajes[index].msgArray[random];
         
       }
       
     } else if (res >= 3 && res < 4) {
-      rango= 4;
+      this.rango= 4;
   
       for (let index = 0; index < mensajes.length; index++) {
         
-        if(mensajes[index].rango === rango)
+        if(mensajes[index].rango === this.rango)
         return mensajes[index].msgArray[random];
         
       }
       
     } else if (res >= 4 && res < 5) {
-      rango= 5;
+      this.rango= 5;
   
       for (let index = 0; index < mensajes.length; index++) {
         
-        if(mensajes[index].rango === rango)
+        if(mensajes[index].rango === this.rango)
         return mensajes[index].msgArray[random];
         
       }
