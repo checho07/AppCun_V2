@@ -34,7 +34,10 @@ import { CunapiProvider } from '../providers/cunapi/cunapi';
 import { HTTP } from '@ionic-native/http';
 import { OneSignal } from '@ionic-native/onesignal';
 import { PushnotificationProvider } from '../providers/pushnotification/pushnotification';
-
+import { DocumentViewer } from '@ionic-native/document-viewer';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileOpener } from '@ionic-native/file-opener';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 export const firebaseConfig = {
   apiKey: "AIzaSyCOO7fC785WA_Z6lRzDynjrsSVHhF7AhyY",
@@ -118,6 +121,10 @@ export function provideSettings(storage: Storage) {
     ScreenOrientation,NativeStorage,
     Device,AppAvailability,InAppBrowser,
     MediaCapture,
+    DocumentViewer,
+    FileTransfer,
+    FileOpener,
+    File,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },

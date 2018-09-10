@@ -82,6 +82,7 @@
   "TITLE_MENU_CAPSULA":"Cun Capsule", 
   "TITLE_MENU_EMPLEO":"Employment",
   "TITLE_MENU_DIVIERTETE":"Have fun",
+  "TITLE_MENU_PAGO":"My Payments",
 
 
   "PAGE_NOTAS_TITLE":"Notes",
@@ -127,5 +128,7 @@
   "PAGE_BIBLIOTECA_BUTTON_V":"Virtual Library",
   "PAGE_BIBLIOTECA_BUTTON_C":"Library Catalog",
 
-  "PAGE_DIVIERTETE_TITLE":"Have fun"
+  "PAGE_DIVIERTETE_TITLE":"Have fun",
+  "PAGE_PAGO_TITLE":"My Payments",
+  "PAGE_PAGO_BUTTONPEC":"Pay"
 }

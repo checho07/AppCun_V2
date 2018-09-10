@@ -28,6 +28,8 @@ export class BotonesMenu {
                   "TITLE_MENU_CAPSULA",
                   "TITLE_MENU_EMPLEO",
                   "TITLE_MENU_DIVIERTETE",
+                  "TITLE_MENU_PAGO",
+
     ]).subscribe(
       (values) => {
         
@@ -95,6 +97,11 @@ export class BotonesMenu {
             nombre: values.TITLE_MENU_DIVIERTETE,
             imagen: "assets/img/16diviertete.png",
             page:   "DiviertetePage"
+          },
+          {
+            nombre: values.TITLE_MENU_PAGO,
+            imagen: "assets/img/18pagos.png",
+            page:   "MispagosPage"
           }
         ];
     

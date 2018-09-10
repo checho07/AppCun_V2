@@ -71,6 +71,7 @@
   "TITLE_MENU_CAPSULA":"Cun Cápsula", 
   "TITLE_MENU_EMPLEO":"Empleo",
   "TITLE_MENU_DIVIERTETE":"Diviértete",
+  "TITLE_MENU_PAGO":"Mis Pagos",
 
 
   "PAGE_NOTAS_TITLE":"Notas",
@@ -115,8 +116,10 @@
   "PAGE_BIBLIOTECA_BUTTON_V":"Biblioteca Virtual",
   "PAGE_BIBLIOTECA_BUTTON_C":"Biblioteca Catálogo",
 
-   "PAGE_DIVIERTETE_TITLE":"Diviértete"
+  "PAGE_DIVIERTETE_TITLE":"Diviértete",
 
-   
+  "PAGE_PAGO_TITLE":"Mis Pagos",
+  "PAGE_PAGO_BUTTONPEC":"Pagar"
+
 
 }

@@ -115,9 +115,7 @@ export class MenuCunPage {
                 env.navCtrl.setRoot('MenuCunPage');
               }                                                                       
            }) 
-        })
-    
-          
+        })          
  })
  this.oneSignal.endInit();
   }
@@ -154,9 +152,10 @@ export class MenuCunPage {
               this.nativeStorage.getItem('user')
               .then(function(data) { 
                 let email = data.email.split('@')[1];
-                if(email !== 'cun.edu.co'){
+                let emailAdmin = data.email.includes('_');
+                if (email !== 'cun.edu.co' || emailAdmin == true){
                   env.currentButtons = env.buttons.query('nocun');
-                }else{
+                } else {
                   env.setStudentData(data.email)
                   env.currentButtons = env.buttons.query();
                 }
@@ -171,25 +170,22 @@ export class MenuCunPage {
   
 
   openPage(page){
-     if (page == 'CunVirtualPage'){
+    if (page == 'CunVirtualPage') {
       this.openCunVirtual();
-     }else if(page == 'AprendePage'){
+    } else if (page == 'AprendePage') {
       this.openAprende();
-     }else if(page =='EmpleoPage'){
-      this.openEmpleo();     
-     }else{
+    } else if (page =='EmpleoPage'){
+      this.openEmpleo();
+    } else {
       this.navCtrl.push(page);
-     }
-   
+    }   
   }
 
   openEmpleo(){
-
     this.inAppBrowser.create("http://www.elempleo.com/sitios-empresariales/Colombia/cun/","_blank",)
- }
+  }
 
   openAprende(){
-
      this.inAppBrowser.create("http://c.biu.us","_blank",)
   }
 
