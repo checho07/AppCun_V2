@@ -71,7 +71,7 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-       this.statusBar.backgroundColorByName("transaparent");    
+      this.statusBar.backgroundColorByName("transaparent");    
     
       ///googlePlus check logged in.
       let env = this;
@@ -84,26 +84,22 @@ export class MyApp {
         env.rootPage = MenuCun;
         env.splashScreen.hide();       
         env.openPage('MenuCunPage');
-        env.PushNotification.initNotification();
+        //env.PushNotification.initNotification();
+        env.PushNotification.getNotifications();
         env.showSplash = false;
         if(!data.email){
           timer(4000).subscribe(() => env.showSplash = false)
         }else{
           timer(3000).subscribe(()=>env.showSplash = false);
-        }
-       
+        }    
 
       },function(err){
         env.rootPage = FirstRunPage;
         env.splashScreen.hide();
-        timer(4000).subscribe(()=>env.showSplash = false);
-       
-       
-      }
-    )
-    });
+        timer(4000).subscribe(()=>env.showSplash = false);    
+      })
+    });    
     this.initTranslate();
-
   }
 
   initTranslate() {
@@ -137,8 +133,6 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
-
-
 }
 
 

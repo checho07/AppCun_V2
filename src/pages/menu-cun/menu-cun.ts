@@ -235,18 +235,16 @@ export class MenuCunPage {
   }
 
   notificaciones() {
-    this.nativeStorage.remove('badge').then(() =>{
-      console.log('Elemento eliminado');
+    // this.notificationProvider.getNotifications();
+    // this.nativeStorage.remove('badge').then(() =>{
+    //   console.log('Elemento eliminado');
       let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
       NotificacionPush.onDidDismiss(data => {
         this.navCtrl.setRoot('MenuCunPage');
       });
-      NotificacionPush.present();
-      
-    })
-};
- 
-
+      NotificacionPush.present();      
+    //})   
+  };
 
   logOut(){
     this.afAuth.auth.signOut();
@@ -258,8 +256,7 @@ export class MenuCunPage {
     }
   }
 
-  signOut(){    
-     
+  signOut() {      
     this.nativeStorage.clear().then(()=>{
       this.afAuth.auth.signOut();     
       this.googlePlus.logout()  

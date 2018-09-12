@@ -18,13 +18,14 @@
     <ion-refresher-content
       pullingIcon="arrow-dropdown">
     </ion-refresher-content>
-  </ion-refresher>    
-  <ion-card *ngFor= "let noti of Notificaciones">
+  </ion-refresher> 
+    
+  <ion-card *ngFor= "let noti of Notificaciones let i = index">
     <ion-card-header class="headerNoti">
       {{noti.headings.en}}
     </ion-card-header>
     <ion-card-content class="contentNoti">     
       {{noti.contents.en}}
-    </ion-card-content>
+    </ion-card-content>            
   </ion-card>
 </ion-content>

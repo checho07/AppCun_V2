@@ -18,24 +18,26 @@ import { OneSignal } from '@ionic-native/onesignal';
 export class NotificacionmodalPage {
 
   Notificaciones = [];
+  
   constructor ( 
                 public navCtrl: NavController,
                 public navParams: NavParams,
                 public notificationProvider:PushnotificationProvider,
                 private oneSignal:OneSignal
               ) {
-
+    this.getNotifications();
+    this.Notificaciones.slice(0);
   }
 
   ionViewWillEnter(){
     console.log('ionViewDidLoad NotificacionmodalPage');
-    this.getNotifications();
+   this.getNotifications();
   }
 
-  getNotifications(){
-    this.Notificaciones = [];
+ getNotifications(){
     let notData = this.notificationProvider.getNotifications().subscribe((datano)=>{     
       this.Notificaciones = datano['notifications']; 
+      return this.Notificaciones;
     })
   }
 

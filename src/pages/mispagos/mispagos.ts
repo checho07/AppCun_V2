@@ -72,21 +72,4 @@ export class MispagosPage {
       this.pdfObj.download();
     }
   }
-
-  downloadAndOpenPdf() {
-    let path = null;
- 
-    if (this.Platform.is('ios')) {
-      path = this.File.documentsDirectory;
-    } else if (this.Platform.is('android')) {
-      path = this.File.dataDirectory;
-    }
- 
-    const transfer = this.transfer.create();
-    transfer.download('assets/Guia.pdf', path + 'myfile.pdf').then(entry => {
-      let url = entry.toURL();
-      this.document.viewDocument(url, 'application/pdf', {});
-    });
-  }
-  
 }

@@ -44,7 +44,7 @@ export class BotonesMenu {
             nombre: values.TITLE_MENU_CARNE,
             imagen: "assets/img/5carne.png",
             page:   "CarnePage", 
-          cunOnly: true
+            cunOnly: true
           },
           {
             nombre: values.TITLE_MENU_CALENDARIO,
@@ -101,7 +101,8 @@ export class BotonesMenu {
           {
             nombre: values.TITLE_MENU_PAGO,
             imagen: "assets/img/18pagos.png",
-            page:   "MispagosPage"
+            page:   "MispagosPage",
+            cunOnly: true
           }
         ];
     
