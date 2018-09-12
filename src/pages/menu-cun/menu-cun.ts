@@ -233,18 +233,20 @@ export class MenuCunPage {
   noticiasPush(){
     this.navCtrl.push('NoticiasPage');
   }
-
   notificaciones() {
-    // this.notificationProvider.getNotifications();
-     this.nativeStorage.remove('badge').then(() =>{
+    //this.nativeStorage.remove('badge').then(() =>{
       console.log('Elemento eliminado');
+    // this.notificationProvider.getNotifications();
+    // this.nativeStorage.remove('badge').then(() =>{
+    //   console.log('Elemento eliminado');
       let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
       NotificacionPush.onDidDismiss(data => {
         this.navCtrl.setRoot('MenuCunPage');
       });
-      NotificacionPush.present();      
-    })   
-  };
+      NotificacionPush.present();
+      
+    //})
+};
 
   logOut(){
     this.afAuth.auth.signOut();
