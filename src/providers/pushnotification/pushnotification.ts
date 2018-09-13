@@ -15,7 +15,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 */
 @Injectable()
 export class PushnotificationProvider {
-
+  
   constructor ( private oneSignal: OneSignal,
                 public  Platform:Platform,
                 public  modalCtrl: ModalController,
@@ -61,17 +61,27 @@ export class PushnotificationProvider {
   }
   
   getNotifications() {
-
+  
     var oneSignalURl = "https://onesignal.com/api/v1/notifications?";
     const appId = "23154f20-404c-4127-ad54-7622ef56481f";
     var headersParams = 
     {
          "Content-Type": "application/json",
-         "Authorization": "Basic ZWYxZmE1NzUtMWI5Yi00NGQxLTkwOGYtZTcyZDYwNDNkNzEz"
+         "Authorization": "Basic ZWYxZmE1NzUtMWI5Yi00NGQxLTkwOGYtZTcyZDYwNDNkNzEz",
+         "Cache-Control": "no-cache"
     };
     var options = {
-      headers: headersParams
+      headers: headersParams,
+      cache: false
     }
-    return this.http.get(oneSignalURl+ "app_id="+appId+"&limit=10",options)
+    let  consulta = this.http.get(oneSignalURl+ "app_id="+appId+"&limit=10",options)
+
+    if (consulta) {
+      console.log('se consulto');
+      return consulta 
+    } else {
+      console.log('no entro');
+      return consulta       
+    }
   }
 }
