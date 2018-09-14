@@ -68,7 +68,7 @@ export class CunCapsulaPage {
       },error => {
         loader.dismiss();
         let toast = this .toastCtrl.create({
-          message:'Revisa tu conexion a Internet',
+          message:'Revisa tu conexión a Internet',
           duration:2000,
           position:'bottom'
         });
@@ -91,11 +91,11 @@ export class CunCapsulaPage {
 
         {
           name: 'videoName',
-          placeholder: 'Titulo de tu video'
+          placeholder: 'Título de tu video'
         },
         {
           name: 'description',
-          placeholder: 'Descripcion y tu correo',
+          placeholder: 'Descripción y tu correo',
           type: 'text'
           
         }
@@ -116,7 +116,7 @@ export class CunCapsulaPage {
             } else {
               let alert = this.alertCtr.create ({
                 title: 'Faltan Datos',
-                subTitle: 'por favor brindanos un titulo y una descripcion para tu video, y si quieres tu correo',
+                subTitle: 'Por favor brindanos un título y una descripcion para tu video, y si quieres tu correo',
                 buttons:[{
                   text:'Ok',
                   role:'cancel',
@@ -187,7 +187,7 @@ export class CunCapsulaPage {
             if (res) {
               loader1.dismiss(); 
               let toast = this.toastCtrl.create({
-                message: 'Tu video pasara a revision y sera publicado',
+                message: 'Tu video pasará a revisión y será publicado',
                 duration: 4000,
                 position: 'bottom'
               }); 

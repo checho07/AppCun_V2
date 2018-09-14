@@ -236,16 +236,14 @@ export class MenuCunPage {
   notificaciones() {
     this.nativeStorage.remove('badge').then(() =>{
       console.log('Elemento eliminado');
-      this.nativeStorage.remove('badge').then(() =>{
-        console.log('Elemento eliminado');
-        let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
-        NotificacionPush.onDidDismiss(data => {
-          this.navCtrl.setRoot('MenuCunPage');
-        });
-        NotificacionPush.present();      
-      })
+      let NotificacionPush = this.modalCtrl.create('NotificacionmodalPage', {  });
+      NotificacionPush.onDidDismiss(data => {
+        this.navCtrl.setRoot('MenuCunPage');
+      });
+      NotificacionPush.present();
+      
     })
-  };
+};
 
   logOut(){
     this.afAuth.auth.signOut();

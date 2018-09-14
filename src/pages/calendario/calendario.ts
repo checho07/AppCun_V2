@@ -26,6 +26,7 @@ export class CalendarioPage {
   configDays:any;
   eventos =[];
   dataMes=[];
+ 
   currentDate:Date = new Date();
   areas=[];
   public calendarData:object[]=[];  
@@ -107,7 +108,8 @@ export class CalendarioPage {
       this.dataMes[setClass].cssClass = arrayMarker.cssClass
     }
     let fecha = data.fecha.split('-')[0]+","+data.fecha.split('-')[1]+','+data.fecha.split('-')[2]
-    arrayMarker.date  =new Date(fecha);  
+    arrayMarker.date  =new Date(fecha); 
+   
     this._daysConfig.push(arrayMarker)    
   } 
 
@@ -116,29 +118,31 @@ export class CalendarioPage {
     this.dataMes = [];
     this.areas = [];
     this._daysConfig;
-    console.log(target);
+    console.log(target);  
     
-    if(target) {     
+    if (target) {     
       this.calendarData.forEach(element => {
         let  split = element['fecha'].split('-')[0]+","+(element['fecha'].split('-')[1])+','+element['fecha'].split('-')[2]     
-        let fecha  = new Date(split);
+        let fecha  = new Date(split); 
         if (target.newMonth.months == fecha.toISOString().split('-')[1] && target.newMonth.years == fecha.toISOString().split('-')[0]) {
-          this.dataMes.push(element);
+          this.dataMes.push(element);          
         }
       });
       this.dataMes.forEach((element,index)=>{
-        this.createMarker(element,index)
+        this.createMarker(element,index)       
       })
-    }else{
+    } else {
       this.calendarData.forEach(element => {
         let  split1 = element['fecha'].split('-')[0]+","+element['fecha'].split('-')[1]+','+element['fecha'].split('-')[2];
-        let fecha1 = new Date(split1);
-        if (fecha.toISOString().split('-')[1] == fecha1.toISOString().split('-')[1]) {
+        let fecha1 = new Date(split1);   
+        
+        if (fecha.toISOString().split('-')[1] == fecha1.toISOString().split('-')[1]) {         
           this.dataMes.push(element);
+         
         }
-        this.dataMes.forEach((element,index)=>{
-          this.createMarker(element,index)
-        })  
+        this.dataMes.forEach((element,index)=> {
+          this.createMarker(element,index)              
+        })        
       });     
     }
   }

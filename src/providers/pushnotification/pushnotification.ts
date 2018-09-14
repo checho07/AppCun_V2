@@ -79,9 +79,6 @@ export class PushnotificationProvider {
     if (consulta) {
       console.log('se consulto');
       return consulta 
-    } else {
-      console.log('no entro');
-      return consulta       
-    }
+    } 
   }
 }
